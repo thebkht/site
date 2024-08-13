@@ -204,11 +204,11 @@ export default function Page() {
         </p>
       </div> */}
       <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-        <ChannelLink
+        {/* <ChannelLink
           img={'https://avatars.githubusercontent.com/u/62228656?v=4'}
           name="@bkhtdev"
           link="https://www.youtube.com/@bkhtdev"
-        />
+        /> */}
       </div>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
