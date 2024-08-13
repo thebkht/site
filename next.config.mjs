@@ -6,7 +6,20 @@ export const sql = postgres(process.env.POSTGRES_URL, {
 
 const nextConfig = {
   images: {
-    domains: ['avatars.githubusercontent.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.midjourney.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blog.bkhtdev.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
   },
   experimental: {
     ppr: true,
