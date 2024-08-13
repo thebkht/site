@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const navItems = {
   '/': {
-    name: 'home',
+    name: 'blogs',
   },
   /* '/work': {
     name: 'work',
@@ -21,6 +21,17 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row space-x-0 pr-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 70 70"
+              className="h-5 w-5"
+            >
+              <path
+                d="M58.97,11.03v37.12l-10.71,10.82H11.03V21.85l10.71-10.82h37.22M70,0H17.15L0,17.31v52.69h52.85l17.15-17.31V0h0Z"
+                fill="currentColor"
+                strokeWidth="0"
+              />
+            </svg>
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
