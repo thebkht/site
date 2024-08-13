@@ -5,6 +5,9 @@ export const sql = postgres(process.env.POSTGRES_URL, {
 });
 
 const nextConfig = {
+  images: {
+    domains: ['avatars.githubusercontent.com'],
+  },
   experimental: {
     ppr: true,
   },
