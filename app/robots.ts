@@ -5,7 +5,7 @@ export default function robots() {
         userAgent: '*',
       },
     ],
-    sitemap: 'https://leerob.io/sitemap.xml',
-    host: 'https://leerob.io',
+    sitemap: 'https://blog.bkhtdev.com/sitemap.xml',
+    host: 'https://blog.bkhtdev.com',
   };
 }

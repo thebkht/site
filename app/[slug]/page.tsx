@@ -59,7 +59,7 @@ function formatDate(date: string) {
   let targetDate = new Date(date).getTime();
   let timeDifference = Math.abs(currentDate - targetDate);
   let daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  
+
   let fullDate = new Date(date).toLocaleString('en-us', {
     month: 'long',
     day: 'numeric',
@@ -71,13 +71,13 @@ function formatDate(date: string) {
   } else if (daysAgo < 7) {
     return `${fullDate} (${daysAgo}d ago)`;
   } else if (daysAgo < 30) {
-    const weeksAgo = Math.floor(daysAgo / 7)
+    const weeksAgo = Math.floor(daysAgo / 7);
     return `${fullDate} (${weeksAgo}w ago)`;
   } else if (daysAgo < 365) {
-    const monthsAgo = Math.floor(daysAgo / 30)
+    const monthsAgo = Math.floor(daysAgo / 30);
     return `${fullDate} (${monthsAgo}mo ago)`;
   } else {
-    const yearsAgo = Math.floor(daysAgo / 365)
+    const yearsAgo = Math.floor(daysAgo / 365);
     return `${fullDate} (${yearsAgo}y ago)`;
   }
 }

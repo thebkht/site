@@ -4,11 +4,11 @@ export const baseUrl = 'https://blog.bkhtdev.com';
 
 export default async function sitemap() {
   let blogs = getBlogPosts().map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
+    url: `${baseUrl}/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }));
 
-  let routes = ['', '/blog', '/guestbook', '/uses', '/work'].map((route) => ({
+  let routes = ['', '/guestbook'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }));
