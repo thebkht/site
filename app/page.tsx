@@ -141,7 +141,7 @@ export default function Page() {
       <p className="prose prose-neutral dark:prose-invert">
         {`I'm a frontend developer, optimist, and community builder.`}
       </p>
-      <div className="grid grid-cols-2 grid-rows-4 sm:grid-rows-3 sm:grid-cols-3 gap-4 my-8">
+      {/* <div className="grid grid-cols-2 grid-rows-4 sm:grid-rows-3 sm:grid-cols-3 gap-4 my-8">
         <div className="relative h-40">
           <Image
             alt="Me speaking on stage at React Summit about the future of Next.js"
@@ -210,17 +210,12 @@ export default function Page() {
           This comes in all forms: blog posts, videos, tweets, conference talks,
           and workshops. You can watch some of my favorites below.
         </p>
-      </div>
+      </div> */}
       <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
         <ChannelLink
           img={avatar}
           name="@leerob"
-          link="https://www.youtube.com/@leerob"
-        />
-        <ChannelLink
-          img={vercel}
-          name="@vercel"
-          link="https://www.youtube.com/@vercelhq"
+          link="https://www.youtube.com/@bkhtdev"
         />
       </div>
       <div className="prose prose-neutral dark:prose-invert">
@@ -231,14 +226,14 @@ export default function Page() {
           career, sharing knowledge along the way.
         </p>
       </div>
-      <div className="my-8 flex w-full flex-col space-y-4">
+      {/* <div className="my-8 flex w-full flex-col space-y-4">
         <BlogLink
           name="What Makes A Great Developer Experience?"
           slug="developer-experience"
         />
         <BlogLink name="What is Developer Relations?" slug="devrel" />
         <BlogLink name="The Story of Heroku" slug="heroku" />
-      </div>
+      </div> */}
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           I invest small angel checks into early stage startups building tools
