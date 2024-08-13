@@ -27,12 +27,10 @@ export const metadata: Metadata = {
     default: 'bkhtdev/blog',
     template: '%s - bkhtdev/blog',
   },
-  description:
-    'A blog about software development, web development, and other things I find interesting.',
+  description: 'Read my thoughts on software development, design, and more.',
   openGraph: {
     title: 'bkhtdev',
-    description:
-      'A blog about software development, web development, and other things I find interesting.',
+    description: 'Read my thoughts on software development, design, and more.',
     url: baseUrl,
     siteName: 'bkhtdev/blog',
     images: [
