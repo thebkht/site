@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { unstable_noStore as noStore } from 'next/cache';
 import Link from 'next/link';
 import Image from 'next/image';
-import avatar from 'app/avatar.jpg';
 import ViewCounter from 'app/blog/view-counter';
 import { PreloadResources } from 'app/preload';
 import {
@@ -204,13 +203,13 @@ export default function Page() {
           and workshops. You can watch some of my favorites below.
         </p>
       </div> */}
-      <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+      {/* <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
         <ChannelLink
           img={avatar}
-          name="@leerob"
+          name="@bkhtdev"
           link="https://www.youtube.com/@bkhtdev"
         />
-      </div>
+      </div> */}
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           Over the past decade, I've written content on my blog and newsletter.
