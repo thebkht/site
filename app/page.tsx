@@ -90,7 +90,7 @@ function ChannelLink({ img, link, name }) {
 async function Subs({ name }: { name: string }) {
   noStore();
   let subscribers;
-  if (name === '@leerob') {
+  if (name === '@bkhtdev') {
     subscribers = await getLeeYouTubeSubs();
   } else {
     subscribers = await getVercelYouTubeSubs();
@@ -136,51 +136,10 @@ export default function Page() {
     <section>
       <PreloadResources />
       <h1 className="mb-8 text-2xl font-medium tracking-tighter">
-        hey, I'm leerob 👋
+        hey, I'm Bakhtiyor Ganijon (aka bkhtdev) 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I'm a frontend developer, optimist, and community builder. I currently `}
-        <Link href="/work">work</Link>
-        {` as the VP of Product at `}
-        <span className="not-prose">
-          <Badge href="https://vercel.com/home">
-            <svg
-              width="13"
-              height="11"
-              role="img"
-              aria-label="Vercel logo"
-              className="mr-1 inline-flex"
-            >
-              <use href="/sprite.svg#vercel" />
-            </svg>
-            Vercel
-          </Badge>
-        </span>
-        {`, where I help teach the `}
-        <Badge href="https://nextjs.org">
-          <img
-            alt="Next.js logomark"
-            src="/next-logo.svg"
-            className="!mr-1"
-            width="14"
-            height="14"
-          />
-          Next.js
-        </Badge>
-        {` community, an open-source web framework built with `}
-        <Badge href="https://react.dev">
-          <svg
-            width="14"
-            height="14"
-            role="img"
-            aria-label="React logo"
-            className="!mr-1"
-          >
-            <use href="/sprite.svg#react" />
-          </svg>
-          React
-        </Badge>
-        .
+        {`I'm a frontend developer, optimist, and community builder.`}
       </p>
       <div className="grid grid-cols-2 grid-rows-4 sm:grid-rows-3 sm:grid-cols-3 gap-4 my-8">
         <div className="relative h-40">
