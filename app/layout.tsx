@@ -9,6 +9,7 @@ import {
   Manrope as FontSans,
 } from 'next/font/google';
 import { baseUrl } from './sitemap';
+import Footer from './components/footer';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -81,6 +82,7 @@ export default function RootLayout({
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
+          <Footer />
           <Analytics />
           <SpeedInsights />
         </main>
