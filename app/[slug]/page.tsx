@@ -9,6 +9,7 @@ import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
 import { baseUrl } from 'app/sitemap';
 import Image from 'next/image';
+import readingTime from 'reading-time';
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -154,11 +155,21 @@ export default function Blog({ params }) {
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-        <Suspense fallback={<p className="h-5" />}>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            {formatDate(post.metadata.publishedAt)}
-          </p>
-        </Suspense>
+        <div className="flex gap-2 items-center mb-8 text-sm">
+          <Suspense fallback={<p className="h-5" />}>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              {readingTime(post.content, { wordsPerMinute: 300 }).text}
+            </p>
+          </Suspense>
+          <span className="text-sm text-neutral-600 dark:text-neutral-400">
+            ·
+          </span>
+          <Suspense fallback={<p className="h-5" />}>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              {formatDate(post.metadata.publishedAt)}
+            </p>
+          </Suspense>
+        </div>
         <Suspense fallback={<p className="h-5" />}>
           <Views slug={post.slug} />
         </Suspense>
