@@ -7,6 +7,27 @@ import { getBlogPosts } from 'app/db/blog';
 import ViewCounter from '../view-counter';
 import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
+import { baseUrl } from 'app/sitemap';
+import Image from 'next/image';
+
+const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#333" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#333" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#333" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str);
 
 export async function generateMetadata({
   params,
@@ -22,9 +43,11 @@ export async function generateMetadata({
     summary: description,
     image,
   } = post.metadata;
-  let ogImage = image
-    ? `https://blog.bkhtdev.com${image}`
-    : `https://blog.bkhtdev.com/og?title=${title}`;
+  const ogUrl = new URL(`${baseUrl}/og`);
+  ogUrl.searchParams.set('heading', title);
+  ogUrl.searchParams.set('mode', 'dark');
+
+  let ogImage = image ? image : ogUrl;
 
   return {
     title,
@@ -113,6 +136,20 @@ export default function Blog({ params }) {
           }),
         }}
       />
+      {post.metadata.image && (
+        <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden">
+          <Image
+            src={post.metadata.image}
+            alt={post.metadata.title}
+            layout="responsive"
+            width={1000}
+            height={500}
+            className="rounded-md cover-image"
+            placeholder="blur"
+            blurDataURL={shimmer(1000, 500)}
+          />
+        </div>
+      )}
       <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
         {post.metadata.title}
       </h1>
