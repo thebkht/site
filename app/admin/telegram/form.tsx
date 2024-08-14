@@ -2,7 +2,7 @@
 
 import { useFormStatus } from 'react-dom';
 import { useState, useEffect } from 'react';
-import { deleteGuestbookEntries, deleteNotes } from 'app/db/actions';
+import { deleteNotes } from 'app/db/actions';
 
 export type Note = {
   id: string;
@@ -19,7 +19,7 @@ export default function Form({ notes }) {
   const [isCommandKeyPressed, setIsCommandKeyPressed] = useState(false);
 
   useEffect(() => {
-    const keyDownHandler = ({ key }) => {
+    const keyDownHandler = ({ key }: KeyboardEvent) => {
       if (key === 'Shift') {
         setIsShiftKeyPressed(true);
       }
@@ -27,7 +27,7 @@ export default function Form({ notes }) {
         setIsCommandKeyPressed(true);
       }
     };
-    const keyUpHandler = ({ key }) => {
+    const keyUpHandler = ({ key }: KeyboardEvent) => {
       if (key === 'Shift') {
         setIsShiftKeyPressed(false);
       }
@@ -63,13 +63,13 @@ export default function Form({ notes }) {
   };
 
   const handleShiftClick = (index: number, checked: boolean) => {
-    const startIndex = Math.min(startShiftClickIndex!, index);
-    const endIndex = Math.max(startShiftClickIndex!, index);
+    const startIndex = Math.min(startShiftClickIndex, index);
+    const endIndex = Math.max(startShiftClickIndex, index);
 
     setSelectedInputs((prevInputs) => {
       const newSelection = notes
         .slice(startIndex, endIndex + 1)
-        .map((item) => item.id);
+        .map((item: Note) => item);
 
       if (checked) {
         const combinedSelection = Array.from(
@@ -77,7 +77,7 @@ export default function Form({ notes }) {
         );
         return combinedSelection;
       } else {
-        return prevInputs.filter((inputId) => !newSelection.includes(inputId));
+        return prevInputs.filter((input) => !newSelection.includes(input));
       }
     });
   };
@@ -98,11 +98,8 @@ export default function Form({ notes }) {
     index: number
   ) => {
     if (event.key === 'Enter') {
-      // Check if the checkbox was already selected
       const isChecked = selectedInputs.includes(note);
-
-      // Toggle the checkbox
-      handleCheck(!isChecked, notes, index);
+      handleCheck(!isChecked, note, index);
     }
   };
 
@@ -114,15 +111,15 @@ export default function Form({ notes }) {
       }}
     >
       <DeleteButton isActive={selectedInputs.length !== 0} />
-      {notes.map((entry, index) => (
+      {notes.map((entry: Note, index: number) => (
         <GuestbookEntry key={entry.id} entry={entry}>
           <input
             name={entry.id}
             type="checkbox"
             className="mr-2 w-4 h-4"
-            onChange={(e) => handleCheck(e.target.checked, entry.id, index)}
-            onKeyDown={(e) => handleKeyDown(e, entry.id, index)}
-            checked={selectedInputs.includes(entry.id)}
+            onChange={(e) => handleCheck(e.target.checked, entry, index)}
+            onKeyDown={(e) => handleKeyDown(e, entry, index)}
+            checked={selectedInputs.includes(entry)}
           />
         </GuestbookEntry>
       ))}
@@ -130,13 +127,19 @@ export default function Form({ notes }) {
   );
 }
 
-function GuestbookEntry({ entry, children }) {
+function GuestbookEntry({
+  entry,
+  children,
+}: {
+  entry: Note;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex flex-col space-y-1 mb-4">
       <div className="w-full text-sm break-words items-center flex">
         {children}
         <span className="text-neutral-600 dark:text-neutral-400 mr-1 border-neutral-100">
-          {entry.published_at}:
+          {entry.published_at.toISOString()}:
         </span>
         {entry.title}
         <span className="line-clamp-1">{entry.content}</span>
@@ -147,7 +150,7 @@ function GuestbookEntry({ entry, children }) {
 
 const cx = (...classes) => classes.filter(Boolean).join(' ');
 
-function DeleteButton({ isActive }) {
+function DeleteButton({ isActive }: { isActive: boolean }) {
   const { pending } = useFormStatus();
 
   return (
