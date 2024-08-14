@@ -1,7 +1,22 @@
 'use server';
 
+import { sql } from './postgres';
+
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric characters with hyphens
+    .replace(/(^-+|-+$)/g, ''); // Remove leading and trailing hyphens
+}
+
 export async function postTelegramMessage(formData: FormData) {
-  let entry = formData.get('entry')?.toString() || '';
+  let title = formData.get('title')?.toString() || '';
+  let summary = formData.get('summary')?.toString() || '';
+  let content = formData.get('content')?.toString() || '';
+  let image = formData.get('image')?.toString() || '';
+  let slug = generateSlug(title);
+
+  let entry = `*${title}*\n${content}`;
 
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -22,6 +37,12 @@ export async function postTelegramMessage(formData: FormData) {
   );
 
   let data = await response.json();
+
+  await sql`
+     INSERT INTO posts (title, published_at, slug, summary, content, image, telegram_message_id)
+     VALUES (${title}, NOW(), ${slug}, ${summary}, ${content}, ${image}, ${data.result.message_id})
+  `;
+
   console.log('Telegram message sent', data);
 }
 
@@ -64,6 +85,17 @@ export async function editTelegramMessage(
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
 
+  const post = await sql`
+     SELECT * FROM posts WHERE telegram_message_id = ${messageId}
+       `;
+  if (!post[0]) {
+    throw new Error('Post not found');
+  }
+
+  await sql`
+     UPDATE posts SET content = ${newContent} WHERE telegram_message_id = ${messageId}
+     `;
+
   let response = await fetch(
     `https://api.telegram.org/bot${telegramBotToken}/editMessageText`,
     {
@@ -87,6 +119,18 @@ export async function editTelegramMessage(
 export async function deleteTelegramMessage(messageId: number) {
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
+
+  const post = await sql`
+     SELECT * FROM posts WHERE telegram_message_id = ${messageId}
+       `;
+
+  if (!post[0]) {
+    throw new Error('Post not found');
+  }
+
+  await sql`
+     DELETE FROM posts WHERE telegram_message_id = ${messageId}
+     `;
 
   let response = await fetch(
     `https://api.telegram.org/bot${telegramBotToken}/deleteMessage`,
