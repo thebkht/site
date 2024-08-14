@@ -26,9 +26,6 @@ export default function UsesPage() {
           </li>
           <li>Logitech G502 HERO Mouse</li>
           <li>NuPhy Air75 v1 mechanical keyboard</li>
-          <li>Focal XS 2.1 w/ Subwoofer</li>
-          <li>Autonomous SmartDesk 2</li>
-          <li>Autonomous ErgoChair 2</li>
         </ul>
         {/* <h3 id="coding">Coding</h3>
         <ul>
