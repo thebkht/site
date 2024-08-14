@@ -17,7 +17,9 @@ export async function postTelegramMessage(formData: FormData) {
 
   // Function to escape special characters for MarkdownV2
   function escapeMarkdownV2(text: string): string {
-    return text.replace(/([_*[\]()~`>#+-=|{}.!])/g, '\\$1');
+    return text
+      .replace(/([_*[\]()~`>#+\-=|{}.!])/g, '\\$1') // Add escaping for additional characters
+      .replace(/(@)/g, '\\$1'); // Escape '@' symbol
   }
 
   let entry = `*${escapeMarkdownV2(title)}*\n\n${escapeMarkdownV2(content)}`;
