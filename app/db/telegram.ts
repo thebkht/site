@@ -11,9 +11,8 @@ function generateSlug(title: string): string {
 
 export async function postTelegramMessage(formData: FormData) {
   let title = formData.get('title')?.toString() || '';
-  let summary = formData.get('summary')?.toString() || '';
   let content = formData.get('content')?.toString() || '';
-  let image = formData.get('image')?.toString() || '';
+  let image = formData.get('image')?.toString() || null;
   let slug = generateSlug(title);
 
   let entry = `*${title}*\n${content}`;
@@ -39,11 +38,12 @@ export async function postTelegramMessage(formData: FormData) {
   let data = await response.json();
 
   await sql`
-     INSERT INTO posts (title, published_at, slug, summary, content, image, telegram_message_id)
-     VALUES (${title}, NOW(), ${slug}, ${summary}, ${content}, ${image}, ${data.result.message_id})
+     INSERT INTO posts (title, published_at, slug, content, image, telegram_message_id)
+     VALUES (${title}, NOW(), ${slug}, ${content}, ${image}, ${data.result.message_id})
   `;
 
   console.log('Telegram message sent', data);
+  return slug;
 }
 
 export async function postLongMessage(message: string) {

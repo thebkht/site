@@ -53,7 +53,7 @@ export async function generateMetadata({
       description,
       type: 'article',
       publishedTime,
-      url: `https://blog.bkhtdev.com/blog/${note.slug}`,
+      url: `https://blog.bkhtdev.com/notes/${note.slug}`,
       images: [
         {
           url: ogImage,
