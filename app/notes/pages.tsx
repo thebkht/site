@@ -10,7 +10,6 @@ export const metadata = {
 
 export default async function NotePage() {
   let allNotes = await getNotes();
-  console.log(allNotes);
 
   return (
     <section>
@@ -32,7 +31,7 @@ export default async function NotePage() {
             <Link
               key={post.slug}
               className="flex flex-col space-y-1 mb-4"
-              href={`/note/${post.slug}`}
+              href={`/notes/${post.slug}`}
             >
               <div className="w-full flex flex-col">
                 <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">

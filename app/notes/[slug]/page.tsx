@@ -100,7 +100,6 @@ function formatDate(date: string) {
 
 export default async function Note({ params }) {
   let note = await getNote(params.slug);
-  console.log(note);
 
   if (!note) {
     notFound();
@@ -129,7 +128,7 @@ export default async function Note({ params }) {
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              {formatDate(note.publishedAt)}
+              {formatDate(note.publishedAt.toISOString())}
             </p>
           </Suspense>
         </div>

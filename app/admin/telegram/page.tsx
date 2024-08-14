@@ -17,8 +17,6 @@ export default async function GuestbookPage() {
   }
 
   let notes = await getNotes();
-  console.log(notes);
-
   return (
     <section>
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">telegram</h1>
