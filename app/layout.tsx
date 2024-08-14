@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Navbar } from './components/nav';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { SandpackCSS } from './[slug]/sandpack';
+import { SandpackCSS } from './blog/[slug]/sandpack';
 import {
   JetBrains_Mono as FontMono,
   Manrope as FontSans,

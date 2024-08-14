@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { CustomMDX } from 'app/components/mdx';
 import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
-import ViewCounter from '../view-counter';
+import ViewCounter from '../../view-counter';
 import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
 import { baseUrl } from 'app/sitemap';
