@@ -153,7 +153,7 @@ function DeleteButton({ isActive }) {
       disabled={pending}
       type="submit"
     >
-      Delete Entries
+      Delete Notes
     </button>
   );
 }
