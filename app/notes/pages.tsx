@@ -3,6 +3,11 @@ import { Suspense } from 'react';
 import ViewCounter from '../view-counter';
 import { getNotes, getViewsCount } from 'app/db/queries';
 
+export const metadata = {
+  title: 'Notes',
+  description: 'Read my notes on software development, design, and more.',
+};
+
 export default async function NotePage() {
   let allNotes = await getNotes();
 
@@ -17,10 +22,7 @@ export default async function NotePage() {
       ) : (
         allNotes
           .sort((a, b) => {
-            if (
-              new Date(a.metadata.publishedAt) >
-              new Date(b.metadata.publishedAt)
-            ) {
+            if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
               return -1;
             }
             return 1;
