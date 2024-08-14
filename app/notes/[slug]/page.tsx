@@ -31,7 +31,12 @@ export async function generateMetadata({
     return;
   }
 
-  let { title, publishedAt: publishedTime, content: description, image } = note;
+  let {
+    title,
+    published_at: publishedTime,
+    content: description,
+    image,
+  } = note;
   const ogUrl = new URL(`${baseUrl}/og`);
   ogUrl.searchParams.set('heading', title);
   ogUrl.searchParams.set('mode', 'dark');
@@ -64,7 +69,6 @@ export async function generateMetadata({
 
 function formatDate(date: Date | string) {
   noStore();
-  console.log(date);
   let currentDate = new Date().getTime();
 
   if (!date) {
@@ -129,7 +133,7 @@ export default async function Note({ params }) {
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              {formatDate(note.publishedAt)}
+              {formatDate(note.published_at)}
             </p>
           </Suspense>
         </div>
