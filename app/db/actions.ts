@@ -54,7 +54,7 @@ export async function saveGuestbookEntry(formData: FormData) {
       to: 'b.yusupoff001@gmail.com',
       subject: 'New Guestbook Entry',
       html: `
-      <div style="font-family: 'Arial', sans-serif; padding: 20px; background-color: #f9fafb; color: #333; max-width: 600px; margin: 0 auto;">
+      <div style="font-family: 'Arial', sans-serif; padding: 20px; background-color: #f9fafb; color: #333; max-width: 100vw;">
       <div style="max-width: 600px; margin: 0 auto;">
           <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #1f2937;">New Guestbook Entry</h2>
           <p style="font-size: 16px; margin-bottom: 5px;"><span style="font-weight: bold;">Email:</span> ${email}</p>
