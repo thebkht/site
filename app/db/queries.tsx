@@ -93,3 +93,17 @@ export async function getGuestbookEntries() {
     LIMIT 100
   `;
 }
+
+export async function getNotes() {
+  if (!process.env.POSTGRES_URL) {
+    return [];
+  }
+
+  noStore();
+  return sql`
+    SELECT id, content, published_at, title
+    FROM posts
+    ORDER BY published_at DESC
+    LIMIT 100
+  `;
+}
