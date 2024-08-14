@@ -15,7 +15,12 @@ export async function postTelegramMessage(formData: FormData) {
   let image = formData.get('image')?.toString() || null;
   let slug = generateSlug(title);
 
-  let entry = `*${title}*\n\n${content}`;
+  // Function to escape special characters for MarkdownV2
+  function escapeMarkdownV2(text: string): string {
+    return text.replace(/([_*[\]()~`>#+-=|{}.!])/g, '\\$1');
+  }
+
+  let entry = `*${escapeMarkdownV2(title)}*\n\n${escapeMarkdownV2(content)}`;
 
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
