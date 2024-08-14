@@ -34,6 +34,7 @@ export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
   let note = await getNote(params.slug);
+  console.log(note);
   if (!note) {
     return;
   }
@@ -101,8 +102,9 @@ function formatDate(date: string) {
   }
 }
 
-export default async function NOte({ params }) {
+export default async function Note({ params }) {
   let note = await getNote(params.slug);
+  console.log(note);
 
   if (!note) {
     notFound();

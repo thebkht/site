@@ -17,6 +17,7 @@ export default async function GuestbookPage() {
   }
 
   let notes = await getNotes();
+  console.log(notes);
 
   return (
     <section>
