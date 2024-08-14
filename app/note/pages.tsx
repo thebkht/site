@@ -32,7 +32,7 @@ export default async function NotePage() {
             <Link
               key={post.slug}
               className="flex flex-col space-y-1 mb-4"
-              href={`/notes/${post.slug}`}
+              href={`/note/${post.slug}`}
             >
               <div className="w-full flex flex-col">
                 <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
