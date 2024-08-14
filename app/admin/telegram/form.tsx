@@ -10,6 +10,7 @@ export type Note = {
   content: string;
   published_at: Date;
   telegram_message_id: number;
+  slug: string;
 };
 
 export default function Form({ notes }) {

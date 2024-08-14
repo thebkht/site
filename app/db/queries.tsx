@@ -102,7 +102,7 @@ export async function getNotes() {
   noStore();
   // return published_date as string
   return sql`
-    SELECT id, content, published_at, title, telegram_message_id
+    SELECT id, content, published_at, title, telegram_message_id, slug
     FROM posts
     ORDER BY published_at DESC
     LIMIT 100
