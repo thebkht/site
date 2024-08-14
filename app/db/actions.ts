@@ -104,7 +104,7 @@ export async function deleteNotes(selectedNotes: Note[]) {
   let arrayLiteral = `{${selectedNotesAsNumbers.join(',')}}`;
 
   await sql`
-    DELETE FROM notes
+    DELETE FROM posts
     WHERE id = ANY(${arrayLiteral}::int[])
   `;
 
