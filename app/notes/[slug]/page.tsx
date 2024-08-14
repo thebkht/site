@@ -112,28 +112,6 @@ export default async function Note({ params }) {
 
   return (
     <section>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: note.title,
-            datePublished: note.publishedAt,
-            dateModified: note.publishedAt,
-            description: note.content,
-            image: note.image
-              ? `https://blog.bkhtdev.com${note.image}`
-              : `https://blog.bkhtdev.com/og?title=${note.title}`,
-            url: `https://blog.bkhtdev.com/blog/${note.slug}`,
-            author: {
-              '@type': 'Person',
-              name: 'bkhtdev',
-            },
-          }),
-        }}
-      />
       {note.image && (
         <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden">
           <Image

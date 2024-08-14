@@ -10,6 +10,7 @@ export const metadata = {
 
 export default async function NotePage() {
   let allNotes = await getNotes();
+  console.log(allNotes);
 
   return (
     <section>
