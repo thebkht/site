@@ -16,7 +16,7 @@ export default function Form() {
       action={async (formData) => {
         const slug = await postTelegramMessage(formData);
         formRef.current?.reset();
-        router.push(`/notes/${slug}`);
+        router.push(`/note/${slug}`);
       }}
     >
       <input
