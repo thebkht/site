@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { Suspense, cache } from 'react';
 import { notFound } from 'next/navigation';
 import { CustomMDX } from 'app/components/mdx';
-import { getViewsCount } from 'app/db/queries';
+import { getNote, getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
-import ViewCounter from '../view-counter';
+import ViewCounter from 'app/view-counter';
 import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
 import { baseUrl } from 'app/sitemap';
@@ -33,17 +33,12 @@ const toBase64 = (str: string) =>
 export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
-  if (!post) {
+  let note = await getNote(params.slug);
+  if (!note) {
     return;
   }
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = post.metadata;
+  let { title, publishedAt: publishedTime, content: description, image } = note;
   const ogUrl = new URL(`${baseUrl}/og`);
   ogUrl.searchParams.set('heading', title);
   ogUrl.searchParams.set('mode', 'dark');
@@ -58,7 +53,7 @@ export async function generateMetadata({
       description,
       type: 'article',
       publishedTime,
-      url: `https://blog.bkhtdev.com/blog/${post.slug}`,
+      url: `https://blog.bkhtdev.com/blog/${note.slug}`,
       images: [
         {
           url: ogImage,
@@ -106,10 +101,10 @@ function formatDate(date: string) {
   }
 }
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export default async function NOte({ params }) {
+  let note = await getNote(params.slug);
 
-  if (!post) {
+  if (!note) {
     notFound();
   }
 
@@ -122,14 +117,14 @@ export default function Blog({ params }) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `https://blog.bkhtdev.com${post.metadata.image}`
-              : `https://blog.bkhtdev.com/og?title=${post.metadata.title}`,
-            url: `https://blog.bkhtdev.com/blog/${post.slug}`,
+            headline: note.title,
+            datePublished: note.publishedAt,
+            dateModified: note.publishedAt,
+            description: note.content,
+            image: note.image
+              ? `https://blog.bkhtdev.com${note.image}`
+              : `https://blog.bkhtdev.com/og?title=${note.title}`,
+            url: `https://blog.bkhtdev.com/blog/${note.slug}`,
             author: {
               '@type': 'Person',
               name: 'bkhtdev',
@@ -137,11 +132,11 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      {post.metadata.image && (
+      {note.image && (
         <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden">
           <Image
-            src={post.metadata.image}
-            alt={post.metadata.title}
+            src={note.image}
+            alt={note.title}
             layout="responsive"
             width={1000}
             height={500}
@@ -152,30 +147,22 @@ export default function Blog({ params }) {
         </div>
       )}
       <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-        {post.metadata.title}
+        {note.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              {readingTime(post.content, { wordsPerMinute: 300 }).text}
-            </p>
-          </Suspense>
-          <span className="text-sm text-neutral-600 dark:text-neutral-400">
-            ·
-          </span>
-          <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              {formatDate(post.metadata.publishedAt)}
+              {formatDate(note.publishedAt)}
             </p>
           </Suspense>
         </div>
         <Suspense fallback={<p className="h-5" />}>
-          <Views slug={post.slug} />
+          <Views slug={note.slug} />
         </Suspense>
       </div>
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">
-        <CustomMDX source={post.content} />
+        <CustomMDX source={note.content} />
       </article>
     </section>
   );

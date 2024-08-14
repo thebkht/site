@@ -107,3 +107,17 @@ export async function getNotes() {
     LIMIT 100
   `;
 }
+
+export async function getNote(slug: string) {
+  if (!process.env.POSTGRES_URL) {
+    return;
+  }
+
+  let notes = await sql`
+    SELECT *
+    FROM posts
+    WHERE slug = ${slug}
+  `;
+
+  return notes[0];
+}
