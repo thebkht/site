@@ -128,7 +128,7 @@ export default async function Note({ params }) {
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              {formatDate(note.publishedAt.toISOString())}
+              {formatDate(note.publishedAt as string)}
             </p>
           </Suspense>
         </div>
