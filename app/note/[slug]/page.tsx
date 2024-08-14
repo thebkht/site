@@ -3,13 +3,11 @@ import { Suspense, cache } from 'react';
 import { notFound } from 'next/navigation';
 import { CustomMDX } from 'app/components/mdx';
 import { getNote, getViewsCount } from 'app/db/queries';
-import { getBlogPosts } from 'app/db/blog';
 import ViewCounter from 'app/view-counter';
 import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
 import { baseUrl } from 'app/sitemap';
 import Image from 'next/image';
-import readingTime from 'reading-time';
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -24,11 +22,6 @@ const shimmer = (w: number, h: number) => `
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
 </svg>`;
-
-const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str);
 
 export async function generateMetadata({
   params,
@@ -73,6 +66,9 @@ export async function generateMetadata({
 function formatDate(date: string) {
   noStore();
   let currentDate = new Date().getTime();
+  if (!date) {
+    return 'Invalid date';
+  }
   if (!date.includes('T')) {
     date = `${date}T00:00:00`;
   }
