@@ -2,10 +2,18 @@
 
 import { useFormStatus } from 'react-dom';
 import { useState, useEffect } from 'react';
-import { deleteGuestbookEntries } from 'app/db/actions';
+import { deleteGuestbookEntries, deleteNotes } from 'app/db/actions';
+
+export type Note = {
+  id: string;
+  title: string;
+  content: string;
+  published_at: string;
+  telegram_message_id: number;
+};
 
 export default function Form({ notes }) {
-  const [selectedInputs, setSelectedInputs] = useState<string[]>([]);
+  const [selectedInputs, setSelectedInputs] = useState<Note[]>([]);
   const [startShiftClickIndex, setStartShiftClickIndex] = useState<number>(0);
   const [isShiftKeyPressed, setIsShiftKeyPressed] = useState(false);
   const [isCommandKeyPressed, setIsCommandKeyPressed] = useState(false);
@@ -37,20 +45,20 @@ export default function Form({ notes }) {
     };
   }, []);
 
-  const handleNormalClick = (checked: boolean, id: string, index: number) => {
+  const handleNormalClick = (checked: boolean, note: Note, index: number) => {
     setSelectedInputs((prevInputs) =>
       checked
-        ? [...prevInputs, id]
-        : prevInputs.filter((inputId) => inputId !== id)
+        ? [...prevInputs, note]
+        : prevInputs.filter((input) => input !== note)
     );
     setStartShiftClickIndex(index);
   };
 
-  const handleCommandClick = (id: string) => {
+  const handleCommandClick = (note: Note) => {
     setSelectedInputs((prevInputs) =>
-      prevInputs.includes(id)
-        ? prevInputs.filter((inputId) => inputId !== id)
-        : [...prevInputs, id]
+      prevInputs.includes(note)
+        ? prevInputs.filter((input) => input !== note)
+        : [...prevInputs, note]
     );
   };
 
@@ -74,27 +82,27 @@ export default function Form({ notes }) {
     });
   };
 
-  const handleCheck = (checked: boolean, id: string, index: number) => {
+  const handleCheck = (checked: boolean, note: Note, index: number) => {
     if (isCommandKeyPressed) {
-      handleCommandClick(id);
+      handleCommandClick(note);
     } else if (isShiftKeyPressed && startShiftClickIndex !== null) {
       handleShiftClick(index, checked);
     } else {
-      handleNormalClick(checked, id, index);
+      handleNormalClick(checked, note, index);
     }
   };
 
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,
-    id: string,
+    note: Note,
     index: number
   ) => {
     if (event.key === 'Enter') {
       // Check if the checkbox was already selected
-      const isChecked = selectedInputs.includes(id);
+      const isChecked = selectedInputs.includes(note);
 
       // Toggle the checkbox
-      handleCheck(!isChecked, id, index);
+      handleCheck(!isChecked, notes, index);
     }
   };
 
@@ -102,7 +110,7 @@ export default function Form({ notes }) {
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-        await deleteGuestbookEntries(selectedInputs);
+        await deleteNotes(selectedInputs);
       }}
     >
       <DeleteButton isActive={selectedInputs.length !== 0} />

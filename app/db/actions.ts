@@ -4,6 +4,8 @@ import { auth } from 'app/auth';
 import { type Session } from 'next-auth';
 import { sql } from './postgres';
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
+import { Note } from 'app/admin/telegram/form';
+import { deleteTelegramMessage } from './telegram';
 
 export async function increment(slug: string) {
   noStore();
@@ -88,4 +90,33 @@ export async function deleteGuestbookEntries(selectedEntries: string[]) {
 
   revalidatePath('/admin');
   revalidatePath('/guestbook');
+}
+
+export async function deleteNotes(selectedNotes: Note[]) {
+  let session = await getSession();
+  let email = session.user?.email as string;
+
+  if (email !== 'me@bkhtdev.com' && email !== 'b.yusupoff001@gmail.com') {
+    throw new Error('Unauthorized');
+  }
+
+  let selectedNotesAsNumbers = selectedNotes.map((note) => note.id);
+  let arrayLiteral = `{${selectedNotesAsNumbers.join(',')}}`;
+
+  await sql`
+    DELETE FROM notes
+    WHERE id = ANY(${arrayLiteral}::int[])
+  `;
+
+  //delete from telegram
+  selectedNotes.forEach(async (note) => {
+    try {
+      await deleteTelegramMessage(note.telegram_message_id);
+    } catch (error) {
+      console.error('Error deleting telegram message', error);
+    }
+  });
+
+  revalidatePath('/admin/telegram');
+  revalidatePath('/notes');
 }

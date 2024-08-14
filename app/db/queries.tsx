@@ -101,7 +101,7 @@ export async function getNotes() {
 
   noStore();
   return sql`
-    SELECT id, content, published_at, title
+    SELECT id, content, published_at, title, telegram_message_id
     FROM posts
     ORDER BY published_at DESC
     LIMIT 100

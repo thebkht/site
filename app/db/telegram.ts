@@ -120,18 +120,6 @@ export async function deleteTelegramMessage(messageId: number) {
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
 
-  const post = await sql`
-     SELECT * FROM posts WHERE telegram_message_id = ${messageId}
-       `;
-
-  if (!post[0]) {
-    throw new Error('Post not found');
-  }
-
-  await sql`
-     DELETE FROM posts WHERE telegram_message_id = ${messageId}
-     `;
-
   let response = await fetch(
     `https://api.telegram.org/bot${telegramBotToken}/deleteMessage`,
     {
