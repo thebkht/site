@@ -139,7 +139,12 @@ function GuestbookEntry({
       <div className="w-full text-sm break-words items-center flex">
         {children}
         <span className="text-neutral-600 dark:text-neutral-400 mr-1 border-neutral-100">
-          {entry.published_at.toISOString()}:
+          {new Date(entry.published_at).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          })}
+          :
         </span>
         {entry.title}
         <span className="line-clamp-1">{entry.content}</span>
