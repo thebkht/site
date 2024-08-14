@@ -15,7 +15,7 @@ export async function postTelegramMessage(formData: FormData) {
   let image = formData.get('image')?.toString() || null;
   let slug = generateSlug(title);
 
-  let entry = `*${title}*\n${content}`;
+  let entry = `*${title}*\n\n${content}`;
 
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -36,13 +36,13 @@ export async function postTelegramMessage(formData: FormData) {
   );
 
   let data = await response.json();
+  console.log('Telegram message sent', data);
 
   await sql`
      INSERT INTO posts (title, published_at, slug, content, image, telegram_message_id)
      VALUES (${title}, NOW(), ${slug}, ${content}, ${image}, ${data.result.message_id})
   `;
 
-  console.log('Telegram message sent', data);
   return slug;
 }
 
