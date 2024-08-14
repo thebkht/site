@@ -14,7 +14,7 @@ export default async function NotePage() {
   return (
     <section>
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">
-        read my blog
+        read my notes
       </h1>
 
       {allNotes.length === 0 ? (
