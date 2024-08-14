@@ -4,6 +4,7 @@ import { auth } from 'app/auth';
 import { type Session } from 'next-auth';
 import { sql } from './postgres';
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
+import { v4 as uuidv4 } from 'uuid';
 
 export async function increment(slug: string) {
   noStore();
@@ -38,7 +39,7 @@ export async function saveGuestbookEntry(formData: FormData) {
 
   await sql`
     INSERT INTO guestbook (id, email, body, created_by, created_at)
-    VALUES (RANDOM()+5000, ${email}, ${body}, ${created_by}, NOW())
+    VALUES (${uuidv4()}, ${email}, ${body}, ${created_by}, NOW())
   `;
 
   revalidatePath('/guestbook');
