@@ -64,6 +64,7 @@ export async function generateMetadata({
 
 function formatDate(date: Date | string) {
   noStore();
+  console.log(date);
   let currentDate = new Date().getTime();
 
   if (!date) {
