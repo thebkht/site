@@ -27,7 +27,6 @@ export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
   let note = await getNote(params.slug);
-  console.log(note);
   if (!note) {
     return;
   }
@@ -63,13 +62,14 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(date: string) {
+function formatDate(date: Date | string) {
   noStore();
   let currentDate = new Date().getTime();
+
   if (!date) {
     return 'Invalid date';
   }
-  if (!date.includes('T')) {
+  if (typeof date === 'string' && !date.includes('T')) {
     date = `${date}T00:00:00`;
   }
   let targetDate = new Date(date).getTime();
@@ -128,7 +128,7 @@ export default async function Note({ params }) {
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              {formatDate(note.publishedAt as string)}
+              {formatDate(note.publishedAt)}
             </p>
           </Suspense>
         </div>
