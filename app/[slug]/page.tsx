@@ -155,7 +155,7 @@ export default function Blog({ params }) {
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-        <div className="flex gap-2 items-center mb-8 text-sm">
+        <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
               {readingTime(post.content, { wordsPerMinute: 300 }).text}
