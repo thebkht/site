@@ -1,5 +1,5 @@
 import { auth } from 'app/auth';
-import { getGuestbookEntries } from 'app/db/queries';
+import { getNotes } from 'app/db/queries';
 import { redirect } from 'next/navigation';
 import Form from './form';
 
@@ -16,7 +16,7 @@ export default async function GuestbookPage() {
     redirect('/');
   }
 
-  let notes = await getGuestbookEntries();
+  let notes = await getNotes();
 
   return (
     <section>
