@@ -100,6 +100,7 @@ export async function getNotes() {
   }
 
   noStore();
+  // return published_date as string
   return sql`
     SELECT id, content, published_at, title, telegram_message_id
     FROM posts

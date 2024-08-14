@@ -8,7 +8,7 @@ export type Note = {
   id: string;
   title: string;
   content: string;
-  published_at: string;
+  published_at: Date;
   telegram_message_id: number;
 };
 
