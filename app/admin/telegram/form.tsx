@@ -3,6 +3,7 @@
 import { useFormStatus } from 'react-dom';
 import { useState, useEffect } from 'react';
 import { deleteNotes } from 'app/db/actions';
+import Link from 'next/link';
 
 export type Note = {
   id: string;
@@ -148,8 +149,10 @@ function GuestbookEntry({
             })}
             :
           </span>
-          {entry.title}
-          <span className="line-clamp-1">{entry.content}</span>
+          <Link href={`/admin/editor/${entry.slug}`}>
+            {entry.title}
+            <span className="line-clamp-1">{entry.content}</span>
+          </Link>
         </div>
       </div>
     </div>
