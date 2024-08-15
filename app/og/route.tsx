@@ -68,7 +68,7 @@ export async function GET(req: Request) {
             stroke-width="0"
           />
         </svg>
-        <div tw="flex flex-col flex-1 py-14">
+        <div tw="flex flex-col flex-1 py-14 h-full justify-end">
           <div
             tw="flex leading-[1.1] text-7xl font-bold"
             style={{
