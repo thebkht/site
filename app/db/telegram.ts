@@ -1,7 +1,9 @@
 'use server';
 
 import { sql } from './postgres';
+import { marked } from 'marked'; // Import a Markdown-to-HTML converter like 'marked'
 
+// Function to generate a slug from the title
 function generateSlug(title: string): string {
   return title
     .toLowerCase()
@@ -9,20 +11,15 @@ function generateSlug(title: string): string {
     .replace(/(^-+|-+$)/g, ''); // Remove leading and trailing hyphens
 }
 
-// Function to escape special characters for MarkdownV2
-function escapeMarkdownV2(text: string): string {
-  return text
-    .replace(/([_*[\]()~`>#+\-=|{}.!])/g, '\\$1') // Add escaping for additional characters
-    .replace(/(@)/g, '\\$1'); // Escape '@' symbol
-}
-
+// Function to post a message to Telegram
 export async function postTelegramMessage(formData: FormData) {
   let title = formData.get('title')?.toString() || '';
   let content = formData.get('content')?.toString() || '';
   let image = formData.get('image')?.toString() || null;
   let slug = generateSlug(title);
 
-  let entry = `*${escapeMarkdownV2(title)}*\n\n${escapeMarkdownV2(content)}`;
+  // Convert Markdown to HTML for Telegram
+  let entry = `<b>${title}</b>\n\n${marked(content)}`;
 
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -37,7 +34,7 @@ export async function postTelegramMessage(formData: FormData) {
       body: JSON.stringify({
         chat_id: telegramChannelId,
         text: entry,
-        parse_mode: 'MarkdownV2', // Optional: For formatting the message with HTML
+        parse_mode: 'HTML', // Use HTML for formatting the message
       }),
     }
   );
@@ -45,6 +42,7 @@ export async function postTelegramMessage(formData: FormData) {
   let data = await response.json();
   console.log('Telegram message sent', data);
 
+  // Save the content in Markdown format to the database
   await sql`
      INSERT INTO posts (title, published_at, slug, content, image, telegram_message_id)
      VALUES (${title}, NOW(), ${slug}, ${content}, ${image}, ${data.result.message_id})
@@ -53,6 +51,7 @@ export async function postTelegramMessage(formData: FormData) {
   return slug;
 }
 
+// Function to post a long message in parts to Telegram
 export async function postLongMessage(message: string) {
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -64,6 +63,9 @@ export async function postLongMessage(message: string) {
 
   if (messageParts) {
     for (const part of messageParts) {
+      // Convert Markdown to HTML
+      const htmlPart = marked(part);
+
       await fetch(
         `https://api.telegram.org/bot${telegramBotToken}/sendMessage`,
         {
@@ -73,8 +75,8 @@ export async function postLongMessage(message: string) {
           },
           body: JSON.stringify({
             chat_id: telegramChannelId,
-            text: part,
-            parse_mode: 'MarkdownV2', // Adjust as needed for your formatting
+            text: htmlPart,
+            parse_mode: 'HTML', // Use HTML for formatting the message
           }),
         }
       );
@@ -85,6 +87,7 @@ export async function postLongMessage(message: string) {
   }
 }
 
+// Function to edit a message in Telegram
 export async function editTelegramMessage(
   messageId: number,
   formData: FormData
@@ -94,7 +97,7 @@ export async function editTelegramMessage(
 
   const post = await sql`
      SELECT * FROM posts WHERE telegram_message_id = ${messageId}
-       `;
+  `;
   if (!post[0]) {
     throw new Error('Post not found');
   }
@@ -102,13 +105,13 @@ export async function editTelegramMessage(
   const newTitle = formData.get('title')?.toString() || '';
   const newContent = formData.get('content')?.toString() || '';
 
-  let entry = `*${escapeMarkdownV2(newTitle)}*\n\n${escapeMarkdownV2(
-    newContent
-  )}`;
+  // Convert Markdown to HTML for Telegram
+  let entry = `<b>${newTitle}</b>\n\n${marked(newContent)}`;
 
+  // Update the content in Markdown format in the database
   await sql`
      UPDATE posts SET content = ${newContent} WHERE telegram_message_id = ${messageId}
-     `;
+  `;
 
   let response = await fetch(
     `https://api.telegram.org/bot${telegramBotToken}/editMessageText`,
@@ -121,7 +124,7 @@ export async function editTelegramMessage(
         chat_id: telegramChannelId,
         message_id: messageId,
         text: entry,
-        parse_mode: 'MarkdownV2', // Optional: For formatting the message with HTML
+        parse_mode: 'HTML', // Use HTML for formatting the message
       }),
     }
   );
