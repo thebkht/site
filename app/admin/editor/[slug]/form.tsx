@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { editTelegramMessage, postTelegramMessage } from 'app/db/telegram';
 import { useRouter } from 'next/navigation';
@@ -9,6 +9,9 @@ import { Note } from 'app/admin/telegram/form';
 export default function Form({ note }) {
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
+
+  const [title, setTitle] = useState(note.title);
+  const [content, setContent] = useState(note.content);
 
   return (
     <form
@@ -25,7 +28,8 @@ export default function Form({ note }) {
         placeholder="Title..."
         name="title"
         type="text"
-        value={note.title}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         required
         className="px-4 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-neutral-300 rounded-md bg-gray-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
       />
@@ -33,7 +37,8 @@ export default function Form({ note }) {
         aria-label="Content"
         placeholder="Content..."
         name="content"
-        value={note.content}
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
         required
         className="px-4 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-neutral-300 rounded-md bg-gray-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
       />
