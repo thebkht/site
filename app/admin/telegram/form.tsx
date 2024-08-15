@@ -139,15 +139,15 @@ function GuestbookEntry({
     <div className="flex flex-col space-y-1 mb-4">
       <div className="w-full text-sm break-words items-center flex">
         {children}
-        <span className="text-neutral-600 dark:text-neutral-400 mr-1 border-neutral-100">
-          {new Date(entry.published_at).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-          })}
-          :
-        </span>
-        <div className="space-y-1">
+        <div className="space-y-1.5">
+          <span className="text-neutral-600 dark:text-neutral-400 mr-1 border-neutral-100">
+            {new Date(entry.published_at).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
+            :
+          </span>
           {entry.title}
           <span className="line-clamp-1">{entry.content}</span>
         </div>
