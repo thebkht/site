@@ -7,7 +7,7 @@ const navItems = {
   '/admin/telegram': {
     name: 'notes',
   },
-  'admin/create-note': {
+  '/admin/create-note': {
     name: 'create note',
   },
 };
