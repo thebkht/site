@@ -26,10 +26,8 @@ const download = (url: string) => {
   });
 };
 
-const regularFont = download(
-  'https://blog.bkhtdev.com/assets/PolySans Neutral.otf'
-);
-const boldFont = download('https://blog.bkhtdev.com/assets/PolySans Bulky.otf');
+const regularFont = download('https://blog.bkhtdev.com/assets/regular.otf');
+const boldFont = download('https://blog.bkhtdev.com/assets/regular.otf');
 
 export async function GET(req: Request) {
   const [regular, bold] = await Promise.all([regularFont, boldFont]);
@@ -77,16 +75,23 @@ export async function GET(req: Request) {
               fontWeight: 'bold',
               marginLeft: '-3px',
               fontSize,
+              letterSpacing: '-1px',
             }}
           >
             {heading}
           </div>
         </div>
         <div tw="flex items-center w-full justify-between">
-          <div tw="flex text-xl" style={{ fontWeight: 'normal' }}>
+          <div
+            tw="flex text-xl"
+            style={{ fontWeight: 'normal', letterSpacing: '-1px' }}
+          >
             blog.bkhtdev.com
           </div>
-          <div tw="flex items-center text-xl" style={{ fontWeight: 'normal' }}>
+          <div
+            tw="flex items-center text-xl"
+            style={{ fontWeight: 'normal', letterSpacing: '-1px' }}
+          >
             <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
               <path
                 d="M30 44v-8a9.6 9.6 0 0 0-2-7c6 0 12-4 12-11 .16-2.5-.54-4.96-2-7 .56-2.3.56-4.7 0-7 0 0-2 0-6 3-5.28-1-10.72-1-16 0-4-3-6-3-6-3-.6 2.3-.6 4.7 0 7a10.806 10.806 0 0 0-2 7c0 7 6 11 12 11a9.43 9.43 0 0 0-1.7 3.3c-.34 1.2-.44 2.46-.3 3.7v8"
@@ -103,7 +108,7 @@ export async function GET(req: Request) {
                 stroke-linejoin="round"
               />
             </svg>
-            <div tw="flex ml-2">github.com/yusupovbg</div>
+            <div tw="flex ml-2">github.com/thebkht</div>
           </div>
         </div>
       </div>
@@ -113,12 +118,12 @@ export async function GET(req: Request) {
       height: 630,
       fonts: [
         {
-          name: 'PolySans',
+          name: 'Manrope',
           data: regular,
           weight: 400,
         },
         {
-          name: 'PolySans',
+          name: 'Manrope',
           data: bold,
           weight: 700,
         },
