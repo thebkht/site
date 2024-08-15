@@ -36,7 +36,7 @@ export async function postTelegramMessage(formData: FormData) {
 
   // Convert Markdown to HTML and clean it for Telegram
   let markedContent = await marked(content);
-  let entry = `<b>${title}</b>\n\n${cleanHTMLforTelegram(markedContent)}`;
+  let entry = `<b>${title}</b>\n${cleanHTMLforTelegram(markedContent)}`;
 
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -88,7 +88,7 @@ export async function editTelegramMessage(
 
   // Convert Markdown to HTML and clean it for Telegram
   let markedContent = await marked(newContent);
-  let entry = `<b>${newTitle}</b>\n\n${cleanHTMLforTelegram(markedContent)}`;
+  let entry = `<b>${newTitle}</b>\n${cleanHTMLforTelegram(markedContent)}`;
 
   // Update the content in Markdown format in the database
   await sql`
