@@ -10,6 +10,7 @@ export const metadata = {
 
 export default async function NotePage() {
   let allNotes = await getNotes();
+  console.log(allNotes);
 
   return (
     <section>
@@ -20,23 +21,22 @@ export default async function NotePage() {
       {allNotes.length === 0 ? (
         <p className="text-neutral-600 dark:text-neutral-400">No notes yet.</p>
       ) : (
-        allNotes
-          .map((post) => (
-            <Link
-              key={post.slug}
-              className="flex flex-col space-y-1 mb-4"
-              href={`/notes/${post.slug}`}
-            >
-              <div className="w-full flex flex-col">
-                <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                  {post.title}
-                </p>
-                <Suspense fallback={<p className="h-6" />}>
-                  <Views slug={post.slug} />
-                </Suspense>
-              </div>
-            </Link>
-          ))
+        allNotes.map((post) => (
+          <Link
+            key={post.slug}
+            className="flex flex-col space-y-1 mb-4"
+            href={`/notes/${post.slug}`}
+          >
+            <div className="w-full flex flex-col">
+              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+                {post.title}
+              </p>
+              <Suspense fallback={<p className="h-6" />}>
+                <Views slug={post.slug} />
+              </Suspense>
+            </div>
+          </Link>
+        ))
       )}
     </section>
   );
