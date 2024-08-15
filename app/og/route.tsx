@@ -75,7 +75,7 @@ export async function GET(req: Request) {
               fontWeight: 'bold',
               marginLeft: '-3px',
               fontSize,
-              letterSpacing: '-1px',
+              letterSpacing: '-1rem',
             }}
           >
             {heading}
