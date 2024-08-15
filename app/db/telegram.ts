@@ -1,7 +1,7 @@
 'use server';
 
 import { sql } from './postgres';
-import { marked } from 'marked'; // Import a Markdown-to-HTML converter like 'marked'
+import { marked } from 'marked';
 
 // Function to generate a slug from the title
 function generateSlug(title: string): string {
@@ -11,6 +11,22 @@ function generateSlug(title: string): string {
     .replace(/(^-+|-+$)/g, ''); // Remove leading and trailing hyphens
 }
 
+// Function to clean the HTML and keep only Telegram-supported tags
+function cleanHTMLforTelegram(html: string): string {
+  return html
+    .replace(/<\/?p>/g, '\n') // Replace paragraphs with newlines
+    .replace(/<h[1-6]>/g, '<b>') // Replace headers with bold tags
+    .replace(/<\/h[1-6]>/g, '</b>\n') // Close the bold tag and add a newline
+    .replace(/<\/?div>/g, '') // Remove div tags
+    .replace(/<br\s*\/?>/g, '\n') // Replace <br> with newlines
+    .replace(/<ul>/g, '') // Remove unordered list tags
+    .replace(/<\/ul>/g, '')
+    .replace(/<ol>/g, '') // Remove ordered list tags
+    .replace(/<\/ol>/g, '')
+    .replace(/<li>/g, '• ') // Replace list items with bullet points
+    .replace(/<\/li>/g, '\n');
+}
+
 // Function to post a message to Telegram
 export async function postTelegramMessage(formData: FormData) {
   let title = formData.get('title')?.toString() || '';
@@ -18,8 +34,9 @@ export async function postTelegramMessage(formData: FormData) {
   let image = formData.get('image')?.toString() || null;
   let slug = generateSlug(title);
 
-  // Convert Markdown to HTML for Telegram
-  let entry = `<b>${title}</b>\n\n${marked(content)}`;
+  // Convert Markdown to HTML and clean it for Telegram
+  let markedContent = await marked(content);
+  let entry = `<b>${title}</b>\n\n${cleanHTMLforTelegram(markedContent)}`;
 
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -51,42 +68,6 @@ export async function postTelegramMessage(formData: FormData) {
   return slug;
 }
 
-// Function to post a long message in parts to Telegram
-export async function postLongMessage(message: string) {
-  const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
-  const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
-
-  const maxLength = 4096;
-
-  // Split the message into chunks of maxLength
-  const messageParts = message.match(new RegExp(`.{1,${maxLength}}`, 'g'));
-
-  if (messageParts) {
-    for (const part of messageParts) {
-      // Convert Markdown to HTML
-      const htmlPart = marked(part);
-
-      await fetch(
-        `https://api.telegram.org/bot${telegramBotToken}/sendMessage`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            chat_id: telegramChannelId,
-            text: htmlPart,
-            parse_mode: 'HTML', // Use HTML for formatting the message
-          }),
-        }
-      );
-    }
-    console.log('Long message sent in parts');
-  } else {
-    console.error('Message splitting failed');
-  }
-}
-
 // Function to edit a message in Telegram
 export async function editTelegramMessage(
   messageId: number,
@@ -105,8 +86,9 @@ export async function editTelegramMessage(
   const newTitle = formData.get('title')?.toString() || '';
   const newContent = formData.get('content')?.toString() || '';
 
-  // Convert Markdown to HTML for Telegram
-  let entry = `<b>${newTitle}</b>\n\n${marked(newContent)}`;
+  // Convert Markdown to HTML and clean it for Telegram
+  let markedContent = await marked(newContent);
+  let entry = `<b>${newTitle}</b>\n\n${cleanHTMLforTelegram(markedContent)}`;
 
   // Update the content in Markdown format in the database
   await sql`
