@@ -26,8 +26,8 @@ const download = (url: string) => {
   });
 };
 
-const regularFont = download('https://blog.bkhtdev.com/assets/regular.otf');
-const boldFont = download('https://blog.bkhtdev.com/assets/regular.otf');
+const regularFont = download('https://bkhtdev.com/assets/fonts/regular.otf');
+const boldFont = download('https://bkhtdev.com/assets/fonts/bold.otf');
 
 export async function GET(req: Request) {
   const [regular, bold] = await Promise.all([regularFont, boldFont]);
