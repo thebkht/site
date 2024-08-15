@@ -46,7 +46,7 @@ export async function generateMetadata({
   } = post.metadata;
   const ogUrl = new URL(`${baseUrl}/og`);
   ogUrl.searchParams.set('heading', title);
-  ogUrl.searchParams.set('mode', 'dark');
+  ogUrl.searchParams.set('mode', 'light');
 
   let ogImage = image ? image : ogUrl;
 
