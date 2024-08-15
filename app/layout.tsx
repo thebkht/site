@@ -44,6 +44,17 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@bkhtdev',
+    creator: '@thebkht',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: `${baseUrl}/site.webmanifest`,
   robots: {
     index: true,
     follow: true,
