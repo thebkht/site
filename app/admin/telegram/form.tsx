@@ -147,8 +147,10 @@ function GuestbookEntry({
           })}
           :
         </span>
-        {entry.title}
-        <span className="line-clamp-1">{entry.content}</span>
+        <div className="space-y-1">
+          {entry.title}
+          <span className="line-clamp-1">{entry.content}</span>
+        </div>
       </div>
     </div>
   );
