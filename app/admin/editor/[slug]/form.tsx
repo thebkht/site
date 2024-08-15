@@ -2,10 +2,11 @@
 
 import { useRef } from 'react';
 import { useFormStatus } from 'react-dom';
-import { postTelegramMessage } from 'app/db/telegram';
+import { editTelegramMessage, postTelegramMessage } from 'app/db/telegram';
 import { useRouter } from 'next/navigation';
+import { Note } from 'app/admin/telegram/form';
 
-export default function Form() {
+export default function Form({ note }) {
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
@@ -14,9 +15,9 @@ export default function Form() {
       className="max-w-[500px] space-y-2"
       ref={formRef}
       action={async (formData) => {
-        const slug = await postTelegramMessage(formData);
+        await editTelegramMessage(note.telegram_message_id, formData);
         formRef.current?.reset();
-        router.push(`/notes/${slug}`);
+        router.push(`/notes/${note.slug}`);
       }}
     >
       <input
@@ -24,6 +25,7 @@ export default function Form() {
         placeholder="Title..."
         name="title"
         type="text"
+        value={note.title}
         required
         className="px-4 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-neutral-300 rounded-md bg-gray-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
       />
@@ -31,6 +33,7 @@ export default function Form() {
         aria-label="Content"
         placeholder="Content..."
         name="content"
+        value={note.content}
         required
         className="px-4 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-neutral-300 rounded-md bg-gray-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
       />

@@ -9,18 +9,18 @@ function generateSlug(title: string): string {
     .replace(/(^-+|-+$)/g, ''); // Remove leading and trailing hyphens
 }
 
+// Function to escape special characters for MarkdownV2
+function escapeMarkdownV2(text: string): string {
+  return text
+    .replace(/([_*[\]()~`>#+\-=|{}.!])/g, '\\$1') // Add escaping for additional characters
+    .replace(/(@)/g, '\\$1'); // Escape '@' symbol
+}
+
 export async function postTelegramMessage(formData: FormData) {
   let title = formData.get('title')?.toString() || '';
   let content = formData.get('content')?.toString() || '';
   let image = formData.get('image')?.toString() || null;
   let slug = generateSlug(title);
-
-  // Function to escape special characters for MarkdownV2
-  function escapeMarkdownV2(text: string): string {
-    return text
-      .replace(/([_*[\]()~`>#+\-=|{}.!])/g, '\\$1') // Add escaping for additional characters
-      .replace(/(@)/g, '\\$1'); // Escape '@' symbol
-  }
 
   let entry = `*${escapeMarkdownV2(title)}*\n\n${escapeMarkdownV2(content)}`;
 
@@ -87,7 +87,7 @@ export async function postLongMessage(message: string) {
 
 export async function editTelegramMessage(
   messageId: number,
-  newContent: string
+  formData: FormData
 ) {
   const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -98,6 +98,13 @@ export async function editTelegramMessage(
   if (!post[0]) {
     throw new Error('Post not found');
   }
+
+  const newTitle = formData.get('title')?.toString() || '';
+  const newContent = formData.get('content')?.toString() || '';
+
+  let entry = `*${escapeMarkdownV2(newTitle)}*\n\n${escapeMarkdownV2(
+    newContent
+  )}`;
 
   await sql`
      UPDATE posts SET content = ${newContent} WHERE telegram_message_id = ${messageId}
@@ -113,7 +120,7 @@ export async function editTelegramMessage(
       body: JSON.stringify({
         chat_id: telegramChannelId,
         message_id: messageId,
-        text: newContent,
+        text: entry,
         parse_mode: 'MarkdownV2', // Optional: For formatting the message with HTML
       }),
     }
