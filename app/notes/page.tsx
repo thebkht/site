@@ -21,12 +21,6 @@ export default async function NotePage() {
         <p className="text-neutral-600 dark:text-neutral-400">No notes yet.</p>
       ) : (
         allNotes
-          .sort((a, b) => {
-            if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
-              return -1;
-            }
-            return 1;
-          })
           .map((post) => (
             <Link
               key={post.slug}
