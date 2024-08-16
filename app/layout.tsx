@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   description: 'Read my thoughts on software development, design, and more.',
   openGraph: {
-    title: 'bkhtdev',
+    title: 'bkhtdev/blog',
     description: 'Read my thoughts on software development, design, and more.',
     url: baseUrl,
     siteName: 'bkhtdev/blog',
