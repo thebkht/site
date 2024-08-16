@@ -138,14 +138,14 @@ export default function Blog({ params }) {
         }}
       />
       {post.metadata.image && (
-        <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden">
+        <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden cover-image">
           <Image
             src={post.metadata.image}
             alt={post.metadata.title}
             layout="responsive"
             width={1000}
             height={500}
-            className="rounded-md cover-image"
+            className="rounded-md"
             placeholder="blur"
             blurDataURL={shimmer(1000, 500)}
           />
