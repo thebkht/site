@@ -478,6 +478,8 @@ const Footer = () => (
   </div>
 );
 
+const navItems = ['Home', 'Works', 'About', 'Contact'];
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [canScroll, setCanScroll] = useState(true);
@@ -676,34 +678,16 @@ const Home = () => {
                   </header>
                   <nav className="l-side-nav">
                     <ul className="side-nav">
-                      <li
-                        className={activeIndex === 0 ? 'is-active' : ''}
-                        onClick={handleNavClick(0)}
-                        ref={(el) => (navItemsRef.current[0] = el!)}
-                      >
-                        <span>Home</span>
-                      </li>
-                      <li
-                        className={activeIndex === 1 ? 'is-active' : ''}
-                        onClick={handleNavClick(1)}
-                        ref={(el) => (navItemsRef.current[1] = el!)}
-                      >
-                        <span>Works</span>
-                      </li>
-                      <li
-                        className={activeIndex === 2 ? 'is-active' : ''}
-                        onClick={handleNavClick(2)}
-                        ref={(el) => (navItemsRef.current[2] = el!)}
-                      >
-                        <span>About</span>
-                      </li>
-                      <li
-                        className={activeIndex === 3 ? 'is-active' : ''}
-                        onClick={handleNavClick(3)}
-                        ref={(el) => (navItemsRef.current[3] = el!)}
-                      >
-                        <span>Contact</span>
-                      </li>
+                      {navItems.map((item, index) => (
+                        <li
+                          key={index}
+                          className={activeIndex === index ? 'is-active' : ''}
+                          onClick={handleNavClick(index)}
+                          ref={(el) => (navItemsRef.current[index] = el!)}
+                        >
+                          <span>{item}</span>
+                        </li>
+                      ))}
                     </ul>
                   </nav>
                   <ul className="l-main-content main-content">
@@ -738,34 +722,16 @@ const Home = () => {
             </div>
 
             <ul className="outer-nav" ref={outerNavRef}>
-              <li
-                className={activeIndex === 0 ? 'is-active' : ''}
-                onClick={handleNavClick(0)}
-                ref={(el) => (navItemsRef.current[0] = el!)}
-              >
-                <span>Home</span>
-              </li>
-              <li
-                className={activeIndex === 1 ? 'is-active' : ''}
-                onClick={handleNavClick(1)}
-                ref={(el) => (navItemsRef.current[1] = el!)}
-              >
-                <span>Works</span>
-              </li>
-              <li
-                className={activeIndex === 2 ? 'is-active' : ''}
-                onClick={handleNavClick(2)}
-                ref={(el) => (navItemsRef.current[2] = el!)}
-              >
-                <span>About</span>
-              </li>
-              <li
-                className={activeIndex === 3 ? 'is-active' : ''}
-                onClick={handleNavClick(3)}
-                ref={(el) => (navItemsRef.current[3] = el!)}
-              >
-                <span>Contact</span>
-              </li>
+              {navItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={activeIndex === index ? 'is-active' : ''}
+                  onClick={handleNavClick(index)}
+                  ref={(el) => (navItemsRef.current[index] = el!)}
+                >
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </>
