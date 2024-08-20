@@ -4,7 +4,7 @@ import { auth } from 'app/auth';
 import { type Session } from 'next-auth';
 import { sql } from './postgres';
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
-import { Note } from 'app/admin/telegram/form';
+import { Note } from 'app/(blog)/admin/telegram/form';
 import { deleteTelegramMessage } from './telegram';
 
 export async function increment(slug: string) {
