@@ -498,7 +498,7 @@ const Home = () => {
   const outerNavRef = useRef<HTMLUListElement>(null);
   const returnNavRef = useRef<HTMLDivElement>(null);
 
-  if (typeof window === undefined) {
+  if (!window) {
     return null;
   }
 
