@@ -361,6 +361,62 @@ const Work = () => {
   );
 };
 
+const Footer = () => (
+  <div className="footer">
+    <footer>
+      <div className="copyright_bar">
+        &copy;
+        <script>document.write(new Date().getFullYear());</script>
+        bkhtdev
+      </div>
+      <ul className="footer--list">
+        <li>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="hhttps://github.com/sponsors/thebkht"
+          >
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span>github sponsors</span>
+          </a>
+        </li>
+        <li>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.buymeacoffee.com/bkhtdev"
+          >
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span>buy me a coffee</span>
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+);
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [canScroll, setCanScroll] = useState(true);
@@ -703,6 +759,7 @@ const Home = () => {
                       </div>
                     </li>
                   </ul>
+                  <Footer />
                 </div>
               </div>
             </div>

@@ -1595,7 +1595,7 @@ footer {
      color: #f8f8f8;
      text-align: center;
      justify-content: space-between;
-     font-size: 12px;
+     font-size: 14px;
      letter-spacing: normal;
      font-weight: 400;
      display: flex !important;
@@ -1611,7 +1611,7 @@ footer ul {
      display: flex;
      align-items: center;
      color: #f8f8f8;
-     font-size: 12px;
+     font-size: 14px;
      gap: 10px;
      list-style: none;
      justify-content: flex-end;
@@ -1623,7 +1623,7 @@ footer ul li a {
      display: flex;
      color: #f8f8f8;
      text-decoration: none;
-     font-size: 12px;
+     font-size: 14px;
      letter-spacing: normal;
      justify-content: center;
      align-items: center;
@@ -1638,7 +1638,7 @@ footer ul li a svg {
 
 .copyright_bar {
      text-align: center;
-     font-size: 12px;
+     font-size: 14px;
      letter-spacing: normal;
      font-weight: 100;
      color: #f8f8f8;

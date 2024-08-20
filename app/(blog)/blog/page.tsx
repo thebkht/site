@@ -4,6 +4,11 @@ import ViewCounter from 'app/view-counter';
 import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
 
+export const meta = {
+  title: 'Blog',
+  description: 'Read my thoughts on software development, design, and more.',
+};
+
 export default function BlogPage() {
   let allBlogs = getBlogPosts();
 

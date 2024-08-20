@@ -25,15 +25,17 @@ const fontMono = FontMono({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'bkhtdev/blog',
-    template: '%s - bkhtdev/blog',
+    default: 'Bakhtiyor Ganijon - bkhtdev',
+    template: '%s - bkhtdev',
   },
-  description: 'Read my thoughts on software development, design, and more.',
+  description:
+    'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
   openGraph: {
-    title: 'bkhtdev/blog',
-    description: 'Read my thoughts on software development, design, and more.',
+    title: 'bkhtdev',
+    description:
+      'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
     url: baseUrl,
-    siteName: 'bkhtdev/blog',
+    siteName: 'bkhtdev',
     images: [
       {
         url: `${baseUrl}/og.jpg`,
