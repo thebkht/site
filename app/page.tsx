@@ -1,5 +1,5 @@
 'use client';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import Hammer from 'hammerjs';
 import './main.css';
 import './responsive.css';
@@ -507,26 +507,30 @@ const Home = () => {
     });
   };
 
-  const handleScroll = (direction: 'up' | 'down') => {
-    if (canScroll) {
-      setCanScroll(false);
-      clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => setCanScroll(true), 800);
+  const handleScroll = useCallback(
+    (direction: 'up' | 'down') => {
+      if (canScroll) {
+        setCanScroll(false);
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = setTimeout(() => setCanScroll(true), 800);
 
-      const lastItem = sectionsRef.current.length - 1;
-      const nextIndex =
-        direction === 'up'
-          ? activeIndex < lastItem
-            ? activeIndex + 1
-            : 0
-          : activeIndex > 0
-          ? activeIndex - 1
-          : lastItem;
+        const lastItem = sectionsRef.current.length - 1;
+        const nextIndex =
+          direction === 'up'
+            ? activeIndex < lastItem
+              ? activeIndex + 1
+              : 0
+            : activeIndex > 0
+            ? activeIndex - 1
+            : lastItem;
 
-      setActiveIndex(nextIndex);
-    }
-  };
+        setActiveIndex(nextIndex);
+      }
+    },
+    [canScroll, activeIndex]
+  );
 
+  // Only run this effect on the client-side
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const element = document.getElementById('viewport');
@@ -536,6 +540,17 @@ const Home = () => {
         mc.on('swipeup swipedown', (e) =>
           handleScroll(e.type === 'swipeup' ? 'up' : 'down')
         );
+
+        const handleWheel = (e: WheelEvent) => {
+          e.preventDefault();
+          handleScroll(e.deltaY > 0 ? 'up' : 'down');
+        };
+
+        const handleKeyUp = (e: KeyboardEvent) => {
+          if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            handleScroll(e.key === 'ArrowDown' ? 'up' : 'down');
+          }
+        };
 
         document.addEventListener('wheel', handleWheel);
         document.addEventListener('keyup', handleKeyUp);
@@ -547,23 +562,12 @@ const Home = () => {
         };
       }
     }
-  }, [canScroll, activeIndex]);
+  }, [handleScroll]);
 
   useEffect(() => {
     updateNavs(activeIndex);
     updateContent();
   }, [activeIndex]);
-
-  const handleWheel = (e: WheelEvent) => {
-    e.preventDefault();
-    handleScroll(e.deltaY > 0 ? 'up' : 'down');
-  };
-
-  const handleKeyUp = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      handleScroll(e.key === 'ArrowDown' ? 'up' : 'down');
-    }
-  };
 
   const handleNavToggleClick = () => {
     if (perspectiveRef.current) {
@@ -606,9 +610,14 @@ const Home = () => {
     handleNavReturnClick();
   };
 
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 3000);
+  // Use a delay to simulate loading and hide the loading screen
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
@@ -639,7 +648,6 @@ const Home = () => {
               disappointed.
             </p>
           </div>
-          <script></script>
           <div className="perspective effect-rotate-left" ref={perspectiveRef}>
             <div className="main-container">
               <div
