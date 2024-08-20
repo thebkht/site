@@ -26,11 +26,11 @@ const download = (url: string) => {
   });
 };
 
-/* const regularFont = download('https://bkhtdev.com/assets/fonts/regular.otf');
-const boldFont = download('https://bkhtdev.com/assets/fonts/bold.otf'); */
+const regularFont = download('https://bkhtdev.com/assets/fonts/regular.otf');
+const boldFont = download('https://bkhtdev.com/assets/fonts/bold.otf');
 
 export async function GET(req: Request) {
-  /* const [regular, bold] = await Promise.all([regularFont, boldFont]); */
+  const [regular, bold] = await Promise.all([regularFont, boldFont]);
   const url = new URL(req.url);
   const values = ogImageSchema.parse(Object.fromEntries(url.searchParams));
   const heading =
@@ -116,7 +116,7 @@ export async function GET(req: Request) {
     {
       width: 1200,
       height: 630,
-      /* fonts: [
+      fonts: [
         {
           name: 'Manrope',
           data: regular,
@@ -127,7 +127,7 @@ export async function GET(req: Request) {
           data: bold,
           weight: 700,
         },
-      ], */
+      ],
     }
   );
 }
