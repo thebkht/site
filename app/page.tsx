@@ -498,6 +498,16 @@ const Home = () => {
   const outerNavRef = useRef<HTMLUListElement>(null);
   const returnNavRef = useRef<HTMLDivElement>(null);
 
+  const [isClient, setIsClient] = useState(false);
+
+  if (!isClient) {
+    return null;
+  }
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   if (!window) {
     return null;
   }
