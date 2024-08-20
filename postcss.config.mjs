@@ -1,5 +1,3 @@
-const autoprefixer = require('autoprefixer');
-
 /** @type {import('postcss-load-config').Config} */
 const config = {
   plugins: {
@@ -8,4 +6,4 @@ const config = {
   },
 };
 
-module.exports = config;
+export default config;
