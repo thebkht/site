@@ -1,5 +1,5 @@
 'use client';
-import { Suspense, use, useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import Hammer from 'hammerjs';
 import './main.css';
 import './responsive.css';
@@ -361,6 +361,67 @@ const Work = () => {
   );
 };
 
+const About = () => (
+  <div className="about">
+    <div className="about--banner">
+      <h2>
+        Deeply
+        <br />
+        Interested
+        <br />
+        In Art And
+        <br />
+        Technology
+      </h2>
+      <a href="/blog">
+        Read blog
+        <span>
+          <svg
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            viewBox="0 0 150 118"
+          >
+            <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+              <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
+            </g>
+          </svg>
+        </span>
+      </a>
+      <img src="assets/img/about-visual.png" alt="About" />
+    </div>
+  </div>
+);
+
+const Contact = () => (
+  <div className="contact">
+    <div className="contact--lockup">
+      <div className="modal">
+        <div className="modal--information">
+          <p>Seoul, South Korea</p>
+          <a href="mailto:me@bkhtdev.com">me@bkhtdev.com</a>
+        </div>
+        <ul className="modal--options">
+          <li>
+            <a href="https://github.com/thebkht">GitHub</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/thebkht">X (Twitter)</a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/thebkht">LinkedIn</a>
+          </li>
+          <li>
+            <a href="https://t.me/bkhtdev">Telegram</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+);
+
 const Footer = () => (
   <div className="footer">
     <footer>
@@ -428,32 +489,6 @@ const Home = () => {
   const outerNavRef = useRef<HTMLUListElement>(null);
   const returnNavRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const images = document.querySelectorAll('img');
-    let loaded = 0;
-
-    const handleLoad = () => {
-      loaded++;
-      if (loaded === images.length) {
-        setIsLoading(false);
-      }
-    };
-
-    images.forEach((image) => {
-      if (image.complete) {
-        handleLoad();
-      } else {
-        image.addEventListener('load', handleLoad);
-      }
-    });
-
-    return () => {
-      images.forEach((image) => {
-        image.removeEventListener('load', handleLoad);
-      });
-    };
-  }, []);
-
   const updateNavs = (index: number) => {
     navItemsRef.current.forEach((navItem, i) => {
       if (navItem) {
@@ -490,6 +525,33 @@ const Home = () => {
     }
   };
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const element = document.getElementById('viewport');
+      if (element) {
+        const mc = new Hammer(element);
+        mc.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+        mc.on('swipeup swipedown', (e) =>
+          handleScroll(e.type === 'swipeup' ? 'up' : 'down')
+        );
+
+        document.addEventListener('wheel', handleWheel);
+        document.addEventListener('keyup', handleKeyUp);
+
+        return () => {
+          document.removeEventListener('wheel', handleWheel);
+          document.removeEventListener('keyup', handleKeyUp);
+          mc.off('swipeup swipedown');
+        };
+      }
+    }
+  }, [canScroll, activeIndex]);
+
+  useEffect(() => {
+    updateNavs(activeIndex);
+    updateContent();
+  }, [activeIndex]);
+
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
     handleScroll(e.deltaY > 0 ? 'up' : 'down');
@@ -501,19 +563,15 @@ const Home = () => {
     }
   };
 
-  // Functions for handling modal view
   const handleNavToggleClick = () => {
-    const perspective = perspectiveRef.current;
-    const outerNav = outerNavRef.current;
-
-    if (perspective) {
-      perspective.classList.add('perspective--modalview');
+    if (perspectiveRef.current) {
+      perspectiveRef.current.classList.add('perspective--modalview');
       setTimeout(() => {
-        perspective.classList.add('effect-rotate-left--animate');
+        perspectiveRef.current?.classList.add('effect-rotate-left--animate');
       }, 25);
-      if (outerNav) {
-        outerNav.classList.add('is-vis');
-        outerNav
+      if (outerNavRef.current) {
+        outerNavRef.current.classList.add('is-vis');
+        outerNavRef.current
           .querySelectorAll('li')
           .forEach((li) => li.classList.add('is-vis'));
       }
@@ -524,17 +582,14 @@ const Home = () => {
   };
 
   const handleNavReturnClick = () => {
-    const perspective = perspectiveRef.current;
-    const outerNav = outerNavRef.current;
-
-    if (perspective) {
-      perspective.classList.remove('effect-rotate-left--animate');
+    if (perspectiveRef.current) {
+      perspectiveRef.current.classList.remove('effect-rotate-left--animate');
       setTimeout(() => {
-        perspective.classList.remove('perspective--modalview');
+        perspectiveRef.current?.classList.remove('perspective--modalview');
       }, 400);
-      if (outerNav) {
-        outerNav.classList.remove('is-vis');
-        outerNav
+      if (outerNavRef.current) {
+        outerNavRef.current.classList.remove('is-vis');
+        outerNavRef.current
           .querySelectorAll('li')
           .forEach((li) => li.classList.remove('is-vis'));
       }
@@ -548,31 +603,6 @@ const Home = () => {
     setActiveIndex(index);
     handleNavReturnClick();
   };
-
-  useEffect(() => {
-    const element = document.getElementById('viewport');
-    if (element) {
-      const mc = new Hammer(element);
-      mc.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-      mc.on('swipeup swipedown', (e) =>
-        handleScroll(e.type === 'swipeup' ? 'up' : 'down')
-      );
-
-      document.addEventListener('wheel', handleWheel);
-      document.addEventListener('keyup', handleKeyUp);
-
-      return () => {
-        document.removeEventListener('wheel', handleWheel);
-        document.removeEventListener('keyup', handleKeyUp);
-        mc.off('swipeup swipedown');
-      };
-    }
-  }, [canScroll, activeIndex]);
-
-  useEffect(() => {
-    updateNavs(activeIndex);
-    updateContent();
-  }, [activeIndex]);
 
   setTimeout(() => {
     setIsLoading(false);
@@ -693,70 +723,13 @@ const Home = () => {
                       className="l-section section"
                       ref={(el) => (sectionsRef.current[2] = el!)}
                     >
-                      <div className="about">
-                        <div className="about--banner">
-                          <h2>
-                            Deeply
-                            <br />
-                            Interested
-                            <br />
-                            In Art And
-                            <br />
-                            Technology
-                          </h2>
-                          <a href="/blog">
-                            Read blog
-                            <span>
-                              <svg
-                                version="1.1"
-                                id="Layer_1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                x="0px"
-                                y="0px"
-                                viewBox="0 0 150 118"
-                              >
-                                <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                                  <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
-                                </g>
-                              </svg>
-                            </span>
-                          </a>
-                          <img src="assets/img/about-visual.png" alt="About" />
-                        </div>
-                      </div>
+                      <About />
                     </li>
                     <li
                       className="l-section section"
                       ref={(el) => (sectionsRef.current[3] = el!)}
                     >
-                      <div className="contact">
-                        <div className="contact--lockup">
-                          <div className="modal">
-                            <div className="modal--information">
-                              <p>Seoul, South Korea</p>
-                              <a href="mailto:me@bkhtdev.com">me@bkhtdev.com</a>
-                            </div>
-                            <ul className="modal--options">
-                              <li>
-                                <a href="https://github.com/thebkht">GitHub</a>
-                              </li>
-                              <li>
-                                <a href="https://twitter.com/thebkht">
-                                  X (Twitter)
-                                </a>
-                              </li>
-                              <li>
-                                <a href="https://linkedin.com/in/thebkht">
-                                  LinkedIn
-                                </a>
-                              </li>
-                              <li>
-                                <a href="https://t.me/bkhtdev">Telegram</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
+                      <Contact />
                     </li>
                   </ul>
                   <Footer />
