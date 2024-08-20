@@ -498,6 +498,10 @@ const Home = () => {
   const outerNavRef = useRef<HTMLUListElement>(null);
   const returnNavRef = useRef<HTMLDivElement>(null);
 
+  if (typeof window === undefined) {
+    return null;
+  }
+
   useEffect(() => {
     if (window) {
       setIsLoading(false);
