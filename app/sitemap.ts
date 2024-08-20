@@ -1,7 +1,7 @@
 import { getBlogPosts } from 'app/db/blog';
 import { getNotes } from './db/queries';
 
-export const baseUrl = 'https://blog.bkhtdev.com';
+export const baseUrl = 'https://bkhtdev.com';
 
 export default async function sitemap() {
   let blogs = getBlogPosts().map((post) => ({
