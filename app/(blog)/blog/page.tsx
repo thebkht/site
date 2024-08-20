@@ -3,8 +3,9 @@ import { Suspense } from 'react';
 import ViewCounter from 'app/view-counter';
 import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
+import { Metadata } from 'next';
 
-export const meta = {
+export const metadata: Metadata = {
   title: 'Blog',
   description: 'Read my thoughts on software development, design, and more.',
 };
