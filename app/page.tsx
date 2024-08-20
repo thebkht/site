@@ -480,6 +480,13 @@ const Footer = () => (
 
 const navItems = ['Home', 'Works', 'About', 'Contact'];
 
+const sections = [
+  { component: <Intro /> },
+  { component: <Work /> },
+  { component: <About /> },
+  { component: <Contact /> },
+];
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [canScroll, setCanScroll] = useState(true);
@@ -490,6 +497,12 @@ const Home = () => {
   const perspectiveRef = useRef<HTMLDivElement>(null);
   const outerNavRef = useRef<HTMLUListElement>(null);
   const returnNavRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (window) {
+      setIsLoading(false);
+    }
+  }, []);
 
   const updateNavs = (index: number) => {
     navItemsRef.current.forEach((navItem, i) => {
@@ -532,7 +545,7 @@ const Home = () => {
 
   // Only run this effect on the client-side
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== undefined) {
       const element = document.getElementById('viewport');
       if (element) {
         const mc = new Hammer(element);
@@ -699,31 +712,19 @@ const Home = () => {
                     </ul>
                   </nav>
                   <ul className="l-main-content main-content">
-                    <li
-                      className="l-section section section--is-active"
-                      ref={(el) => (sectionsRef.current[0] = el!)}
-                    >
-                      <Intro />
-                    </li>
-                    <li
-                      className="l-section section"
-                      ref={(el) => (sectionsRef.current[1] = el!)}
-                    >
-                      <Work />
-                    </li>
-                    <li
-                      className="l-section section"
-                      ref={(el) => (sectionsRef.current[2] = el!)}
-                    >
-                      <About />
-                    </li>
-                    <li
-                      className="l-section section"
-                      ref={(el) => (sectionsRef.current[3] = el!)}
-                    >
-                      <Contact />
-                    </li>
+                    {sections.map((section, index) => (
+                      <li
+                        key={index}
+                        className={`l-section section ${
+                          index === 0 ? 'section--is-active' : ''
+                        }`}
+                        ref={(el) => (sectionsRef.current[index] = el!)}
+                      >
+                        {section.component}
+                      </li>
+                    ))}
                   </ul>
+
                   <Footer />
                 </div>
               </div>
