@@ -5,6 +5,25 @@ import { cache, Suspense } from 'react';
 import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
 import { notFound } from 'next/navigation';
+import { baseUrl } from 'app/sitemap';
+
+export async function generateMetadata({ params }) {
+  let project = projects.find((project) => project.slug === params.slug);
+  if (!project) return notFound();
+
+  return {
+    title: project.title,
+    description: project.description,
+    image: project.image,
+    openGraph: {
+      title: project.title,
+      description: project.description,
+      type: 'website',
+      url: `${baseUrl}/projects/${project.slug}`,
+      image: project.image,
+    },
+  };
+}
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects.find((project) => project.slug === params.slug);

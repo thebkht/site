@@ -4,6 +4,11 @@ import { Suspense } from 'react';
 import { getViewsCount } from 'app/db/queries';
 import ViewCounter from 'app/view-counter';
 
+export const metadata = {
+  title: 'Projects',
+  description: 'View my projects and their descriptions.',
+};
+
 export default function ProjectsPage() {
   return (
     <section>

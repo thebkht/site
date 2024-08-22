@@ -32,7 +32,10 @@ export const metadata: Metadata = {
   description:
     'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
   openGraph: {
-    title: 'bkhtdev',
+    title: {
+      default: 'Bakhtiyor Ganijon - bkhtdev',
+      template: '%s - bkhtdev',
+    },
     description:
       'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
     url: baseUrl,
