@@ -57,6 +57,29 @@ async function Views({ slug }: { slug: string }) {
   return <ViewCounter allViews={views} slug={slug} className="m-0" />;
 }
 
+function ProjectLink({ slug, name }) {
+  return (
+    <div className="group">
+      <a
+        href={`/projects/${slug}`}
+        className="flex w-full items-center justify-between border-dashed border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 no-underline"
+      >
+        <div className="flex flex-col">
+          <p className="font-medium text-neutral-900 dark:text-neutral-100 m-0">
+            {name}
+          </p>
+          <Suspense fallback={<p className="h-4" />}>
+            <Views slug={slug} />
+          </Suspense>
+        </div>
+        <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
+          <ArrowIcon />
+        </div>
+      </a>
+    </div>
+  );
+}
+
 export default function Page() {
   return (
     <section>
@@ -95,6 +118,19 @@ export default function Page() {
         </span>
         {`, a social network for book lovers and writers.`}
       </p>
+
+      {/* Projects */}
+
+      <div className="prose prose-neutral dark:prose-invert">
+        {`I've worked on a few projects over the years. Here are some of them:`}
+
+        <div className="my-8 flex w-full flex-col space-y-4">
+          <ProjectLink name="thefalse" slug="thefalse" />
+          <ProjectLink name="bkhtdev/link" slug="link" />
+          <ProjectLink name="hangman" slug="hangman" />
+        </div>
+      </div>
+
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           Over the years, I've written content on my blog and newsletter. I try
