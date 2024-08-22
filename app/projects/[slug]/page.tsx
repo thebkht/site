@@ -4,10 +4,11 @@ import { projects } from 'data/projects';
 import { cache, Suspense } from 'react';
 import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
+import { notFound } from 'next/navigation';
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects.find((project) => project.slug === params.slug);
-  if (!project) return null;
+  if (!project) return notFound();
 
   return (
     <section className="space-y-2 flex flex-col items-center my-4">
