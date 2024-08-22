@@ -1,16 +1,17 @@
 import './global.css';
 import type { Metadata } from 'next';
-import { Navbar } from './(blog)/components/nav';
+import { Navbar } from './components/nav';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { SandpackCSS } from './(blog)/blog/[slug]/sandpack';
+import { SandpackCSS } from './blog/[slug]/sandpack';
 import {
   JetBrains_Mono as FontMono,
   Manrope as FontSans,
 } from 'next/font/google';
 import { baseUrl } from './sitemap';
-import Footer from './(blog)/components/footer';
+import Footer from './components/footer';
 import Script from 'next/script';
+import Mouse from './components/mouse';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -90,11 +91,18 @@ export default function RootLayout({
       <head>
         <SandpackCSS />
       </head>
-      <body>
+      <body className="antialiased max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
         <div className="flex-none left-0 h-screen pointer-events-none fixed top-0 w-full z-[200]">
           <div className="noise" />
         </div>
-        {children}
+        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+          <Navbar />
+          {children}
+          <Footer />
+          <Analytics />
+          <SpeedInsights />
+        </main>
+        <Mouse />
       </body>
     </html>
   );

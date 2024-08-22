@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense, cache } from 'react';
 import { notFound } from 'next/navigation';
-import { CustomMDX } from 'app/(blog)/components/mdx';
+import { CustomMDX } from 'app/components/mdx';
 import { getNote, getViewsCount } from 'app/db/queries';
 import ViewCounter from 'app/view-counter';
 import { increment } from 'app/db/actions';

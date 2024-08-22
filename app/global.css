@@ -32,6 +32,51 @@
   }
 }
 
+@layer components {
+
+  .cursor,
+  .cursor2,
+  .cursor3 {
+    position: fixed;
+    border-radius: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    pointer-events: none;
+    left: -100px;
+    top: 50%;
+    mix-blend-mode: difference;
+    transition: all .3s linear;
+  }
+
+  .cursor {
+    @apply bg-black dark:bg-white;
+    height: 0;
+    width: 0;
+    z-index: 99999;
+  }
+
+  .cursor2,
+  .cursor3 {
+    height: 30px;
+    width: 30px;
+    z-index: 99998;
+    transition: all .3s ease-out;
+  }
+
+  .cursor2.hover,
+  .cursor3.hover {
+    transform: scale(2) translateX(-25%) translateY(-25%);
+    border: none;
+  }
+
+  .cursor2 {
+    @apply border-2 border-black dark:border-white bg-black/15 dark:bg-white/15 shadow-lg;
+  }
+
+  .cursor2.hover {
+    @apply bg-black dark:bg-white shadow-lg;
+  }
+}
+
 html {
   min-width: 360px;
 }
@@ -48,7 +93,6 @@ html {
 
 .prose .anchor {
   @apply absolute invisible no-underline;
-
   margin-left: -1em;
   padding-right: 0.5em;
   width: 80%;
@@ -92,7 +136,6 @@ html {
 }
 
 .prose img {
-  /* Don't apply styles to next/image */
   @apply m-0;
 }
 
@@ -107,7 +150,6 @@ h4 {
 }
 
 .prose> :first-child {
-  /* Override removing top margin, causing layout shift */
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
 }
@@ -118,12 +160,9 @@ pre::-webkit-scrollbar {
 
 pre {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
-/* Remove Safari input shadow on mobile */
 input[type='text'],
 input[type='email'] {
   -webkit-appearance: none;
