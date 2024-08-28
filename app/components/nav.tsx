@@ -31,16 +31,21 @@ export function Navbar() {
         >
           <div className="flex flex-row space-x-0 pr-10 items-center">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              width="70"
+              height="70"
               viewBox="0 0 70 70"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
             >
               <path
-                d="M58.97,11.03v37.12l-10.71,10.82H11.03V21.85l10.71-10.82h37.22M70,0H17.15L0,17.31v52.69h52.85l17.15-17.31V0h0Z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M70 0H16V16H0V70H54V54H70V0ZM54 54V16H16V54H54Z"
                 fill="currentColor"
-                strokeWidth="0"
               />
             </svg>
+
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
