@@ -11,6 +11,9 @@ export async function GET(req: NextRequest) {
   ).then((res) => res.arrayBuffer());
   const fontData = await font;
 
+  const fontSize = postTitle?.length ?? 0 > 140 ? 100 : 130;
+  const lineHeight = postTitle?.length ?? 0 > 140 ? '90px' : '120px';
+
   return new ImageResponse(
     (
       <div
@@ -25,20 +28,23 @@ export async function GET(req: NextRequest) {
         }}
       >
         <div
+          tw="line-clamp-2"
           style={{
             marginLeft: 190,
             marginRight: 190,
             display: 'flex',
-            fontSize: 130,
+            fontSize,
             fontFamily: 'Manrope',
             letterSpacing: '-0.05em',
             fontStyle: 'normal',
             color: 'white',
-            lineHeight: '120px',
+            lineHeight,
             whiteSpace: 'pre-wrap',
           }}
         >
-          {postTitle}
+          {postTitle?.length && postTitle.length > 140
+            ? `${postTitle.slice(0, 140)}...`
+            : postTitle}
         </div>
       </div>
     ),

@@ -60,6 +60,13 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
+    other: [
+      {
+        url: '/favicon.svg',
+        rel: 'mask-icon',
+        color: '#000000',
+      },
+    ],
   },
   manifest: `${baseUrl}/site.webmanifest`,
   robots: {
