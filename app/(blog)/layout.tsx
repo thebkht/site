@@ -69,12 +69,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
       <ul className={`outer-nav ${navOpen ? 'is-vis' : ''}`}>
         {Object.entries(navItems).map(([path, { name }]) => {
+          const isActive =
+            pathname === path ||
+            (path === '/blog' && pathname.startsWith('/blog/'));
+
           return (
             <li
               key={path}
               className={cx(
-                'text-4xl font-semibold cursor-pointer',
-                pathname === path ? 'is-active' : '',
+                'text-4xl font-semibold cursor-pointer leading-snug',
+                isActive ? 'is-active' : '',
                 navOpen ? 'is-vis' : ''
               )}
               onClick={() => {
