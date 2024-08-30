@@ -73,7 +73,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <li
               key={path}
               className={cx(
-                'text-3xl font-semibold cursor-pointer',
+                'text-4xl font-semibold cursor-pointer',
                 pathname === path ? 'is-active' : '',
                 navOpen ? 'is-vis' : ''
               )}
