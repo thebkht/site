@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import ViewCounter from './view-counter';
-import { getViewsCount } from './db/queries';
+import ViewCounter from '../view-counter';
+import { getViewsCount } from '../db/queries';
 
 function Badge(props) {
   return (

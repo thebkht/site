@@ -91,6 +91,30 @@ html {
   border-radius: 0;
 }
 
+.header--nav-toggle {
+  @apply flex h-5 w-5 flex-col items-center justify-center cursor-pointer;
+}
+
+.header--nav-toggle span,
+.header--nav-toggle::before,
+.header--nav-toggle::after {
+    content: "";
+    position: relative;
+    width: 16px;
+    height: 2px;
+    @apply bg-neutral-900 dark:bg-neutral-100;
+}
+
+.header--nav-toggle::before {
+    bottom: 5px;
+    width: 20px
+}
+
+.header--nav-toggle::after {
+    top: 5px;
+    width: 20px
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
   margin-left: -1em;

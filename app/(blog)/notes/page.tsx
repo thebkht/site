@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
-import ViewCounter from '../view-counter';
+import ViewCounter from '../../view-counter';
 import { getNotes, getViewsCount } from 'app/db/queries';
 
 export const metadata = {
