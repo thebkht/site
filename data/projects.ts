@@ -17,14 +17,14 @@ export const projects = [
   },
   {
     href: '#0',
-    image: 'assets/img/thefalse.png',
+    image: '/assets/img/thefalse.png',
     title: 'thefalse',
     description:
       'building. a social network for book lovers. share your reading experience with friends and family. keep track of your reading progress. discover new books and authors.',
     slug: 'thefalse',
   },
   {
-    href: 'https://ln.bkhtdev.com',
+    href: 'https://go.bkhtdev.com',
     image: '/assets/img/link.png',
     title: 'link',
     description:
