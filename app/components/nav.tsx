@@ -18,11 +18,7 @@ export function Navbar({
             <div
               className="flex items-center justify-center -ml-9"
               role="button"
-              onClick={
-                window.history.length > 1
-                  ? () => window.history.back()
-                  : () => router.push('/')
-              }
+              onClick={router.back}
             >
               <svg
                 version="1.1"
