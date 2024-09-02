@@ -71,7 +71,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {Object.entries(navItems).map(([path, { name }]) => {
           const isActive =
             pathname === path ||
-            (path === '/blog' && pathname.startsWith('/blog/'));
+            (path === '/blog' && pathname.startsWith('/blog/')) ||
+            (path === '/notes' && pathname.startsWith('/notes/')) ||
+            (path === '/projects' && pathname.startsWith('/projects/'));
 
           return (
             <li

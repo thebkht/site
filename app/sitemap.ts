@@ -16,10 +16,12 @@ export default async function sitemap() {
     }))
   );
 
-  let routes = ['', '/guestbook', '/uses', '/notes', '/blog'].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
-  }));
+  let routes = ['', '/guestbook', '/uses', '/notes', '/blog', '/projects'].map(
+    (route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: new Date().toISOString().split('T')[0],
+    })
+  );
 
   return [...routes, ...blogs, ...notes];
 }
