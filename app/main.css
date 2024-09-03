@@ -1535,8 +1535,9 @@
 .effect-rotate-left--animate .main-container {
      -webkit-transform: translateZ(-1800px)translateX(-50%)rotateY(45deg);
      transform: translateZ(-1800px)translateX(-50%)rotateY(45deg);
-     outline: 30px solid #fff
+     @apply outline-[30px] outline-black dark:outline-white; 
 }
+
 
 .outer-nav {
      position: absolute;
