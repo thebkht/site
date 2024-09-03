@@ -1609,8 +1609,8 @@
      width: 110%;
      height: 8px;
      opacity: 0;
-     background-color: #fff;
      mix-blend-mode: difference;
+     @apply bg-black dark:bg-white;
 }
 
 .outer-nav>li.is-active::before {
