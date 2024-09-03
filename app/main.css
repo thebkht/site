@@ -1535,7 +1535,7 @@
 .effect-rotate-left--animate .main-container {
      -webkit-transform: translateZ(-1800px)translateX(-50%)rotateY(45deg);
      transform: translateZ(-1800px)translateX(-50%)rotateY(45deg);
-     @apply outline-[30px] outline-black dark:outline-white outline; 
+     @apply outline-[30px] outline-black dark:outline-white outline;
 }
 
 
@@ -1586,7 +1586,8 @@
      -webkit-transition: opacity .2s, -webkit-transform .2s;
      transition: opacity .2s, -webkit-transform .2s;
      transition: transform .2s, opacity .2s;
-     transition: transform .2s, opacity .2s, -webkit-transform .2s
+     transition: transform .2s, opacity .2s, -webkit-transform .2s;
+     mix-blend-mode: difference;
 }
 
 .outer-nav>li.is-vis {
