@@ -56,13 +56,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           onClick={toggleNav}
         ></div>
         <div className="l-viewport">
-          <div className="h-full w-full overflow-y-auto">
-            <div className="antialiased max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
-              <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+          <div className="h-full w-full overflow-y-auto antialiased tracking-tight">
+            <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8">
+              <main className="max-w-[60ch] mx-auto w-full space-y-6">
                 <Navbar open={navOpen} toggleNav={toggleNav} />
                 {children}
-                <Footer />
               </main>
+              <Footer />
             </div>
           </div>
         </div>

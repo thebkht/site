@@ -16,64 +16,28 @@ function ArrowIcon() {
 }
 
 export default function Footer() {
+  const links = [
+    { name: 'rss', url: '/rss' },
+    { name: '@thebkht', url: 'https://x.com/leeerob' },
+    { name: 'youtube', url: 'https://www.youtube.com/@bkhtdev' },
+    { name: 'linkedin', url: 'https://www.linkedin.com/in/thebkht' },
+    { name: 'github', url: 'https://github.com/thebkht' },
+  ];
   return (
-    <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
-        <li>
+    <footer className="mt-12 text-center">
+      <div className="flex justify-center space-x-4 tracking-tight">
+        {links.map((link) => (
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
+            key={link.name}
+            href={link.url}
             target="_blank"
-            href="/rss"
-          >
-            <ArrowIcon /> <p className="ml-2 h-7">rss</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/thebkht"
+            className="hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors duration-200"
           >
-            <ArrowIcon /> <p className="ml-2 h-7">github</p>
+            {link.name}
           </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://x.com/thebkht"
-          >
-            <ArrowIcon /> <p className="ml-2 h-7">x (twitter)</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://www.linkedin.com/in/thebkht/"
-          >
-            <ArrowIcon /> <p className="ml-2 h-7">linkedin</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://bkhtdev.substack.com/"
-          >
-            <ArrowIcon /> <p className="ml-2 h-7">get email updates</p>
-          </a>
-        </li>
-      </ul>
-      <p className="mt-8 text-neutral-900 dark:text-neutral-300">
-        &copy; {new Date().getFullYear() + ' '}
-        bkhtdev
-      </p>
+        ))}
+      </div>
     </footer>
   );
 }

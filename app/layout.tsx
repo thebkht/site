@@ -10,9 +10,7 @@ import {
   Manrope as FontSans,
 } from 'next/font/google';
 import { baseUrl } from './sitemap';
-import Footer from './components/footer';
-import Script from 'next/script';
-import Mouse from './components/mouse';
+import { ViewTransitions } from 'next-view-transitions';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -91,22 +89,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cx(
-        'text-black bg-white dark:text-white dark:bg-[#111010]',
-        fontSans.variable,
-        fontMono.variable
-      )}
-    >
-      <head>
-        <SandpackCSS />
-      </head>
-      <body>
-        {children}
-        <Analytics />
-        <SpeedInsights />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html
+        lang="en"
+        className={cx(
+          'text-black bg-white dark:text-white dark:bg-[#111010]',
+          fontSans.variable,
+          fontMono.variable
+        )}
+      >
+        <head>
+          <SandpackCSS />
+        </head>
+        <body>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
