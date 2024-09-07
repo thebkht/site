@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { usePathname, useRouter } from 'next/navigation';
 
 function AnimatedName() {
@@ -34,6 +34,24 @@ function AnimatedName() {
   );
 }
 
+export const navItems = {
+  '/': {
+    name: 'home',
+  },
+  '/work': {
+    name: 'Work',
+  },
+  '/blog': {
+    name: 'Blog',
+  },
+  '/notes': {
+    name: 'Notes',
+  },
+  '/guestbook': {
+    name: 'Guestbook',
+  },
+};
+
 export function Navbar({
   open,
   toggleNav,
@@ -44,7 +62,7 @@ export function Navbar({
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <header className="mb-16 tracking-tight">
+    <header className="tracking-tight">
       <div className="lg:sticky lg:top-20 flex w-full items-center justify-between">
         <div className="flex items-center gap-4">
           {pathname !== '/' && (
@@ -89,8 +107,12 @@ export function Navbar({
                 fill="currentColor"
               />
             </svg>
-            <AnimatedName />
           </Link>
+          {pathname !== '/' ? (
+            <div className="font-medium">{navItems[pathname]?.name}</div>
+          ) : (
+            <AnimatedName />
+          )}
         </div>
         <div className="header--nav-toggle" role="button" onClick={toggleNav}>
           <span></span>

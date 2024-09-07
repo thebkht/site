@@ -13,10 +13,6 @@ export default async function NotePage() {
 
   return (
     <section>
-      <h1 className="font-medium text-2xl mb-8 tracking-tighter">
-        read my notes
-      </h1>
-
       {allNotes.length === 0 ? (
         <p className="text-neutral-600 dark:text-neutral-400">No notes yet.</p>
       ) : (

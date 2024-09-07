@@ -1,31 +1,10 @@
 'use client';
 import type { Metadata } from 'next';
-import { Navbar } from 'app/components/nav';
+import { Navbar, navItems } from 'app/components/nav';
 import Footer from 'app/components/footer';
 import React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-
-const navItems = {
-  '/': {
-    name: 'home',
-  },
-  '/projects': {
-    name: 'projects',
-  },
-  '/blog': {
-    name: 'blog',
-  },
-  '/notes': {
-    name: 'notes',
-  },
-  '/uses': {
-    name: 'setup',
-  },
-  '/guestbook': {
-    name: 'guestbook',
-  },
-};
 
 const cx = (...classes) => classes.filter(Boolean).join(' ');
 
@@ -67,7 +46,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </div>
-      <ul className={`outer-nav ${navOpen ? 'is-vis' : ''}`}>
+      <ul className={`outer-nav lowercase ${navOpen ? 'is-vis' : ''}`}>
         {Object.entries(navItems).map(([path, { name }]) => {
           const isActive =
             pathname === path ||
@@ -83,12 +62,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 isActive ? 'is-active' : '',
                 navOpen ? 'is-vis' : ''
               )}
-              onClick={() => {
-                router.push(path);
-                toggleNav();
-              }}
             >
-              {name}
+              <Link href={path} onClick={toggleNav}>
+                {name}
+              </Link>
             </li>
           );
         })}

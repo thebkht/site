@@ -16,7 +16,6 @@ async function Stars() {
 export default function WorkPage() {
   return (
     <section>
-      <h1 className="font-medium text-2xl mb-8 tracking-tighter">my work</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           I'm a frontend developer with experience working on a variety of

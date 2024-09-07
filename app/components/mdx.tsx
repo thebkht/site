@@ -29,21 +29,29 @@ function Table({ data }) {
 }
 
 function CustomLink(props) {
+  const className = 'text-blue-500 hover:text-blue-700';
   let href = props.href;
 
   if (href.startsWith('/')) {
     return (
-      <Link href={href} {...props}>
+      <Link href={href} className={className} {...props}>
         {props.children}
       </Link>
     );
   }
 
   if (href.startsWith('#')) {
-    return <a {...props} />;
+    return <a className={className} {...props} />;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      {...props}
+    />
+  );
 }
 
 function RoundedImage(props) {
