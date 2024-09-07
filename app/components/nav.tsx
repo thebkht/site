@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 function AnimatedName() {
   return (
-    <h1 className="font-medium transition-element">
+    <div className="font-medium transition-element">
       <span className="sr-only">Bakhtiyor Ganijon</span>
       <span aria-hidden="true" className="block overflow-hidden group relative">
         <span className="inline-block transition-all duration-300 ease-in-out group-hover:-translate-y-full">
@@ -30,7 +30,7 @@ function AnimatedName() {
           ))}
         </span>
       </span>
-    </h1>
+    </div>
   );
 }
 
@@ -73,7 +73,7 @@ export function Navbar({
               <span className="sr-only">back</span>
             </div>
           )}
-          <Link href="/" className="flex items-center justify-center">
+          <Link href="/" className="flex items-center justify-center gap-2.5">
             <svg
               width="70"
               height="70"
@@ -89,9 +89,8 @@ export function Navbar({
                 fill="currentColor"
               />
             </svg>
-            <span className="sr-only">bkhtdev.com</span>
+            <AnimatedName />
           </Link>
-          <AnimatedName />
         </div>
         <div className="header--nav-toggle" role="button" onClick={toggleNav}>
           <span></span>
