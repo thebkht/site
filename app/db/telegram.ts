@@ -92,7 +92,7 @@ export async function editTelegramMessage(
 
   // Update the content in Markdown format in the database
   await sql`
-     UPDATE posts SET content = ${newContent} WHERE telegram_message_id = ${messageId}
+     UPDATE posts SET content = ${newContent} title = ${newTitle} WHERE telegram_message_id = ${messageId}
   `;
 
   let response = await fetch(
