@@ -18,7 +18,7 @@ function ArrowIcon() {
 export default function Footer() {
   const links = [
     { name: 'rss', url: '/rss' },
-    { name: '@thebkht', url: 'https://x.com/leeerob' },
+    { name: '@thebkht', url: 'https://x.com/thebkht' },
     { name: 'youtube', url: 'https://www.youtube.com/@bkhtdev' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/thebkht' },
     { name: 'github', url: 'https://github.com/thebkht' },
