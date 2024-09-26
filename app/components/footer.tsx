@@ -1,3 +1,5 @@
+import { Link } from 'next-view-transitions';
+
 function ArrowIcon() {
   return (
     <svg
@@ -17,7 +19,7 @@ function ArrowIcon() {
 
 export default function Footer() {
   const links = [
-    { name: 'rss', url: '/rss' },
+    { name: 'rss', url: 'https://bkhtdev.com/rss' },
     { name: 'guestbook', url: '/guestbook' },
     { name: '@thebkht', url: 'https://x.com/thebkht' },
     { name: 'youtube', url: 'https://www.youtube.com/@bkhtdev' },
@@ -42,17 +44,26 @@ export default function Footer() {
             fill="currentColor"
           />
         </svg>
-        {links.map((link) => (
-          <a
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-blue-500 transition-colors duration-200"
-          >
-            {link.name}
-          </a>
-        ))}
+        {links.map((link) =>
+          link.url.startsWith('http') ? (
+            <a
+              key={link.name}
+              href={link.url}
+              target="_blank"
+              className="text-gray-400 hover:text-gray-600 dark:text-gray-200 dark:hover:text-gray-100"
+            >
+              {link.name}
+            </a>
+          ) : (
+            <Link
+              key={link.name}
+              href={link.url}
+              className="text-gray-400 hover:text-gray-600 dark:text-gray-200 dark:hover:text-gray-100"
+            >
+              {link.name}
+            </Link>
+          )
+        )}
       </div>
     </footer>
   );
