@@ -137,20 +137,6 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      {post.metadata.image && (
-        <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden cover-image">
-          <Image
-            src={post.metadata.image}
-            alt={post.metadata.title}
-            layout="responsive"
-            width={1000}
-            height={500}
-            className="rounded-md"
-            placeholder="blur"
-            blurDataURL={shimmer(1000, 500)}
-          />
-        </div>
-      )}
       <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
         {post.metadata.title}
       </h1>
@@ -174,6 +160,20 @@ export default function Blog({ params }) {
           <Views slug={post.slug} />
         </Suspense>
       </div>
+      {post.metadata.image && (
+        <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden cover-image">
+          <Image
+            src={post.metadata.image}
+            alt={post.metadata.title}
+            layout="responsive"
+            width={1000}
+            height={500}
+            className="rounded-md"
+            placeholder="blur"
+            blurDataURL={shimmer(1000, 500)}
+          />
+        </div>
+      )}
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">
         <CustomMDX source={post.content} />
       </article>
