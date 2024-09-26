@@ -4,13 +4,14 @@ import type { Metadata } from 'next';
 import { Navbar } from './components/nav';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { SandpackCSS } from './(blog)/blog/[slug]/sandpack';
+import { SandpackCSS } from './blog/[slug]/sandpack';
 import {
   JetBrains_Mono as FontMono,
   Manrope as FontSans,
 } from 'next/font/google';
 import { baseUrl } from './sitemap';
 import { ViewTransitions } from 'next-view-transitions';
+import Footer from './components/footer';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -101,10 +102,15 @@ export default function RootLayout({
         <head>
           <SandpackCSS />
         </head>
-        <body>
-          {children}
-          <Analytics />
-          <SpeedInsights />
+        <body className="antialiased tracking-tight">
+          <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 text-gray-900 dark:text-gray-300">
+            <main className="max-w-[60ch] mx-auto w-full space-y-6">
+              {children}
+            </main>
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </div>
         </body>
       </html>
     </ViewTransitions>

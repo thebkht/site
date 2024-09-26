@@ -4,6 +4,7 @@ import ViewCounter from 'app/view-counter';
 import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
 import { Metadata } from 'next';
+import { AnimatedName } from 'app/components/nav';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -15,6 +16,8 @@ export default function BlogPage() {
 
   return (
     <section>
+      <h1 className="font-medium pt-12 mb-0 fade-in">Blog</h1>
+      <AnimatedName />
       {allBlogs
         .sort((a, b) => {
           if (

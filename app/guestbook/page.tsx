@@ -3,6 +3,7 @@ import { getGuestbookEntries } from 'app/db/queries';
 import { SignIn, SignOut } from './buttons';
 import { Suspense } from 'react';
 import Form from './form';
+import { AnimatedName } from 'app/components/nav';
 
 export const metadata = {
   title: 'Guestbook',
@@ -12,6 +13,8 @@ export const metadata = {
 export default function GuestbookPage() {
   return (
     <section>
+      <h1 className="font-medium pt-12 mb-0 fade-in">Guestbook</h1>
+      <AnimatedName />
       <Suspense>
         <GuestbookForm />
         <GuestbookEntries />

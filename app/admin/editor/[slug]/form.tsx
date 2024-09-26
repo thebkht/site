@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { editTelegramMessage, postTelegramMessage } from 'app/db/telegram';
 import { useRouter } from 'next/navigation';
-import { Note } from 'app/(blog)/admin/telegram/form';
+import { Note } from 'app/admin/telegram/form';
 
 export default function Form({ note }) {
   const formRef = useRef<HTMLFormElement>(null);

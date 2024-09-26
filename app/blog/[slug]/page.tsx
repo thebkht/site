@@ -4,12 +4,13 @@ import { notFound } from 'next/navigation';
 import { CustomMDX } from 'app/components/mdx';
 import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
-import ViewCounter from '../../../view-counter';
+import ViewCounter from './../../view-counter';
 import { increment } from 'app/db/actions';
 import { unstable_noStore as noStore } from 'next/cache';
 import { baseUrl } from 'app/sitemap';
 import Image from 'next/image';
 import readingTime from 'reading-time';
+import { AnimatedName } from 'app/components/nav';
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -137,21 +138,20 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
+      <h1 className="title font-medium pt-12 mb-0 fade-in max-w-[650px]">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
+      <AnimatedName />
+      <div className="flex justify-between items-center mb-8 text-sm max-w-[650px]">
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-gray-800 dark:text-gray-400">
               {readingTime(post.content, { wordsPerMinute: 300 }).text}
             </p>
           </Suspense>
-          <span className="text-sm text-neutral-600 dark:text-neutral-400">
-            ·
-          </span>
+          <span className="text-sm text-gray-800 dark:text-gray-400">·</span>
           <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-gray-800 dark:text-gray-400">
               {formatDate(post.metadata.publishedAt)}
             </p>
           </Suspense>
@@ -161,7 +161,7 @@ export default function Blog({ params }) {
         </Suspense>
       </div>
       {post.metadata.image && (
-        <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden cover-image">
+        <div className="w-full h-auto bg-gray-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden cover-image">
           <Image
             src={post.metadata.image}
             alt={post.metadata.title}
@@ -174,7 +174,7 @@ export default function Blog({ params }) {
           />
         </div>
       )}
-      <article className="prose prose-quoteless prose-neutral dark:prose-invert">
+      <article className="prose prose-quoteless prose-gray dark:prose-invert">
         <CustomMDX source={post.content} />
       </article>
     </section>

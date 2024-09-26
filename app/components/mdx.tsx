@@ -1,10 +1,17 @@
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { TweetComponent } from './tweet';
 import { highlight } from 'sugar-high';
-import React from 'react';
+import React, { ComponentPropsWithoutRef } from 'react';
 import { LiveCode } from './sandpack';
+
+type HeadingProps = ComponentPropsWithoutRef<'h1'>;
+type ParagraphProps = ComponentPropsWithoutRef<'p'>;
+type ListProps = ComponentPropsWithoutRef<'ul'>;
+type ListItemProps = ComponentPropsWithoutRef<'li'>;
+type AnchorProps = ComponentPropsWithoutRef<'a'>;
+type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -146,7 +153,13 @@ function createHeading(level) {
     let slug = slugify(children);
     return React.createElement(
       `h${level}`,
-      { id: slug },
+      {
+        id: slug,
+        className:
+          level === 1
+            ? 'font-medium pt-12 mb-0 fade-in'
+            : 'text-gray-800 dark:text-gray-400 font-medium mt-8 mb-3',
+      },
       [
         React.createElement('a', {
           href: `#${slug}`,
@@ -166,8 +179,56 @@ let components = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  Image: RoundedImage,
-  a: CustomLink,
+  p: (props: ParagraphProps) => (
+    <p className="text-gray-800 dark:text-gray-400 leading-snug" {...props} />
+  ),
+  ol: (props: ListProps) => (
+    <ol
+      className="text-gray-800 dark:text-gray-400 list-decimal pl-5 space-y-2"
+      {...props}
+    />
+  ),
+  ul: (props: ListProps) => (
+    <ul
+      className="text-gray-800 dark:text-gray-400 list-disc pl-5 space-y-1"
+      {...props}
+    />
+  ),
+  li: (props: ListItemProps) => <li className="pl-1" {...props} />,
+  em: (props: ComponentPropsWithoutRef<'em'>) => (
+    <em className="font-medium" {...props} />
+  ),
+  strong: (props: ComponentPropsWithoutRef<'strong'>) => (
+    <strong className="font-medium" {...props} />
+  ),
+  a: ({ href, children, ...props }: AnchorProps) => {
+    const className = 'text-blue-500 hover:text-blue-700';
+    if (href?.startsWith('/')) {
+      return (
+        <Link href={href} className={className} {...props}>
+          {children}
+        </Link>
+      );
+    }
+    if (href?.startsWith('#')) {
+      return (
+        <a href={href} className={className} {...props}>
+          {children}
+        </a>
+      );
+    }
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  },
   Callout,
   ProsCard,
   ConsCard,
