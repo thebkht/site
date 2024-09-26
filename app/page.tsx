@@ -84,8 +84,8 @@ export default function Page() {
   return (
     <>
       <AnimatedName />
-      <div className="space-y-4 leading-snug text-gray-800 dark:text-gray-400">
-        <p className="prose prose-neutral dark:prose-invert">
+      <div className="space-y-4 leading-snug text-gray-800 dark:text-gray-300">
+        <p>
           {`I'm a geeky front-end developer and designer. Born and raised in Uzbekistan, I have since moved to South Korea, where I am studying computer science at `}
           <Link
             target="_blank"
@@ -116,42 +116,40 @@ export default function Page() {
         </div>
       </div> */}
 
-        <div className="prose prose-neutral dark:prose-invert">
-          <p>
-            Over the years, I've written content on my blog and newsletter.
-            You'll find writings about technologies I'm interested in at the
-            time, or just general thoughts. Some examples include
-            {` `}
-            <Link
-              href="/blog/animated-counter"
-              className="text-blue-500 hover:text-blue-700 no-underline"
-            >
-              Animated Counter in React
-            </Link>
-            {`, `}
-            <Link
-              href="/blog/the-history-and-success-of-winrar"
-              className="text-blue-500 hover:text-blue-700 no-underline"
-            >
-              The Success Story of WinRAR
-            </Link>
-            {`, `}
-            <Link
-              href="/blog/geek-culture"
-              className="text-blue-500 hover:text-blue-700 no-underline"
-            >
-              The Rise of Geek Culture
-            </Link>
-            . You can find more on
-            {` `}
-            <Link
-              href="/blog"
-              className="text-blue-500 hover:text-blue-700 no-underline"
-            >
-              my blog
-            </Link>
-          </p>
-        </div>
+        <p>
+          Over the years, I've written content on my blog and newsletter. You'll
+          find writings about technologies I'm interested in at the time, or
+          just general thoughts. Some examples include
+          {` `}
+          <Link
+            href="/blog/animated-counter"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            Animated Counter in React
+          </Link>
+          {`, `}
+          <Link
+            href="/blog/the-history-and-success-of-winrar"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            The Success Story of WinRAR
+          </Link>
+          {`, `}
+          <Link
+            href="/blog/geek-culture"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            The Rise of Geek Culture
+          </Link>
+          . You can find more on
+          {` `}
+          <Link
+            href="/blog"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            my blog
+          </Link>
+        </p>
       </div>
     </>
   );

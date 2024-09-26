@@ -145,13 +145,13 @@ export default function Blog({ params }) {
       <div className="flex justify-between items-center mb-8 text-sm max-w-[650px]">
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-gray-800 dark:text-gray-400">
+            <p className="text-sm text-gray-800 dark:text-gray-300">
               {readingTime(post.content, { wordsPerMinute: 300 }).text}
             </p>
           </Suspense>
-          <span className="text-sm text-gray-800 dark:text-gray-400">·</span>
+          <span className="text-sm text-gray-800 dark:text-gray-300">·</span>
           <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-gray-800 dark:text-gray-400">
+            <p className="text-sm text-gray-800 dark:text-gray-300">
               {formatDate(post.metadata.publishedAt)}
             </p>
           </Suspense>

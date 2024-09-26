@@ -96,7 +96,7 @@ export default function RootLayout({
           <SandpackCSS />
         </head>
         <body className="antialiased tracking-tight">
-          <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 text-gray-900 dark:text-gray-300">
+          <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 text-gray-900 dark:text-gray-300 bg-white dark:bg-neutral-950">
             <main className="max-w-[60ch] mx-auto w-full space-y-6">
               {children}
             </main>

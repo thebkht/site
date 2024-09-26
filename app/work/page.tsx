@@ -31,7 +31,7 @@ export default function WorkPage() {
         <h2 className="font-medium text-base mb-1 tracking-tighter">
           Technocorp
         </h2>
-        <p className="text-gray-800 dark:text-gray-400 text-sm">
+        <p className="text-gray-800 dark:text-gray-300 text-sm">
           Frontend Developer Intern, July 2024 — September 2024
         </p>
         <p>
@@ -52,7 +52,7 @@ export default function WorkPage() {
         >
           bkhtdev/link
         </a>
-        <p className="text-gray-800 dark:text-gray-400 text-sm mt-0">
+        <p className="text-gray-800 dark:text-gray-300 text-sm mt-0">
           An open-source link shortener, August 2024
         </p>
         <p>
@@ -69,7 +69,7 @@ export default function WorkPage() {
         >
           FalseNotes
         </a>
-        <p className="text-gray-800 dark:text-gray-400 text-sm mt-0">
+        <p className="text-gray-800 dark:text-gray-300 text-sm mt-0">
           An open-source blogging platform, September 2023 - March 2024
         </p>
         <p>

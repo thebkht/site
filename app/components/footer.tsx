@@ -19,7 +19,6 @@ function ArrowIcon() {
 
 export default function Footer() {
   const links = [
-    { name: 'rss', url: 'https://bkhtdev.com/rss' },
     { name: 'guestbook', url: '/guestbook' },
     { name: '@thebkht', url: 'https://x.com/thebkht' },
     { name: 'youtube', url: 'https://www.youtube.com/@bkhtdev' },
@@ -28,14 +27,14 @@ export default function Footer() {
   ];
   return (
     <footer className="mt-12 text-center">
-      <div className="flex justify-center items-center space-x-5 tracking-tight">
+      <div className="flex justify-between items-center space-x-5 tracking-tight max-w-[60ch] mx-auto w-full">
         <svg
           width="70"
           height="70"
           viewBox="0 0 70 70"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-gray-400"
+          className="h-5 w-5 text-gray-400 dark:text-gray-600"
         >
           <path
             fill-rule="evenodd"
@@ -50,7 +49,7 @@ export default function Footer() {
               key={link.name}
               href={link.url}
               target="_blank"
-              className="text-gray-400 hover:text-gray-600 dark:text-gray-200 dark:hover:text-gray-100"
+              className="text-gray-400 hover:text-blue-500 dark:text-gray-600"
             >
               {link.name}
             </a>
@@ -58,7 +57,7 @@ export default function Footer() {
             <Link
               key={link.name}
               href={link.url}
-              className="text-gray-400 hover:text-gray-600 dark:text-gray-200 dark:hover:text-gray-100"
+              className="text-gray-400 hover:text-blue-500 dark:text-gray-600"
             >
               {link.name}
             </Link>
