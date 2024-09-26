@@ -88,7 +88,7 @@ export async function editTelegramMessage(
 
   // Convert Markdown to HTML and clean it for Telegram
   let markedContent = await marked(newContent);
-  let entry = `<b>${newTitle}</b>\n${cleanHTMLforTelegram(markedContent)}`;
+  let entry = `<b>${newTitle}</b>\n${cleanHTMLforTelegram(markedContent)}\n@bkhtdev`;
 
   // Update the content in Markdown format in the database
   await sql`
