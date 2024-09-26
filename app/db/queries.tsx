@@ -122,3 +122,15 @@ export async function getNote(slug: string) {
 
   return notes[0];
 }
+
+export async function getRedirects(short: string) {
+  if (!process.env.POSTGRES_URL) {
+    return;
+  }
+
+  noStore();
+  const url = await sql`
+    SELECT original_url as originalUrl from url where short_code = ${short} and user_email = 'b.yusupoff001@gmail.com' limit 1`;
+
+  return url[0];
+}
