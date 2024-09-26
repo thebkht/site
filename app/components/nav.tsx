@@ -2,7 +2,7 @@
 import { Link } from 'next-view-transitions';
 import { usePathname, useRouter } from 'next/navigation';
 
-function AnimatedName() {
+export function AnimatedName() {
   return (
     <div className="font-medium transition-element">
       <span className="sr-only">Bakhtiyor Ganijon</span>
