@@ -48,7 +48,7 @@ export default function WorkPage() {
         <a
           target="_blank"
           href="https://go.bkhtdev.com"
-          className="font-medium text-base mb-1 tracking-tighter"
+          className="font-medium text-base mb-1 tracking-tighter hover:text-blue-500 transition-colors duration-200"
         >
           bkhtdev/link
         </a>
@@ -65,7 +65,7 @@ export default function WorkPage() {
         <a
           target="_blank"
           href="https://falsenotes.dev"
-          className="font-medium text-base mb-1 tracking-tighter"
+          className="font-medium text-base mb-1 tracking-tighter hover:text-blue-500 transition-colors duration-200"
         >
           FalseNotes
         </a>

@@ -49,7 +49,7 @@ export default function Footer() {
               key={link.name}
               href={link.url}
               target="_blank"
-              className="text-gray-400 hover:text-blue-500 dark:text-gray-600"
+              className="text-gray-400 hover:text-blue-500 dark:text-gray-600 transition-colors duration-200"
             >
               {link.name}
             </a>
@@ -57,7 +57,7 @@ export default function Footer() {
             <Link
               key={link.name}
               href={link.url}
-              className="text-gray-400 hover:text-blue-500 dark:text-gray-600"
+              className="text-gray-400 hover:text-blue-500 dark:text-gray-600 transition-colors duration-200"
             >
               {link.name}
             </Link>
