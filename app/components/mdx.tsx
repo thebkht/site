@@ -233,7 +233,10 @@ let components = {
   ProsCard,
   ConsCard,
   StaticTweet: TweetComponent,
-  code: Code,
+  code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
+    const codeHTML = highlight(children as string);
+    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+  },
   Table,
   LiveCode,
 };
