@@ -18,6 +18,7 @@ function ArrowIcon() {
 export default function Footer() {
   const links = [
     { name: 'rss', url: '/rss' },
+    { name: 'guestbook', url: '/guestbook' },
     { name: '@thebkht', url: 'https://x.com/thebkht' },
     { name: 'youtube', url: 'https://www.youtube.com/@bkhtdev' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/thebkht' },
@@ -25,7 +26,22 @@ export default function Footer() {
   ];
   return (
     <footer className="mt-12 text-center">
-      <div className="flex justify-center space-x-4 tracking-tight">
+      <div className="flex justify-center items-center space-x-5 tracking-tight">
+        <svg
+          width="70"
+          height="70"
+          viewBox="0 0 70 70"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-gray-400"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M70 0H16V16H0V70H54V54H70V0ZM54 54V16H16V54H54Z"
+            fill="currentColor"
+          />
+        </svg>
         {links.map((link) => (
           <a
             key={link.name}
