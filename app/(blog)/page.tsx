@@ -72,7 +72,7 @@ export default function Page() {
 
       {/* Projects */}
 
-      <div className="prose prose-neutral dark:prose-invert">
+      {/* <div className="prose prose-neutral dark:prose-invert">
         {`I've worked on a few projects over the years. Here are some of them:`}
 
         <div className="my-8 flex w-full flex-col space-y-4">
@@ -80,7 +80,7 @@ export default function Page() {
           <ProjectLink name="bkhtdev/link" slug="link" />
           <ProjectLink name="hangman" slug="hangman" />
         </div>
-      </div>
+      </div> */}
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
