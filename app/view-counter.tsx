@@ -18,7 +18,7 @@ export default function ViewCounter({
 
   return (
     <p
-      className={cn('text-neutral-600 dark:text-neutral-400', className)}
+      className={cn('text-gray-600 dark:text-gray-400', className)}
     >{`${number.toLocaleString()} views`}</p>
   );
 }
