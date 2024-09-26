@@ -91,14 +91,7 @@ export default function RootLayout({
 }) {
   return (
     <ViewTransitions>
-      <html
-        lang="en"
-        className={cx(
-          'text-black bg-white dark:text-white dark:bg-[#111010]',
-          fontSans.variable,
-          fontMono.variable
-        )}
-      >
+      <html lang="en" className={cx(fontSans.variable, fontMono.variable)}>
         <head>
           <SandpackCSS />
         </head>
