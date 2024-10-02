@@ -113,7 +113,7 @@ export default async function Note({ params }) {
   return (
     <section>
       {note.image && (
-        <div className="w-full h-auto bg-neutral-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden">
+        <div className="w-full h-auto bg-gray-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden">
           <Image
             src={note.image}
             alt={note.title}
@@ -132,7 +132,7 @@ export default async function Note({ params }) {
       <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               {formatDate(note.published_at)}
             </p>
           </Suspense>
@@ -141,7 +141,7 @@ export default async function Note({ params }) {
           <Views slug={note.slug} />
         </Suspense>
       </div>
-      <article className="prose prose-quoteless prose-neutral dark:prose-invert">
+      <article className="prose prose-quoteless prose-gray dark:prose-invert">
         <CustomMDX source={note.content} />
       </article>
     </section>

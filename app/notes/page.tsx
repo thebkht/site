@@ -14,7 +14,7 @@ export default async function NotePage() {
   return (
     <section>
       {allNotes.length === 0 ? (
-        <p className="text-neutral-600 dark:text-neutral-400">No notes yet.</p>
+        <p className="text-gray-600 dark:text-gray-400">No notes yet.</p>
       ) : (
         allNotes.map((post) => (
           <Link
@@ -23,7 +23,7 @@ export default async function NotePage() {
             href={`/notes/${post.slug}`}
           >
             <div className="w-full flex flex-col">
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+              <p className="text-gray-900 dark:text-gray-100 tracking-tight">
                 {post.title}
               </p>
               <Suspense fallback={<p className="h-6" />}>
