@@ -3,7 +3,7 @@
 import { useFormStatus } from 'react-dom';
 import { useState, useEffect } from 'react';
 import { deleteNotes } from 'app/db/actions';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 export type Note = {
   id: string;
