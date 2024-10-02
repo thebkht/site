@@ -19,7 +19,6 @@ function ArrowIcon() {
 
 export default function Footer() {
   const links = [
-    { name: 'guestbook', url: '/guestbook' },
     { name: '@thebkht', url: 'https://x.com/thebkht' },
     { name: 'youtube', url: 'https://www.youtube.com/@bkhtdev' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/thebkht' },
@@ -27,7 +26,7 @@ export default function Footer() {
   ];
   return (
     <footer className="mt-12 text-center">
-      <div className="flex justify-between items-center space-x-5 tracking-tight max-w-[60ch] mx-auto w-full">
+      <div className="flex justify-between items-center space-x-4 tracking-tight flex-wrap md:max-w-[60ch] mx-auto">
         <svg
           width="70"
           height="70"

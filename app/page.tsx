@@ -150,6 +150,19 @@ export default function Page() {
             my blog
           </Link>
         </p>
+        {/*guestbook*/}
+        <p>
+          I have a {` `}
+          <Link
+            href="/guestbook"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            guestbook
+          </Link>
+          {` `}
+          where you can leave a message or ask me anything. I try to respond to
+          every message I get.
+        </p>
       </div>
     </>
   );
