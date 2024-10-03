@@ -239,6 +239,7 @@ let components = {
   },
   Table,
   LiveCode,
+  Image,
 };
 
 export function CustomMDX(props) {

@@ -16,5 +16,5 @@ export default async function Layout({
   ) {
     redirect('/');
   }
-  return <div className="flex-auto min-w-0 flex flex-col">{children}</div>;
+  return { children };
 }
