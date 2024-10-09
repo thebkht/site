@@ -5,6 +5,7 @@ import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
 import { Metadata } from 'next';
 import { AnimatedName } from 'app/components/nav';
+import { formatDate } from 'app/p/[slug]/page';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -31,15 +32,29 @@ export default function BlogPage() {
           <Link
             key={post.slug}
             className="flex flex-col space-y-1 mb-4"
-            href={`/blog/${post.slug}`}
+            href={`/p/${post.slug}`}
           >
             <div className="w-full flex flex-col">
               <p className="text-gray-800 dark:text-gray-300 tracking-tight">
                 {post.metadata.title}
               </p>
-              <Suspense fallback={<p className="h-6" />}>
-                <Views slug={post.slug} />
-              </Suspense>
+              <div className="flex gap-1.5 items-center text-sm">
+                <Suspense fallback={<p className="h-5" />}>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {formatDate(post.metadata.publishedAt)}
+                  </p>
+                </Suspense>
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  ·
+                </span>
+                <Suspense fallback={<p className="h-6" />}>
+                  <Views slug={post.slug} />
+                </Suspense>
+              </div>
+
+              <p className="text-gray-600 dark:text-gray-400 line-clamp-2 mt-2">
+                {post.metadata.summary}
+              </p>
             </div>
           </Link>
         ))}

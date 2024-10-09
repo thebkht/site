@@ -122,21 +122,21 @@ export default function Page() {
           just general thoughts. Some examples include
           {` `}
           <Link
-            href="/blog/animated-counter"
+            href="/p/animated-counter"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
             Animated Counter in React
           </Link>
           {`, `}
           <Link
-            href="/blog/the-history-and-success-of-winrar"
+            href="/p/the-history-and-success-of-winrar"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
             The Success Story of WinRAR
           </Link>
           {`, `}
           <Link
-            href="/blog/geek-culture"
+            href="/p/geek-culture"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
             The Rise of Geek Culture
