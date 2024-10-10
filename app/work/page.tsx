@@ -28,9 +28,12 @@ export default function WorkPage() {
           and the projects I've contributed to:
         </p>
 
-        <h2 className="font-medium text-base mb-1 tracking-tighter">
-          Technocorp
+        <h2 className="font-medium text-base mb-1 tracking-tighter py-5">
+          Experience
         </h2>
+        <h3 className="font-medium text-base mb-1 tracking-tighter">
+          Technocorp
+        </h3>
         <p className="text-gray-800 dark:text-gray-300 text-sm">
           Frontend Developer Intern, July 2024 — September 2024
         </p>
@@ -38,23 +41,22 @@ export default function WorkPage() {
           I joined Technocorp as a frontend developer intern. I collaborated on
           several front-end projects, contributing to UI/UX improvements, code
           optimization, and feature implementation, and worked on a small team
-          building a new product from scratch. I learned a lot about the product
-          development process, from ideation to shipping. I also had the
-          opportunity to work with a diverse team and learn from experienced and
-          talented developers. I'm grateful for the experience and the
-          opportunity to grow as a developer.
+          building a new product from scratch. I've worked with technologies
+          Nextjs (pages route), Tailwind CSS. And I've learned a lot about the
+          software development process, from design to deployment. I've also
+          gained experience working with a team and collaborating on projects.
         </p>
 
+        <h2 className="font-medium text-base mb-1 tracking-tighter py-5">
+          Projects
+        </h2>
         <a
           target="_blank"
           href="https://go.bkhtdev.com"
-          className="font-medium text-base mb-1 tracking-tighter hover:text-blue-500 transition-colors duration-200"
+          className="font-medium text-base tracking-tighter hover:text-blue-500 transition-colors duration-200"
         >
           bkhtdev/link
         </a>
-        <p className="text-gray-800 dark:text-gray-300 text-sm mt-0">
-          An open-source link shortener, August 2024
-        </p>
         <p>
           I built and maintain an open-source link shortener called
           bkhtdev/link. It's a simple and easy-to-use tool for creating and
@@ -65,13 +67,10 @@ export default function WorkPage() {
         <a
           target="_blank"
           href="https://falsenotes.dev"
-          className="font-medium text-base mb-1 tracking-tighter hover:text-blue-500 transition-colors duration-200"
+          className="font-medium text-base tracking-tighter hover:text-blue-500 transition-colors duration-200"
         >
           FalseNotes
         </a>
-        <p className="text-gray-800 dark:text-gray-300 text-sm mt-0">
-          An open-source blogging platform, September 2023 - March 2024
-        </p>
         <p>
           I've created an open-source blogging platform called FalseNotes. It's
           a simple and easy-to-use platform for writing and publishing blog

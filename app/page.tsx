@@ -104,6 +104,35 @@ export default function Page() {
           {`, where I learned a lot about the product development process and had the opportunity to work with a diverse team of talented developers.`}
         </p>
 
+        {/* Skills */}
+        <p>
+          {`I'm passionate about building user-friendly interfaces and creating engaging digital experiences. I have experience working with technologies like `}
+          <Link
+            target="_blank"
+            href="https://nextjs.org/"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            Next.js
+          </Link>
+          {`, `}
+          <Link
+            target="_blank"
+            href="https://tailwindcss.com/"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            Tailwind CSS
+          </Link>
+          {`, and `}
+          <Link
+            target="_blank"
+            href="https://reactjs.org/"
+            className="text-blue-500 hover:text-blue-700 no-underline"
+          >
+            React
+          </Link>
+          {`. I'm always looking to learn new things and improve my skills.`}
+        </p>
+
         {/* Projects */}
 
         {/* <div className="prose prose-neutral dark:prose-invert">

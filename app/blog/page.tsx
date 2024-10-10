@@ -35,7 +35,7 @@ export default function BlogPage() {
             href={`/p/${post.slug}`}
           >
             <div className="w-full flex flex-col">
-              <p className="text-gray-800 dark:text-gray-300 tracking-tight">
+              <p className="text-gray-800 dark:text-gray-300 font-medium tracking-tight">
                 {post.metadata.title}
               </p>
               <div className="flex gap-1.5 items-center text-sm">
