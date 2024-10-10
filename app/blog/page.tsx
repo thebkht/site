@@ -5,7 +5,7 @@ import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
 import { Metadata } from 'next';
 import { AnimatedName } from 'app/components/nav';
-import { formatDate } from 'app/p/[slug]/page';
+import { formatDate } from 'utils/format';
 
 export const metadata: Metadata = {
   title: 'Blog',
