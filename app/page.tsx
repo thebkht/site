@@ -112,8 +112,8 @@ export default function Page() {
         </p>
 
         <p>
-          Over the years, I blog and write newsletters on tech trends and geek
-          culture, covering topics like
+          I blog and write newsletters on tech trends and geek culture, covering
+          topics like
           {` `}
           <Link
             href="/p/animated-counter"
