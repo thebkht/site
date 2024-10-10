@@ -86,7 +86,7 @@ export default function Page() {
       <AnimatedName />
       <div className="space-y-4 leading-snug text-gray-800 dark:text-gray-300">
         <p>
-          {`I'm a geeky front-end developer and designer. Born and raised in Uzbekistan, I have since moved to South Korea, where I am studying computer science at `}
+          {`I'm a geeky front-end developer and designerfrom Uzbekistan, now studying Computer Science at `}
           <Link
             target="_blank"
             href="https://en.sejong.ac.kr/"
@@ -94,103 +94,60 @@ export default function Page() {
           >
             Sejong University
           </Link>
-          {`. I worked as a front-end developer intern at `}
+          {` in South Korea. Gained hands-on experience at `}
           <Link
             href="/work"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
             Technocorp
           </Link>
-          {`, where I learned a lot about the product development process and had the opportunity to work with a diverse team of talented developers.`}
-        </p>
-
-        {/* Skills */}
-        <p>
-          {`I'm passionate about building user-friendly interfaces and creating engaging digital experiences. I have experience working with technologies like `}
+          {` as an intern, specializing in `}
           <Link
-            target="_blank"
-            href="https://nextjs.org/"
-            className="text-blue-500 hover:text-blue-700 no-underline"
-          >
-            Next.js
-          </Link>
-          {`, `}
-          <Link
-            target="_blank"
-            href="https://tailwindcss.com/"
-            className="text-blue-500 hover:text-blue-700 no-underline"
-          >
-            Tailwind CSS
-          </Link>
-          {`, and `}
-          <Link
-            target="_blank"
-            href="https://reactjs.org/"
+            href="/stack"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
             React
           </Link>
-          {`. I'm always looking to learn new things and improve my skills.`}
+          {`  and product development. Passionate about continuous learning and exploring new tech frontiers.`}
         </p>
 
-        {/* Projects */}
-
-        {/* <div className="prose prose-neutral dark:prose-invert">
-        {`I've worked on a few projects over the years. Here are some of them:`}
-
-        <div className="my-8 flex w-full flex-col space-y-4">
-          <ProjectLink name="thefalse" slug="thefalse" />
-          <ProjectLink name="bkhtdev/link" slug="link" />
-          <ProjectLink name="hangman" slug="hangman" />
-        </div>
-      </div> */}
-
         <p>
-          Over the years, I've written content on my blog and newsletter. You'll
-          find writings about technologies I'm interested in at the time, or
-          just general thoughts. Some examples include
+          Over the years, I blog and write newsletters on tech trends and geek
+          culture, covering topics like
           {` `}
           <Link
             href="/p/animated-counter"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
-            Animated Counter in React
+            'Animated Counter in React'
           </Link>
-          {`, `}
+          {` and `}
           <Link
             href="/p/the-history-and-success-of-winrar"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
-            The Success Story of WinRAR
+            'The Success Story of WinRAR'
           </Link>
-          {`, `}
-          <Link
-            href="/p/geek-culture"
-            className="text-blue-500 hover:text-blue-700 no-underline"
-          >
-            The Rise of Geek Culture
-          </Link>
-          . You can find more on
+          . Check out my
           {` `}
           <Link
             href="/blog"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
-            my blog
+            blog
           </Link>
+          {` for more.`}
         </p>
         {/*guestbook*/}
         <p>
-          I have a {` `}
+          Feel free to drop a note or question in my {` `}
           <Link
             href="/guestbook"
             className="text-blue-500 hover:text-blue-700 no-underline"
           >
             guestbook
           </Link>
-          {` `}
-          where you can leave a message or ask me anything. I try to respond to
-          every message I get.
+          ; I make it a point to reply to each message I receive.
         </p>
       </div>
     </>
