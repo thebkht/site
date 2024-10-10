@@ -86,7 +86,7 @@ export default function Page() {
       <AnimatedName />
       <div className="space-y-4 leading-snug text-gray-800 dark:text-gray-300">
         <p>
-          {`I'm a geeky front-end developer and designerfrom Uzbekistan, now studying Computer Science at `}
+          {`I'm a geeky front-end developer and designer from Uzbekistan, now studying Computer Science at `}
           <Link
             target="_blank"
             href="https://en.sejong.ac.kr/"
