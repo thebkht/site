@@ -21,11 +21,9 @@ export default function WorkPage() {
       <AnimatedName />
       <div className="prose prose-gray dark:prose-invert">
         <p>
-          I'm a frontend developer with experience working on a variety of
-          projects, from small websites to large-scale web applications. I'm
-          passionate about building user-friendly interfaces and creating
-          engaging digital experiences. Here are some of the places I've worked
-          and the projects I've contributed to:
+          Frontend developer skilled in projects ranging from simple sites to
+          complex web apps, dedicated to crafting intuitive and engaging digital
+          experiences. Here's where I've worked and what I've done:
         </p>
 
         <h2 className="font-medium text-base mb-1 tracking-tighter py-5">
@@ -38,13 +36,9 @@ export default function WorkPage() {
           Frontend Developer Intern, July 2024 — September 2024
         </p>
         <p>
-          I joined Technocorp as a frontend developer intern. I collaborated on
-          several front-end projects, contributing to UI/UX improvements, code
-          optimization, and feature implementation, and worked on a small team
-          building a new product from scratch. I've worked with technologies
-          Nextjs (pages route), Tailwind CSS. And I've learned a lot about the
-          software development process, from design to deployment. I've also
-          gained experience working with a team and collaborating on projects.
+          I interned as a frontend developer, working on UI/UX enhancements,
+          code optimization, and new product development using Next.js and
+          Tailwind CSS, gaining insights from design to deployment.
         </p>
 
         <h2 className="font-medium text-base mb-1 tracking-tighter py-5">
@@ -53,11 +47,11 @@ export default function WorkPage() {
         <a
           target="_blank"
           href="https://go.bkhtdev.com"
-          className="font-medium text-base tracking-tighter hover:text-blue-500 transition-colors duration-200"
+          className="font-medium text-base tracking-tighter hover:text-blue-500 transition-colors duration-200 mb-1"
         >
           bkhtdev/link
         </a>
-        <p>
+        <p className="mt-1">
           I built and maintain an open-source link shortener called
           bkhtdev/link. It's a simple and easy-to-use tool for creating and
           sharing short links. The project is built with Next.js, Tailwind CSS,
@@ -67,11 +61,11 @@ export default function WorkPage() {
         <a
           target="_blank"
           href="https://falsenotes.dev"
-          className="font-medium text-base tracking-tighter hover:text-blue-500 transition-colors duration-200"
+          className="font-medium text-base tracking-tighter hover:text-blue-500 transition-colors duration-200 mb-1"
         >
           FalseNotes
         </a>
-        <p>
+        <p className="mt-1">
           I've created an open-source blogging platform called FalseNotes. It's
           a simple and easy-to-use platform for writing and publishing blog
           posts. The project is built with Next.js, Tailwind CSS, MongoDB. It
