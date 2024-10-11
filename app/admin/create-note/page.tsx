@@ -12,7 +12,7 @@ export default function Form() {
   const router = useRouter();
 
   return (
-    <>
+    <section>
       <h1 className="font-medium pt-12 mb-0 fade-in">Create a new note</h1>
       <AnimatedName />
       <Navbar />
@@ -42,7 +42,7 @@ export default function Form() {
         />
         <SubmitButton />
       </form>
-    </>
+    </section>
   );
 }
 

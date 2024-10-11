@@ -13,11 +13,11 @@ export default async function GuestbookPage() {
   let entries = await getGuestbookEntries();
 
   return (
-    <>
+    <section>
       <h1 className="font-medium pt-12 mb-0 fade-in">Admin</h1>
       <AnimatedName />
       <Navbar />
       <Form entries={entries} />
-    </>
+    </section>
   );
 }

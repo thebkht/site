@@ -1,16 +1,19 @@
 import { Link } from 'next-view-transitions';
 
-const navItems = {
-  '/admin': {
+const navItems = [
+  {
     name: 'guestbook',
+    url: '/admin',
   },
-  '/admin/telegram': {
+  {
     name: 'notes',
+    url: '/admin/telegram',
   },
-  '/admin/create-note': {
+  {
     name: 'create note',
+    url: '/admin/create-note',
   },
-};
+];
 
 export function Navbar() {
   return (
@@ -19,14 +22,14 @@ export function Navbar() {
       id="nav"
     >
       <div className="flex flex-row space-x-4 pr-10 items-center">
-        {Object.entries(navItems).map(([path, { name }]) => {
+        {navItems.map((link) => {
           return (
             <Link
-              key={path}
-              href={path}
+              key={link.name}
+              href={link.url}
               className="text-gray-400 hover:text-blue-500 dark:text-gray-600 transition-colors duration-200 flex align-middle relative"
             >
-              {name}
+              {link.name}
             </Link>
           );
         })}
