@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 import ViewCounter from './view-counter';
-import { getViewsCount } from './db/queries';
+import { getPattern, getViewsCount } from './db/queries';
 import { Link } from 'next-view-transitions';
+import { CustomMDX as MDX } from './components/mdx';
 
 function AnimatedName() {
   return (
@@ -80,11 +81,16 @@ function ProjectLink({ slug, name }) {
   );
 }
 
-export default function Page() {
+export default async function Page() {
+  const pattern = await getPattern();
+  console.log(pattern?.pattern);
   return (
     <>
       <AnimatedName />
       <div className="space-y-4 leading-snug text-gray-800 dark:text-gray-300">
+        <div className="my-4 crt scanlines rounded-md">
+          <MDX source={pattern?.pattern} />
+        </div>
         <p>
           {`I'm a geeky front-end developer and designer from Uzbekistan, now studying Computer Science at `}
           <Link

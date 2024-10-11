@@ -134,3 +134,15 @@ export async function getRedirects(short: string) {
 
   return url[0];
 }
+
+export async function getPattern() {
+  if (!process.env.POSTGRES_URL) {
+    return;
+  }
+
+  noStore();
+  const pattern = await sql`
+    SELECT pattern_text as pattern from pattern limit 1`;
+
+  return pattern[0];
+}

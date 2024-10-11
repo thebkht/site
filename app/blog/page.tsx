@@ -38,7 +38,7 @@ export default function BlogPage() {
               <p className="text-gray-800 dark:text-gray-300 font-medium tracking-tight">
                 {post.metadata.title}
               </p>
-              <div className="flex gap-1.5 items-center text-sm">
+              {/* <div className="flex gap-1.5 items-center text-sm">
                 <Suspense fallback={<p className="h-5" />}>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     {formatDate(post.metadata.publishedAt)}
@@ -50,9 +50,9 @@ export default function BlogPage() {
                 <Suspense fallback={<p className="h-6" />}>
                   <Views slug={post.slug} />
                 </Suspense>
-              </div>
+              </div> */}
 
-              <p className="text-gray-600 dark:text-gray-400 line-clamp-2 mt-2">
+              <p className="text-gray-600 dark:text-gray-400 line-clamp-1">
                 {post.metadata.summary}
               </p>
             </div>
