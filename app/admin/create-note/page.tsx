@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { useFormStatus } from 'react-dom';
-import { postTelegramMessage } from 'app/db/telegram';
+import { createPost } from 'app/db/telegram';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '../nav';
 import { AnimatedName } from 'app/components/nav';
@@ -20,19 +20,11 @@ export default function Form() {
         className="max-w-[500px] space-y-2"
         ref={formRef}
         action={async (formData) => {
-          const slug = await postTelegramMessage(formData);
+          const slug = await createPost(formData);
           formRef.current?.reset();
           router.push(`/notes/${slug}`);
         }}
       >
-        <input
-          aria-label="Title"
-          placeholder="Title..."
-          name="title"
-          type="text"
-          required
-          className="px-4 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-gray-300 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-        />
         <textarea
           aria-label="Content"
           placeholder="Content..."

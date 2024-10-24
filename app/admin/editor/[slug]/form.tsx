@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
-import { editTelegramMessage, postTelegramMessage } from 'app/db/telegram';
+import { editTelegramMessage } from 'app/db/telegram';
 import { useRouter } from 'next/navigation';
 import { Note } from 'app/admin/telegram/form';
 
@@ -23,16 +23,6 @@ export default function Form({ note }) {
         router.push(`/notes/${note.slug}`);
       }}
     >
-      <input
-        aria-label="Title"
-        placeholder="Title..."
-        name="title"
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-        className="px-4 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-gray-300 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-      />
       <textarea
         aria-label="Content"
         placeholder="Content..."

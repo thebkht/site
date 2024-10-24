@@ -149,7 +149,7 @@ function GuestbookEntry({
             })}
             :
           </span>
-          <Link href={`/admin/editor/${entry.slug}`}>
+          <Link href={`/admin/editor/${entry.id}`}>
             {entry.title}
             <span className="line-clamp-1">{entry.content}</span>
           </Link>

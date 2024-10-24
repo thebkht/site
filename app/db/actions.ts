@@ -5,7 +5,7 @@ import { type Session } from 'next-auth';
 import { sql } from './postgres';
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
 import { Note } from 'app/admin/telegram/form';
-import { deleteTelegramMessage } from './telegram';
+import { deletePost } from './telegram';
 
 export async function increment(slug: string) {
   noStore();
@@ -111,7 +111,7 @@ export async function deleteNotes(selectedNotes: Note[]) {
   //delete from telegram
   selectedNotes.forEach(async (note) => {
     try {
-      await deleteTelegramMessage(note.telegram_message_id);
+      await deletePost(note.id);
     } catch (error) {
       console.error('Error deleting telegram message', error);
     }
