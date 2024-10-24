@@ -2,11 +2,13 @@
 import { getRedirects } from 'app/db/queries';
 import { redirect } from 'next/navigation';
 
-export default async function RedirectPage({
-  params,
-}: {
-  params: { shortCode: string };
-}) {
+interface RedirectPageProps {
+  params: {
+    shortCode: string;
+  };
+}
+
+export default async function RedirectPage({ params }: RedirectPageProps) {
   const { shortCode } = params;
 
   if (shortCode === 'home') {
