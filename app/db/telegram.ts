@@ -1,22 +1,13 @@
 'use server';
 
+import { twitterClient } from 'lib/twitter';
 import { sql } from './postgres';
-import { TwitterApi } from 'twitter-api-v2';
-
-const twitterClient = new TwitterApi({
-  appKey: process.env.TWITTER_CONSUMER_KEY!,
-  appSecret: process.env.TWITTER_CONSUMER_SECRET!,
-  accessToken: process.env.TWITTER_ACCESS_TOKEN!,
-  accessSecret: process.env.TWITTER_ACCESS_SECRET!,
-});
 
 const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
 const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
 
 // Function to create a new post
 export async function createPost(formData: FormData) {
-  const url = 'https://api.twitter.com/2/tweets';
-
   let content = formData.get('content')?.toString() || '';
 
   try {
