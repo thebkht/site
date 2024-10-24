@@ -3,13 +3,11 @@ import { getRedirects } from 'app/db/queries';
 import { redirect } from 'next/navigation';
 
 interface RedirectPageProps {
-  params: {
-    code: string;
-  };
+  params: Promise<{ code: string }>;
 }
 
 export default async function RedirectPage({ params }: RedirectPageProps) {
-  const { code } = params;
+  const { code } = await params;
 
   if (code === 'home') {
     return redirect('/');

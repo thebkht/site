@@ -103,8 +103,13 @@ function formatDate(date: Date | string) {
   }
 }
 
-export default async function Note({ params }) {
-  let note = await getNote(params.slug);
+export default async function Note({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  let { slug } = await params;
+  let note = await getNote(slug);
 
   if (!note) {
     notFound();
