@@ -4,18 +4,18 @@ import { redirect } from 'next/navigation';
 
 interface RedirectPageProps {
   params: {
-    shortCode: string;
+    code: string;
   };
 }
 
 export default async function RedirectPage({ params }: RedirectPageProps) {
-  const { shortCode } = params;
+  const { code } = params;
 
-  if (shortCode === 'home') {
+  if (code === 'home') {
     return redirect('/');
   }
 
-  const url = await getRedirects(shortCode);
+  const url = await getRedirects(code);
   if (url) return redirect(url.originalurl);
 
   return null;
