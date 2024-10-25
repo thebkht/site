@@ -21,11 +21,13 @@ const token = {
 };
 
 async function postTweet(content: string) {
-  const url = 'https://api.twitter.com/2/tweets';
+  const url = 'https://api.twitter.com/1.1/statuses/update.json';
   const requestData = {
     url,
     method: 'POST',
-    data: { text: content },
+    data: {
+      status: content,
+    },
   };
 
   const authHeader = oauth.toHeader(oauth.authorize(requestData, token));
@@ -35,17 +37,13 @@ async function postTweet(content: string) {
       method: 'POST',
       headers: {
         Authorization: authHeader['Authorization'],
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({ text: content }),
+      body: new URLSearchParams(requestData.data).toString(),
     });
 
     const data = await response.json();
-    if (response.ok) {
-      console.log('Tweet posted successfully. Tweet ID:', data);
-    } else {
-      console.error('Error posting tweet:', data);
-    }
+    console.log('Tweet posted successfully:', data);
     return data;
   } catch (error) {
     console.error('Error posting tweet:', error);
