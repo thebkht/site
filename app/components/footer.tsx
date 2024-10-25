@@ -36,8 +36,8 @@ export default function Footer() {
           className="h-5 w-5 text-gray-400 dark:text-gray-600"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M70 0H16V16H0V70H54V54H70V0ZM54 54V16H16V54H54Z"
             fill="currentColor"
           />
