@@ -1,7 +1,7 @@
 'use server';
 
-import { twitterClient } from 'lib/twitter';
 import { sql } from './postgres';
+import { postTweet } from './twitter';
 
 const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
 const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID;
@@ -11,8 +11,7 @@ export async function createPost(formData: FormData) {
   let content = formData.get('content')?.toString() || '';
 
   try {
-    const { data } = await twitterClient.v2.tweet(content);
-    console.log('Tweet sent', data);
+    const data = await postTweet(content);
     const tweetId = data.id;
 
     let response = await fetch(
@@ -110,7 +109,7 @@ export async function deletePost(id: string) {
   console.log('Telegram message deleted', data);
 
   try {
-    const deleteResponse = await twitterClient.v2.deleteTweet(tweetId);
+    const deleteResponse = await deletePost(tweetId);
     console.log('Tweet deleted', deleteResponse);
   } catch (error) {
     console.error('Error deleting tweet:', error);
