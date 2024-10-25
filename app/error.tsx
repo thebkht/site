@@ -28,8 +28,8 @@ export default function Error({
             d="M268.13 2.47998H125.053V44.8731H82.6599V187.95H225.737V145.557H268.13V2.47998ZM225.737 145.557V44.8731H125.053V145.557H225.737Z"
             fill="hsl(var(--background))"
             fillRule="evenodd"
-            stroke-dasharray="4 4"
-            stroke-width="1.5"
+            strokeDasharray="4 4"
+            strokeWidth="1.5"
             className="stroke-neutral-600 dark:stroke-neutral-400 fill-white dark:fill-[#111010]"
           ></path>
           <g filter="url(#filter0_d)">
