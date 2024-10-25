@@ -12,6 +12,7 @@ export async function createPost(formData: FormData) {
 
   try {
     const data = await postTweet(content);
+    console.log('Tweet posted', data);
     const tweetId = data.id;
 
     let response = await fetch(
