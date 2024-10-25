@@ -77,7 +77,7 @@ export default function Error({
           </g>
           <defs>
             <filter
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
               filterUnits="userSpaceOnUse"
               height="253.03"
               id="filter0_d"
@@ -85,7 +85,7 @@ export default function Error({
               x="76.35"
               y="57.97"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+              <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
               <feColorMatrix
                 in="SourceAlpha"
                 values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
