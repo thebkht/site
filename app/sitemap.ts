@@ -9,13 +9,6 @@ export default async function sitemap() {
     lastModified: post.metadata.publishedAt,
   }));
 
-  let notes = await getNotes().then((notes) =>
-    notes.map((note) => ({
-      url: `${baseUrl}/notes/${note.slug}`,
-      lastModified: note.publishedAt,
-    }))
-  );
-
   let routes = ['', '/guestbook', '/notes', '/blog', '/work', '/stack'].map(
     (route) => ({
       url: `${baseUrl}${route}`,
@@ -23,5 +16,5 @@ export default async function sitemap() {
     })
   );
 
-  return [...routes, ...blogs, ...notes];
+  return [...routes, ...blogs];
 }

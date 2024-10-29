@@ -22,7 +22,7 @@ export default function Form() {
         action={async (formData) => {
           const slug = await createPost(formData);
           formRef.current?.reset();
-          router.push(`/notes/${slug}`);
+          router.push(`/admin/telegram/`);
         }}
       >
         <textarea
