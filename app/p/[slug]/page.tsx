@@ -119,13 +119,13 @@ export default async function Blog({
       <div className="flex justify-between items-center mb-8 text-sm max-w-[650px]">
         <div className="flex gap-2 items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-gray-800 dark:text-gray-300">
+            <p className="text-sm text-muted-foreground">
               {readingTime(post.content, { wordsPerMinute: 300 }).text}
             </p>
           </Suspense>
-          <span className="text-sm text-gray-800 dark:text-gray-300">·</span>
+          <span className="text-sm text-muted-foreground">·</span>
           <Suspense fallback={<p className="h-5" />}>
-            <p className="text-sm text-gray-800 dark:text-gray-300">
+            <p className="text-sm text-muted-foreground">
               {formatDate(post.metadata.publishedAt)}
             </p>
           </Suspense>
@@ -135,7 +135,7 @@ export default async function Blog({
         </Suspense>
       </div>
       {post.metadata.image && (
-        <div className="w-full h-auto bg-gray-600 rounded-lg mb-8 !relative !pb-0 overflow-hidden cover-image">
+        <div className="w-full h-auto bg-muted rounded-lg mb-8 !relative !pb-0 overflow-hidden cover-image">
           <Image
             src={post.metadata.image}
             alt={post.metadata.title}

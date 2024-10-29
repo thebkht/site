@@ -1,11 +1,9 @@
 import Link from 'next/link';
-import { Suspense } from 'react';
 import ViewCounter from 'app/view-counter';
 import { getViewsCount } from 'app/db/queries';
 import { getBlogPosts } from 'app/db/blog';
 import { Metadata } from 'next';
 import { AnimatedName } from 'app/components/nav';
-import { formatDate } from 'utils/format';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -35,7 +33,7 @@ export default function BlogPage() {
             href={`/p/${post.slug}`}
           >
             <div className="w-full flex flex-col">
-              <p className="text-gray-800 dark:text-gray-300 font-medium tracking-tight">
+              <p className="text-muted-foreground font-medium tracking-tight">
                 {post.metadata.title}
               </p>
               {/* <div className="flex gap-1.5 items-center text-sm">
