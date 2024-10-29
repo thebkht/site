@@ -158,7 +158,7 @@ function createHeading(level) {
         className:
           level === 1
             ? 'font-medium pt-12 mb-0 fade-in'
-            : 'text-gray-800 dark:text-gray-400 font-medium mt-8 mb-3',
+            : 'text-foreground font-medium mt-8 mb-3',
       },
       [
         React.createElement('a', {
@@ -180,19 +180,13 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   p: (props: ParagraphProps) => (
-    <p className="text-gray-800 dark:text-gray-400 leading-snug" {...props} />
+    <p className="text-foreground leading-snug" {...props} />
   ),
   ol: (props: ListProps) => (
-    <ol
-      className="text-gray-800 dark:text-gray-400 list-decimal pl-5 space-y-2"
-      {...props}
-    />
+    <ol className="text-foreground list-decimal pl-5 space-y-2" {...props} />
   ),
   ul: (props: ListProps) => (
-    <ul
-      className="text-gray-800 dark:text-gray-400 list-disc pl-5 space-y-1"
-      {...props}
-    />
+    <ul className="text-foreground list-disc pl-5 space-y-1" {...props} />
   ),
   li: (props: ListItemProps) => <li className="pl-1" {...props} />,
   em: (props: ComponentPropsWithoutRef<'em'>) => (
