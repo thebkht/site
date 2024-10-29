@@ -19,7 +19,7 @@ export default function WorkPage() {
     <section>
       <h1 className="font-medium pt-12 mb-0 fade-in">Work</h1>
       <AnimatedName />
-      <div className="prose prose-gray dark:prose-invert">
+      <div className="prose dark:prose-invert">
         <p>
           Frontend developer skilled in projects ranging from simple sites to
           complex web apps, dedicated to crafting intuitive and engaging digital
@@ -32,7 +32,7 @@ export default function WorkPage() {
         <h3 className="font-medium text-base mb-1 tracking-tighter">
           Technocorp
         </h3>
-        <p className="text-gray-800 dark:text-gray-300 text-sm">
+        <p className="text-muted-foreground text-sm">
           Frontend Developer Intern, July 2024 — September 2024
         </p>
         <p>
