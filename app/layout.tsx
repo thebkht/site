@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     template: '%s - bkhtdev',
   },
   description:
-    'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
+    'A geeky front-end developer and designer from Uzbekistan. Gained hands-on experience at Technocorp as an intern, specializing in React and product development. Passionate about continuous learning and exploring new tech frontiers.',
   openGraph: {
     title: {
       default: 'Bakhtiyor Ganijon - bkhtdev',
       template: '%s - bkhtdev',
     },
     description:
-      'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
+      'A geeky front-end developer and designer from Uzbekistan. Gained hands-on experience at Technocorp as an intern, specializing in React and product development. Passionate about continuous learning and exploring new tech frontiers.',
     url: baseUrl,
     siteName: 'bkhtdev',
     images: [
