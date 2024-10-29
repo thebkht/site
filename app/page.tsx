@@ -92,15 +92,7 @@ export default async function Page() {
           <MDX source={pattern?.pattern} />
         </div>
         <p>
-          {`I'm a geeky front-end developer and designer from Uzbekistan, now studying Computer Science at `}
-          <Link
-            target="_blank"
-            href="https://en.sejong.ac.kr/"
-            className="text-blue-500 hover:text-blue-700 no-underline"
-          >
-            Sejong University
-          </Link>
-          {` in South Korea. Gained hands-on experience at `}
+          {`I'm a geeky front-end developer and designer from Uzbekistan. Gained hands-on experience at `}
           <Link
             href="/work"
             className="text-blue-500 hover:text-blue-700 no-underline"
