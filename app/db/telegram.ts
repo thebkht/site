@@ -32,11 +32,13 @@ export async function createPost(formData: FormData) {
     const telegramData = await response.json();
     console.log('Telegram message sent', telegramData);
 
-    // Save the content in Markdown format to the database
-    await sql`
-      INSERT INTO posts (publishedAt, content, telegramMessageId, tweetId)
-      VALUES (NOW(), ${content}, ${telegramData.result.message_id}, ${tweetId})
+    // Save the content in Markdown format to the database and return the ID
+    const post = await sql`
+        INSERT INTO posts (content, telegramMessageId, tweetId, publishedAt)
+        VALUES (${content}, ${telegramData.result.message_id}, ${tweetId}, NOW())
+        SELECT id
     `;
+    return post[0].id;
   } catch (error) {
     console.error('Error posting tweet:', error);
     throw new Error(`Error posting tweet: ${error.message}`);

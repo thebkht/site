@@ -20,7 +20,7 @@ export default function Form({ note }) {
       action={async (formData) => {
         await editTelegramMessage(note.telegram_message_id, formData);
         formRef.current?.reset();
-        router.push(`/notes/${note.slug}`);
+        router.push(`/notes/${note.id}`);
       }}
     >
       <textarea

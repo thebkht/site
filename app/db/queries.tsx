@@ -117,7 +117,7 @@ export async function getNote(slug: string) {
   let notes = await sql`
     SELECT *
     FROM posts
-    WHERE slug = ${slug}
+    WHERE id = ${slug}
   `;
 
   return notes[0];
