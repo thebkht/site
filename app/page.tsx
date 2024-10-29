@@ -87,7 +87,7 @@ export default async function Page() {
   return (
     <>
       <AnimatedName />
-      <div className="space-y-4 leading-snug text-gray-800 dark:text-gray-300">
+      <div className="space-y-4 leading-snug text-foreground">
         <div className="my-4 crt scanlines rounded-md">
           <MDX source={pattern?.pattern} />
         </div>

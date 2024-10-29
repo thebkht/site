@@ -1,7 +1,6 @@
 import './global.css';
 import './main.css';
 import type { Metadata } from 'next';
-import { Navbar } from './components/nav';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { SandpackCSS } from './p/[slug]/sandpack';
@@ -12,6 +11,7 @@ import {
 import { baseUrl } from './sitemap';
 import { ViewTransitions } from 'next-view-transitions';
 import Footer from './components/footer';
+import { ThemeProvider } from 'next-themes';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     template: '%s - bkhtdev',
   },
   description:
-    'A geeky front-end developer and designer from Uzbekistan. Gained hands-on experience at Technocorp as an intern, specializing in React and product development. Passionate about continuous learning and exploring new tech frontiers.',
+    'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
   openGraph: {
     title: {
       default: 'Bakhtiyor Ganijon - bkhtdev',
       template: '%s - bkhtdev',
     },
     description:
-      'A geeky front-end developer and designer from Uzbekistan. Gained hands-on experience at Technocorp as an intern, specializing in React and product development. Passionate about continuous learning and exploring new tech frontiers.',
+      'A passionate computer science student at Sejong University, Bakhtiyor is deeply interested in art and technology',
     url: baseUrl,
     siteName: 'bkhtdev',
     images: [
@@ -82,7 +82,8 @@ export const metadata: Metadata = {
   },
 };
 
-const cx = (...classes) => classes.filter(Boolean).join(' ');
+const cx = (...classes: (string | undefined)[]) =>
+  classes.filter(Boolean).join(' ');
 
 export default function RootLayout({
   children,
@@ -91,19 +92,25 @@ export default function RootLayout({
 }) {
   return (
     <ViewTransitions>
-      <html lang="en" className={cx(fontSans.variable, fontMono.variable)}>
+      <html
+        lang="en"
+        className={cx(fontSans.variable, fontMono.variable)}
+        suppressHydrationWarning
+      >
         <head>
           <SandpackCSS />
         </head>
-        <body className="antialiased tracking-tight">
-          <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 text-gray-900 dark:text-gray-300 bg-white dark:bg-neutral-950">
-            <main className="max-w-[60ch] mx-auto w-full space-y-6">
-              {children}
-            </main>
-            <Footer />
-            <Analytics />
-            <SpeedInsights />
-          </div>
+        <body className="antialiased tracking-tight font-sans">
+          <ThemeProvider attribute="class">
+            <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 text-foreground bg-background">
+              <main className="max-w-[60ch] mx-auto w-full space-y-6">
+                {children}
+              </main>
+              <Footer />
+              <Analytics />
+              <SpeedInsights />
+            </div>
+          </ThemeProvider>
         </body>
       </html>
     </ViewTransitions>
