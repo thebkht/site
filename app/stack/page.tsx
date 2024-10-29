@@ -46,7 +46,7 @@ export default function StackPage() {
     <section>
       <h1 className="font-medium pt-12 mb-0 fade-in">Skills & Tech Stack</h1>
       <AnimatedName />
-      <div className="prose prose-gray dark:prose-invert">
+      <div className="prose prose-p:text-muted-foreground dark:prose-invert">
         <p>
           As a frontend developer, I have experience working with a variety of
           technologies and tools. Here are some of the skills and technologies

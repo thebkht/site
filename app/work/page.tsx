@@ -19,7 +19,7 @@ export default function WorkPage() {
     <section>
       <h1 className="font-medium pt-12 mb-0 fade-in">Work</h1>
       <AnimatedName />
-      <div className="prose dark:prose-invert">
+      <div className="prose prose-p:text-muted-foreground dark:prose-invert">
         <p>
           Frontend developer skilled in projects ranging from simple sites to
           complex web apps, dedicated to crafting intuitive and engaging digital
