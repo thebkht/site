@@ -7,11 +7,10 @@ import { Link } from 'next-view-transitions';
 
 export type Note = {
   id: string;
-  title: string;
   content: string;
-  published_at: Date;
-  telegram_message_id: number;
-  slug: string;
+  publishedat: Date;
+  telegrammessageid: number;
+  tweetid: string;
 };
 
 export default function Form({ notes }) {
@@ -142,16 +141,15 @@ function GuestbookEntry({
         {children}
         <div className="space-y-1.5">
           <span className="text-gray-600 dark:text-gray-400 mr-1 border-gray-100">
-            {new Date(entry.published_at).toLocaleDateString('en-US', {
+            {new Date(entry.publishedat).toLocaleDateString('en-US', {
               month: 'short',
               day: 'numeric',
               year: 'numeric',
             })}
             :
           </span>
-          <Link href={`/admin/editor/${entry.id}`}>
-            {entry.title}
-            <span className="line-clamp-1">{entry.content}</span>
+          <Link href={`/admin/editor/${entry.id}`} className="line-clamp-1">
+            {entry.content}
           </Link>
         </div>
       </div>
