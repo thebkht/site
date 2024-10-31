@@ -1,5 +1,7 @@
+'use server';
 import { put } from '@vercel/blob';
 import { sql } from './postgres';
+import { BookFormValues } from '../admin/library/create/book-form';
 
 //function to generate a slug from a title
 export async function slugify(title: string) {
@@ -24,16 +26,18 @@ export async function isSlugUnique(slug: string) {
 }
 
 //function to create a new book
-export async function createBook(formData: FormData) {
-  const title = formData.get('title')?.toString() || '';
+export async function createBook(formData: BookFormValues) {
+  const {
+    title,
+    author,
+    cover,
+    description,
+    publishedDate,
+    purchaseDate,
+    type,
+    isbn = '',
+  } = formData;
   const slug = await slugify(title);
-  const author = formData.get('author')?.toString() || '';
-  const description = formData.get('description')?.toString() || '';
-  const publishedDate = formData.get('publishedDate')?.toString() || '';
-  const purchaseDate = formData.get('purchaseDate')?.toString() || '';
-  const type = formData.get('type')?.toString() || '';
-  const isbn = formData.get('isbn')?.toString() || null;
-  const cover = formData.get('cover') || null;
 
   //upload cover image to vercel/blob
   let coverUrl = '';
