@@ -3,6 +3,8 @@
 import { useRef } from 'react';
 import { saveGuestbookEntry } from './../db/actions';
 import { useFormStatus } from 'react-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Form() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -16,13 +18,13 @@ export default function Form() {
         formRef.current?.reset();
       }}
     >
-      <input
+      <Input
         aria-label="Your message"
         placeholder="Your message..."
         name="entry"
         type="text"
         required
-        className="pl-4 pr-32 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-gray-300 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        className="pl-4 pr-32 py-2 mt-1"
       />
       <SubmitButton />
     </form>
@@ -33,12 +35,8 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      className="flex items-center justify-center absolute right-1 top-1 px-2 py-1 font-medium h-8 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded w-16"
-      disabled={pending}
-      type="submit"
-    >
+    <Button disabled={pending} className="absolute right-0 top-0" type="submit">
       Sign
-    </button>
+    </Button>
   );
 }

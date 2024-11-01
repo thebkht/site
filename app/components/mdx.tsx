@@ -5,6 +5,7 @@ import { TweetComponent } from './tweet';
 import { highlight } from 'sugar-high';
 import React, { ComponentPropsWithoutRef } from 'react';
 import { LiveCode } from './sandpack';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
 type ParagraphProps = ComponentPropsWithoutRef<'p'>;
@@ -71,10 +72,11 @@ function RoundedImage(props) {
 
 function Callout(props) {
   return (
-    <div className="px-4 py-3 border border-accent bg-accent rounded p-1 text-sm flex items-center text-accent-foreground mb-8">
+    <Alert className="mb-8" {...props}>
       <div className="flex items-center w-4 mr-4">{props.emoji}</div>
-      <div className="w-full callout">{props.children}</div>
-    </div>
+      <AlertTitle>{props.title}</AlertTitle>
+      <AlertDescription>{props.children}</AlertDescription>
+    </Alert>
   );
 }
 
