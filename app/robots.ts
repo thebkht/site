@@ -5,7 +5,7 @@ export default function robots() {
         userAgent: '*',
       },
     ],
-    sitemap: 'https://blog.bkhtdev.com/sitemap.xml',
-    host: 'https://blog.bkhtdev.com',
+    sitemap: 'https://bkhtdev.com/sitemap.xml',
+    host: 'https://bkhtdev.com',
   };
 }
