@@ -4,6 +4,7 @@ import { useFormStatus } from 'react-dom';
 import { useState, useEffect } from 'react';
 import { deleteNotes } from 'app/db/actions';
 import { Link } from 'next-view-transitions';
+import { Button } from '@/components/ui/button';
 
 export type Note = {
   id: string;
@@ -163,17 +164,13 @@ function DeleteButton({ isActive }: { isActive: boolean }) {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      className={cx(
-        'px-3 py-2 border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded p-1 text-sm inline-flex items-center leading-4 text-gray-900 dark:text-gray-100 mb-8 transition-all',
-        {
-          'bg-red-300/50 dark:bg-red-700/50': isActive,
-        }
-      )}
+    <Button
+      variant={isActive ? 'default' : 'secondary'}
+      className="mb-8"
       disabled={pending}
       type="submit"
     >
-      Delete Notes
-    </button>
+      Delete Entries
+    </Button>
   );
 }

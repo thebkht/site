@@ -13,6 +13,10 @@ const navItems = [
     name: 'create note',
     url: '/admin/create-note',
   },
+  {
+    name: 'library',
+    url: '/admin/library',
+  },
 ];
 
 export function Navbar() {
@@ -27,7 +31,7 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.url}
-              className="text-gray-400 hover:text-blue-500 dark:text-gray-600 transition-colors duration-200 flex align-middle relative"
+              className="text-muted-foreground hover:text-blue-500 transition-colors duration-200 flex align-middle relative"
             >
               {link.name}
             </Link>
