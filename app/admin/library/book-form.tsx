@@ -32,7 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { createBook } from '@/app/db/books';
+import { createBook, updateBook } from '@/app/db/books';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
@@ -57,18 +57,24 @@ const bookSchema = z.object({
 
 export type BookFormValues = z.infer<typeof bookSchema>;
 
-export default function BookForm() {
+export default function BookForm({ data }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [coverPreview, setCoverPreview] = useState<string | null>(null);
+  const [coverPreview, setCoverPreview] = useState<string | null>(
+    data?.cover || null
+  );
   const [isCoverSelected, setIsCoverSelected] = useState(false);
 
   const form = useForm<BookFormValues>({
     resolver: zodResolver(bookSchema),
     defaultValues: {
-      title: '',
-      author: '',
-      description: '',
-      type: 'paperback',
+      title: data?.title || '',
+      author: data?.author || '',
+      description: data?.description || '',
+      type: data?.type || 'hardcover',
+      isbn: data?.isbn || '',
+      publishedDate: data?.published_date || undefined,
+      purchaseDate: data?.purchase_date || undefined,
+      id: data?.id || undefined,
     },
   });
 
@@ -76,7 +82,13 @@ export default function BookForm() {
     setIsSubmitting(true);
     // Here you would typically send the data to your backend
     console.log(data);
-    await createBook(data);
+    if (data.id) {
+      // Update book
+      updateBook(data.id, data);
+    } else {
+      // Create book
+      await createBook(data);
+    }
     setIsSubmitting(false);
     form.reset();
     setCoverPreview(null);
@@ -326,7 +338,7 @@ export default function BookForm() {
         />
 
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Add Book'}
+          {isSubmitting ? 'Submitting...' : data ? 'Update' : 'Create'}
         </Button>
       </form>
     </Form>

@@ -1,7 +1,7 @@
 'use server';
 import { put } from '@vercel/blob';
 import { sql } from './postgres';
-import { BookFormValues } from '../admin/library/create/book-form';
+import { BookFormValues } from '../admin/library/book-form';
 
 //function to generate a slug from a title
 export async function slugify(title: string) {
@@ -30,6 +30,13 @@ export async function getBooks() {
      SELECT * FROM books
        `;
   return books;
+}
+
+export async function getBook(id: string) {
+  const [book] = await sql`
+     SELECT * FROM books WHERE id = ${id}
+       `;
+  return book;
 }
 
 //function to create a new book
@@ -68,15 +75,17 @@ export async function createBook(formData: BookFormValues) {
 }
 
 //function to update a book
-export async function updateBook(slug: string, formData: FormData) {
-  const title = formData.get('title')?.toString() || '';
-  const author = formData.get('author')?.toString() || '';
-  const description = formData.get('description')?.toString() || '';
-  const publishedDate = formData.get('publishedDate')?.toString() || '';
-  const purchaseDate = formData.get('purchaseDate')?.toString() || '';
-  const type = formData.get('type')?.toString() || '';
-  const isbn = formData.get('isbn')?.toString() || null;
-  const cover = formData.get('cover') || null;
+export async function updateBook(id: string, formData: BookFormValues) {
+  const {
+    title,
+    author,
+    cover,
+    description,
+    publishedDate,
+    purchaseDate,
+    type,
+    isbn = '',
+  } = formData;
 
   //upload cover image to vercel/blob
   let coverUrl = '';
@@ -102,13 +111,13 @@ export async function updateBook(slug: string, formData: FormData) {
        type = ${type},
        isbn = ${isbn},
        cover = ${coverUrl}
-     WHERE slug = ${slug}
+     WHERE id = ${id}
        `;
 }
 
 //function to delete a book
-export async function deleteBook(slug: string) {
+export async function deleteBook(id: string) {
   await sql`
-     DELETE FROM books WHERE slug = ${slug}
+     DELETE FROM books WHERE id = ${id}
        `;
 }

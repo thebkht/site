@@ -49,110 +49,116 @@ type Book = {
   isbn: string;
 };
 
-// Define the columns
-const columns: ColumnDef<Book>[] = [
-  {
-    id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: 'title',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Title
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      row.getValue('title');
-    },
-  },
-  {
-    accessorKey: 'author',
-    header: 'Author',
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('author')}</div>
-    ),
-  },
-  {
-    accessorKey: 'publishedDate',
-    header: 'Published Date',
-    cell: ({ row }) => {
-      const date = row.getValue('publishedDate') as Date;
-      return <div>{new Date(date).toLocaleDateString()}</div>;
-    },
-  },
-  {
-    accessorKey: 'purchaseDate',
-    header: 'Purchase Date',
-    cell: ({ row }) => {
-      const date = row.getValue('purchaseDate') as Date;
-      return <div>{new Date(date)?.toLocaleDateString() ?? 'N/A'}</div>;
-    },
-  },
-  {
-    accessorKey: 'type',
-    header: 'Type',
-    cell: ({ row }) => <div className="capitalize">{row.getValue('type')}</div>,
-  },
-  {
-    accessorKey: 'isbn',
-    header: 'ISBN',
-    cell: ({ row }) => <div>{row.getValue('isbn')}</div>,
-  },
-  {
-    id: 'actions',
-    enableHiding: false,
-    cell: ({ row }) => {
-      const book = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(book.id)}
-            >
-              Copy book ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View details</DropdownMenuItem>
-            <DropdownMenuItem>Edit book</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-];
-
 export default function BookList({ data }: { data: Book[] }) {
   const router = useRouter();
+  const columns: ColumnDef<Book>[] = [
+    {
+      id: 'select',
+      header: ({ table }) => (
+        <Checkbox
+          checked={table.getIsAllPageRowsSelected()}
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select row"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    },
+    {
+      accessorKey: 'title',
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Title
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        );
+      },
+      cell: ({ row }) => {
+        row.getValue('title');
+      },
+    },
+    {
+      accessorKey: 'author',
+      header: 'Author',
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue('author')}</div>
+      ),
+    },
+    {
+      accessorKey: 'publishedDate',
+      header: 'Published Date',
+      cell: ({ row }) => {
+        const date = row.getValue('publishedDate') as Date;
+        return <div>{new Date(date).toLocaleDateString()}</div>;
+      },
+    },
+    {
+      accessorKey: 'purchaseDate',
+      header: 'Purchase Date',
+      cell: ({ row }) => {
+        const date = row.getValue('purchaseDate') as Date;
+        return <div>{new Date(date)?.toLocaleDateString() ?? 'N/A'}</div>;
+      },
+    },
+    {
+      accessorKey: 'type',
+      header: 'Type',
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue('type')}</div>
+      ),
+    },
+    {
+      accessorKey: 'isbn',
+      header: 'ISBN',
+      cell: ({ row }) => <div>{row.getValue('isbn')}</div>,
+    },
+    {
+      id: 'actions',
+      enableHiding: false,
+      cell: ({ row }) => {
+        const book = row.original;
+
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(book.id)}
+              >
+                Copy book ID
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>View details</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  router.push(`/admin/library/edit/${book.id}`);
+                }}
+              >
+                Edit book
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    },
+  ];
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []

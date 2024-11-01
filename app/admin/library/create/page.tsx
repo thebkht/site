@@ -1,5 +1,5 @@
 import { AnimatedName } from '@/app/components/nav';
-import BookForm from './book-form';
+import BookForm from '../book-form';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export default function BookCreate() {
     <section>
       <h1>Book Create</h1>
       <AnimatedName />
-      <BookForm />
+      <BookForm data={undefined} />
     </section>
   );
 }
