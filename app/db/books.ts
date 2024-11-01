@@ -25,6 +25,13 @@ export async function isSlugUnique(slug: string) {
   return books.length === 0;
 }
 
+export async function getBooks() {
+  const books = await sql`
+     SELECT * FROM books
+       `;
+  return books;
+}
+
 //function to create a new book
 export async function createBook(formData: BookFormValues) {
   const {
