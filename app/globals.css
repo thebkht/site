@@ -97,6 +97,9 @@
     --primary-color-alpha: #1a202c33;
     --edge-highlight: inset 0 0.0625rem 0 rgba(255, 255, 255, 0.1);
   }
+  html {
+    color-scheme: dark;
+  }
 }
 
 @layer components {
