@@ -1,3 +1,4 @@
+import { ModeToggle } from '@/components/mode-toggle';
 import { Link } from 'next-view-transitions';
 
 function ArrowIcon() {
@@ -33,7 +34,7 @@ export default function Footer() {
           viewBox="0 0 70 70"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-muted"
+          className="h-5 w-5 text-muted-foreground dark:text-muted"
         >
           <path
             fillRule="evenodd"
@@ -48,7 +49,7 @@ export default function Footer() {
               key={link.name}
               href={link.url}
               target="_blank"
-              className="text-muted hover:text-blue-500 transition-colors duration-200"
+              className="text-muted-foreground dark:text-muted hover:!text-blue-500 transition-colors duration-200"
             >
               {link.name}
             </a>
@@ -56,12 +57,13 @@ export default function Footer() {
             <Link
               key={link.name}
               href={link.url}
-              className="text-muted hover:text-blue-500 transition-colors duration-200"
+              className="text-muted-foreground dark:text-muted hover:!text-blue-500 transition-colors duration-200"
             >
               {link.name}
             </Link>
           )
         )}
+        <ModeToggle />
       </div>
     </footer>
   );
