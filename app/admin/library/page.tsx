@@ -1,6 +1,12 @@
 import { AnimatedName } from '@/app/components/nav';
 import BookList from './books-table';
 import { getBooks } from '@/app/db/books';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Library',
+  description: 'A collection of books in my library',
+};
 
 export default async function Page() {
   const rows = await getBooks();
@@ -14,7 +20,6 @@ export default async function Page() {
     purchaseDate: row.purchase_date,
     // Add any other properties that are required by the Book type
   }));
-  console.log(books);
   return (
     <section>
       <h1>Library</h1>
