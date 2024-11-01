@@ -18,7 +18,7 @@ export default function ViewCounter({
 
   return (
     <p
-      className={cn('text-gray-600 dark:text-gray-400', className)}
+      className={cn('text-muted-foreground', className)}
     >{`${number.toLocaleString()} views`}</p>
   );
 }
