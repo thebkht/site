@@ -69,6 +69,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -84,7 +85,7 @@
   --sh-jsxliterals: #6266d1;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
-  --container-width:720px;
+  --container-width: 720px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -93,10 +94,11 @@
     --sh-identifier: white;
     --sh-keyword: #f47067;
     --sh-string: #0fa295;
-    --primary-color: #1a202c;
-    --primary-color-alpha: #1a202c33;
+    --primary-color: hsl(220, 26%, 14%);
+    --primary-color-alpha: hsla(220, 26%, 14%, 0.2);
     --edge-highlight: inset 0 0.0625rem 0 rgba(255, 255, 255, 0.1);
   }
+
   html {
     color-scheme: dark;
   }
@@ -109,116 +111,116 @@
 
   .crt {
     margin: 1rem 0 1rem;
-    box-shadow: var(--edge-highlight), 0 0 0 .0625rem var(--primary-color-alpha), 0 .125rem .375rem .125rem var(--primary-color-alpha), 0 .25rem 1.5rem .25rem var(--primary-color-alpha);
-    background: radial-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .85)), var(--primary-color);
-}
+    box-shadow: var(--edge-highlight), 0 0 0 .0625rem hsla(var(--accent-foreground), 0.2), 0 .125rem .375rem .125rem hsla(var(--accent-foreground), 0.2), 0 .25rem 1.5rem .25rem hsla(var(--accent-foreground), 0.2);
+    background: radial-gradient(hsla(var(--accent)/25), hsla(var(--accent)/ 35)), hsla(var(--accent));
+  }
 
-.crt pre {
+  .crt pre {
     animation: flicker .25s alternate infinite;
     margin: unset;
     box-shadow: unset;
-    background-color:unset !important;
+    background-color: unset !important;
     padding: 1rem 1rem;
-    color: var(--primary-color) !important;
+    color: hsla(var(--background)) !important;
     overflow: hidden;
-    text-shadow: var(--primary-color-alpha) 0 0 .25rem,var(--primary-color) 0 0 .75rem;
-}
+    text-shadow: hsla(var(--background), 0.2) 0 0 .25rem, hsla(var(--background)) 0 0 .75rem;
+  }
 
-@keyframes flicker {
+  @keyframes flicker {
     from {
-        opacity: 1
+      opacity: 1
     }
 
     25% {
-        opacity: .95
+      opacity: .95
     }
 
     50% {
-        opacity: .85
+      opacity: .85
     }
 
     75% {
-        opacity: 1
+      opacity: 1
     }
 
     to {
-        opacity: .9
+      opacity: .9
     }
-}
+  }
 
-@media (prefers-reduced-motion) {
+  @media (prefers-reduced-motion) {
     .crt pre {
-        animation: none
+      animation: none
     }
-}
+  }
 
-.scanlines {
+  .scanlines {
     position: relative;
     overflow: hidden
-}
+  }
 
-.scanlines::before {
+  .scanlines::before {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
-    animation:scanlines .25s linear infinite;
-    background:repeating-linear-gradient(to top, rgba(0,0,0,.25), rgba(0,0,0,.25) .0625rem, rgba(0,0,0,0) .1875rem, rgba(0,0,0,0) .25rem);
+    animation: scanlines .25s linear infinite;
+    background: repeating-linear-gradient(to top, rgba(0, 0, 0, .25), hsl(var(--background)) .0625rem, rgba(0, 0, 0, 0) .1875rem, rgba(0, 0, 0, 0) .25rem);
     width: 100%;
     height: calc(100% + .5rem);
     pointer-events: none;
-    content:"";
-}
+    content: "";
+  }
 
-@keyframes scanlines {
+  @keyframes scanlines {
     from {
-        transform: translateY(-.5rem)
+      transform: translateY(-.5rem)
     }
 
     to {
-        transform: translateY(0)
+      transform: translateY(0)
     }
-}
+  }
 
-@media (prefers-reduced-motion) {
+  @media (prefers-reduced-motion) {
     .scanlines::before {
-        animation: none
+      animation: none
     }
-}
+  }
 
-.scanlines::after {
+  .scanlines::after {
     display: block;
     position: absolute;
     bottom: 100%;
     left: 0;
     animation: scanline 5s linear infinite;
-    background: linear-gradient(to top, rgba(0,0,0,0) 0%, var(--primary-color-alpha) 10%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, hsla(var(--accent), 0.2) 10%, rgba(0, 0, 0, 0) 100%);
     width: 100%;
     height: 8rem;
     pointer-events: none;
-    content:"";
-}
+    content: "";
+  }
 
-@keyframes scanline {
+  @keyframes scanline {
     from {
-        bottom: 100%
+      bottom: 100%
     }
 
     50% {
-        bottom: 100%
+      bottom: 100%
     }
 
     to {
-        bottom: -8rem
+      bottom: -8rem
     }
-}
+  }
 
-@media (prefers-reduced-motion) {
+  @media (prefers-reduced-motion) {
     .scanlines::after {
-        animation: none
+      animation: none
     }
-}
+  }
 }
 
 html {
@@ -243,7 +245,7 @@ html {
 }
 
 .prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
+  @apply text-muted-foreground;
   content: '#';
 }
 
@@ -323,4 +325,3 @@ table {
 .title {
   text-wrap: balance;
 }
-
