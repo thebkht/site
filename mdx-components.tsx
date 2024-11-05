@@ -175,7 +175,9 @@ function createHeading(level) {
 }
 
 let components = {
-  h1: createHeading(1),
+  h1: (props: HeadingProps) => (
+    <h1 className="font-medium pt-12 mb-0 fade-in" {...props} />
+  ),
   h2: createHeading(2),
   h3: createHeading(3),
   h4: createHeading(4),

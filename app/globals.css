@@ -227,7 +227,7 @@ html {
   min-width: 360px;
 }
 
-.prose .anchor {
+.anchor {
   @apply absolute invisible no-underline;
   margin-left: -1em;
   padding-right: 0.5em;
@@ -240,48 +240,48 @@ html {
   @apply visible;
 }
 
-.prose a {
+a {
   @apply transition-all no-underline
 }
 
-.prose .anchor:after {
+.anchor:after {
   @apply text-muted-foreground;
   content: '#';
 }
 
-.prose *:hover>.anchor {
+*:hover>.anchor {
   @apply visible;
 }
 
-.prose pre {
-  @apply bg-accent rounded-lg overflow-x-auto border border-accent;
+pre {
+  @apply bg-accent rounded-lg overflow-x-auto border border-accent p-2;
 }
 
-.prose code {
-  @apply px-1 py-0.5 rounded-lg;
+code {
+  @apply px-1 py-0.5 rounded-lg bg-accent;
 }
 
-.prose pre code {
+pre code {
   @apply p-0;
   border: initial;
   line-height: 1.5;
 }
 
-.prose code span {
+code span {
   @apply font-medium;
 }
 
-.prose img {
+img {
   @apply m-0;
 }
 
-.prose h2,
+h2,
 h3,
 h4 {
   @apply font-medium tracking-tighter !important;
 }
 
-.prose strong {
+strong {
   @apply font-medium;
 }
 
@@ -306,7 +306,7 @@ input[type='email'] {
   appearance: none;
 }
 
-.prose .tweet a {
+.tweet a {
   text-decoration: inherit;
   font-weight: 500;
 }
@@ -318,7 +318,7 @@ table {
   white-space: nowrap;
 }
 
-.prose .callout>p {
+.callout>p {
   margin: 0 !important;
 }
 

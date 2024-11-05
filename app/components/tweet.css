@@ -35,7 +35,7 @@
 }
 
 /* Dark theme */
-@media (prefers-color-scheme: dark) {
+.dark
   .tweet .react-tweet-theme {
     /* Dark theme colors */
     --tweet-bg-color: #222;
@@ -46,7 +46,7 @@
     --tweet-color-blue-secondary-hover: #333;
     --tweet-font-color-secondary: theme("colors.gray.400");
   }
-}
+
 
 /* Common styles for both themes */
 .tweet .react-tweet-theme p {
@@ -59,11 +59,11 @@
 }
 
 /* Dark theme link styles */
-@media (prefers-color-scheme: dark) {
+.dark 
   .tweet .react-tweet-theme p a {
     @apply border-gray-500 text-white hover:border-white;
   }
-}
+
 
 /* Remove link underline on hover for both themes */
 .tweet .react-tweet-theme p a:hover {
