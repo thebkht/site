@@ -13,21 +13,13 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'blog.bkhtdev.com',
+        hostname: 'bkhtdev.com',
       },
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
       },
     ],
-  },
-  experimental: {
-    ppr: true,
-  },
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
   },
   transpilePackages: ['next-mdx-remote'],
   async redirects() {
@@ -47,16 +39,5 @@ const nextConfig = {
     }));
   },
 };
-
-const ContentSecurityPolicy = `
-    default-src 'self' vercel.live;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com;
-    style-src 'self' 'unsafe-inline';
-    img-src * blob: data:;
-    media-src 'none';
-    connect-src *;
-    font-src 'self' data:;
-    frame-src 'self' *.codesandbox.io vercel.live;
-`;
 
 export default nextConfig;
