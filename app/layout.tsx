@@ -10,7 +10,7 @@ import {
 import { baseUrl } from './sitemap';
 import { ViewTransitions } from 'next-view-transitions';
 import Footer from './components/footer';
-import { ThemeProvider } from 'next-themes';
+import ThemeProvider from '@/components/provider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -100,7 +100,7 @@ export default function RootLayout({
           <SandpackCSS />
         </head>
         <body className="antialiased tracking-tight font-sans">
-          <ThemeProvider attribute="class" defaultTheme="system">
+          <ThemeProvider>
             <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 text-foreground bg-background">
               <main className="max-w-[60ch] mx-auto w-full space-y-6">
                 {children}

@@ -6,7 +6,7 @@ export function AnimatedName() {
   return (
     <Link
       href="/"
-      className="flex mb-8 font-medium text-muted-foreground fade-in"
+      className="flex mb-8 !mt-0 font-medium text-muted-foreground fade-in"
     >
       Bakhtiyor Ganijon
     </Link>
