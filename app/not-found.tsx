@@ -1,3 +1,5 @@
+import Footer from './components/footer';
+
 export default function NotFound() {
   return (
     <main className="antialiased max-w-2xl flex flex-col md:flex-row mx-4 lg:mx-auto h-screen">
@@ -5,7 +7,7 @@ export default function NotFound() {
         <svg
           className="-mt-[90px] h-52"
           fill="none"
-          viewBox="-80 0 369 271"
+          viewBox="0 0 369 271"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -13,9 +15,9 @@ export default function NotFound() {
             d="M268.13 2.47998H125.053V44.8731H82.6599V187.95H225.737V145.557H268.13V2.47998ZM225.737 145.557V44.8731H125.053V145.557H225.737Z"
             fill="hsl(var(--background))"
             fillRule="evenodd"
-            stroke-dasharray="4 4"
-            stroke-width="1.5"
-            className="stroke-neutral-600 dark:stroke-neutral-400 fill-white dark:fill-[#111010]"
+            strokeDasharray="4 4"
+            strokeWidth="1.5"
+            className="stroke-muted-foreground fill-background"
           ></path>
           <g filter="url(#filter0_d)">
             <ellipse
@@ -24,7 +26,7 @@ export default function NotFound() {
               fill="hsl(var(--background))"
               rx="74.52"
               ry="74.52"
-              className="fill-white dark:fill-[#111010]"
+              className="fill-background"
             ></ellipse>
             <ellipse
               cx="250"
@@ -32,7 +34,7 @@ export default function NotFound() {
               stroke="hsl(var(--muted-foreground))"
               rx="74.52"
               ry="74.52"
-              className="stroke-neutral-600 dark:stroke-neutral-400"
+              className="stroke-muted-foreground"
             ></ellipse>
           </g>
           <mask
@@ -62,7 +64,7 @@ export default function NotFound() {
           </g>
           <defs>
             <filter
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
               filterUnits="userSpaceOnUse"
               height="253.03"
               id="filter0_d"
@@ -70,7 +72,7 @@ export default function NotFound() {
               x="76.35"
               y="57.97"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+              <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
               <feColorMatrix
                 in="SourceAlpha"
                 values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
@@ -91,10 +93,10 @@ export default function NotFound() {
           </defs>
         </svg>
         <h1 className="font-medium text-2xl mb-8 tracking-tighter">
-          Oh no! This page doesn't exist.
+          Oh no! This page doesn't exist. 🤷‍♂️
         </h1>
         <p>
-          If you expected to see something here, let me know (me@bkhtdev.com).
+          If you expected to see something here, Please refer to my socials:
         </p>
       </section>
     </main>

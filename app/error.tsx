@@ -20,7 +20,7 @@ export default function Error({
         <svg
           className="-mt-[90px] h-52"
           fill="none"
-          viewBox="-80 0 369 271"
+          viewBox="0 0 369 271"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -30,7 +30,7 @@ export default function Error({
             fillRule="evenodd"
             strokeDasharray="4 4"
             strokeWidth="1.5"
-            className="stroke-neutral-600 dark:stroke-neutral-400 fill-white dark:fill-[#111010]"
+            className="stroke-muted-foreground fill-background"
           ></path>
           <g filter="url(#filter0_d)">
             <ellipse
@@ -39,7 +39,7 @@ export default function Error({
               fill="hsl(var(--background))"
               rx="74.52"
               ry="74.52"
-              className="fill-white dark:fill-[#111010]"
+              className="fill-background"
             ></ellipse>
             <ellipse
               cx="250"
@@ -47,7 +47,7 @@ export default function Error({
               stroke="hsl(var(--muted-foreground))"
               rx="74.52"
               ry="74.52"
-              className="stroke-neutral-600 dark:stroke-neutral-400"
+              className="stroke-muted-foreground"
             ></ellipse>
           </g>
           <mask
