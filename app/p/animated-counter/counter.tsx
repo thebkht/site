@@ -207,8 +207,12 @@ export default function CounterDemo() {
     <div className="bg-secondary p-4 rounded-md flex flex-col gap-3 items-center h-96">
       <Counter value={count} withZero className="mx-auto my-3" />
       <div className="flex gap-2">
+        <Button onClick={() => setCount(count <= 100 ? 0 : count - 100)}>
+          -100
+        </Button>
         <Button onClick={() => setCount(count - 1)}>-</Button>
         <Button onClick={() => setCount(count + 1)}>+</Button>
+        <Button onClick={() => setCount(count + 100)}>+100</Button>
       </div>
     </div>
   );
