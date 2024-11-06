@@ -38,12 +38,10 @@ export default async function sitemap() {
     lastModified: new Date().toISOString(),
   }));
 
-  const routes = ['', '/guestbook', '/blog', '/work', '/stack'].map(
-    (route) => ({
-      url: `${baseUrl}${route}`,
-      lastModified: new Date().toISOString().split('T')[0],
-    })
-  );
+  const routes = ['', '/guestbook', '/work', '/stack'].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date().toISOString().split('T')[0],
+  }));
 
   return [...routes, ...notes];
 }
