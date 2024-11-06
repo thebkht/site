@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { SandpackCSS } from './p/[slug]/sandpack';
+import { SandpackCSS } from './p/sandpack';
 import {
   JetBrains_Mono as FontMono,
   Manrope as FontSans,
