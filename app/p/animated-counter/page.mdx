@@ -20,30 +20,17 @@ export const metadata = {
 
 <CounterDemo />
 
-<StaticTweet id="1815536079073894415" />
-
 Animation insprited by [this tweet](https://x.com/samselikoff/status/1663648894440316933?t=KLRpBHYu7z5jhhNSrpXtcA&s=35) by [Sam Selikoff ](https://x.com/samselikoff).
 
 ## How it works
 
 This animated counter component takes a number as input and animates the transition from 0 to that number. The animation is achieved using `framer-motion`, a popular animation library for React. Uses a spring and absolute positioning to smoothly animate digits as they change.
 
-## Code
+### 1. **Setting Up Formatting Utilities**
 
-Here's the code for the animated counter component:
+The `formatNumber` utility function is used to format large numbers by adding suffixes (`K` for thousands, `M` for millions, `B` for billions, and `T` for trillions). This function returns both the formatted number and the suffix based on the size of the number passed to it.
 
-```tsx
-'use client';
-import { cn } from '@/lib/utils';
-import { MotionValue, motion, useSpring, useTransform } from 'framer-motion';
-import { useEffect } from 'react';
-
-// Constants for styling
-const fontSize = 12;
-const padding = 0;
-const height = fontSize + padding;
-
-// Utility function to format numbers with suffixes
+```typescript
 const formatNumber = (
   num: number
 ): { formattedNumber: number; suffix: string } => {
@@ -57,74 +44,62 @@ const formatNumber = (
     }
     return { formattedNumber, suffix: 'B' };
   }
-  if (num >= 10 ** 6) {
-    const formattedNumber = num / 10 ** 6;
-    if (
-      1000 >= Math.floor(formattedNumber) &&
-      Math.floor(formattedNumber) > 100
-    ) {
-      return { formattedNumber: formattedNumber / 1000, suffix: 'B' };
-    }
-    return { formattedNumber, suffix: 'M' };
-  }
-  if (num >= 10 ** 3) {
-    const formattedNumber = num / 10 ** 3;
-    if (
-      1000 >= Math.floor(formattedNumber) &&
-      Math.floor(formattedNumber) > 100
-    ) {
-      return { formattedNumber: formattedNumber / 1000, suffix: 'M' };
-    }
-    return { formattedNumber, suffix: 'K' };
-  }
-  return { formattedNumber: num, suffix: '' };
+  ...
 };
+```
 
+The function checks the magnitude of `num` and determines the appropriate suffix, returning an object with the `formattedNumber` and `suffix`. This allows for easy handling of large numbers.
+
+### 2. **Creating the `Counter` Component**
+
+The `Counter` component is the main container for the animated counter. It receives the `value` (the number to animate to) as a prop and applies `formatNumber` to get a formatted version.
+
+```typescript
 function Counter({
   value,
   withZero = false,
   ...props
 }: { value: number; withZero?: boolean } & React.ComponentProps<'div'>) {
   const { formattedNumber, suffix } = formatNumber(value);
-
-  const integerPart = Math.floor(formattedNumber);
-  const decimalPart = Math.floor((formattedNumber - integerPart) * 10);
-
-  return (
-    <div
-      className={cn(
-        'flex overflow-hidden items-end leading-none',
-        props.className
-      )}
-    >
-      {[...Array(integerPart.toString().length)]
-        .map((_, i) => (
-          <Digit
-            key={i}
-            place={10 ** i}
-            value={integerPart}
-            className={
-              !withZero && integerPart == 0 ? 'opacity-0' : 'opacity-100'
-            }
-          />
-        ))
-        .reverse()}
-      {decimalPart > 0 && (
-        <>
-          <span
-            style={{ height, fontWeight: 'inherit' }}
-            className="relative w-[0.4ch] tabular-nums leading-none text-left"
-          >
-            .
-          </span>
-          <Digit place={1} value={decimalPart} />
-        </>
-      )}
-      <Suffix suffix={suffix} />
-    </div>
-  );
+  ...
 }
+```
 
+### 3. **Breaking Down Digits**
+
+The integer part of the formatted number is separated from the decimal part to handle them individually for animation. This allows the component to animate each digit separately.
+
+```typescript
+const integerPart = Math.floor(formattedNumber);
+const decimalPart = Math.floor((formattedNumber - integerPart) * 10);
+```
+
+### 4. **Rendering Digits with the `Digit` Component**
+
+The `Counter` component maps over each digit in the integer part and renders a `Digit` component for each, passing down the digit's position and value.
+
+```typescript
+{
+  [...Array(integerPart.toString().length)]
+    .map((_, i) => (
+      <Digit
+        key={i}
+        place={10 ** i}
+        value={integerPart}
+        className={!withZero && integerPart == 0 ? 'opacity-0' : 'opacity-100'}
+      />
+    ))
+    .reverse();
+}
+```
+
+Each `Digit` represents a specific place value (like units, tens, hundreds, etc.), animating the transition smoothly.
+
+### 5. **Animating Each `Digit` Component**
+
+The `Digit` component animates each individual digit. It uses `useSpring` to smoothly animate transitions between numbers, making the animation feel more natural.
+
+```typescript
 function Digit({
   place,
   value,
@@ -136,26 +111,17 @@ function Digit({
 }) {
   let valueRoundedToPlace = Math.floor(value / place);
   let animatedValue = useSpring(valueRoundedToPlace);
-
-  useEffect(() => {
-    animatedValue.set(valueRoundedToPlace);
-  }, [animatedValue, valueRoundedToPlace]);
-
-  return (
-    <div
-      style={{ height, fontWeight: 'inherit' }}
-      className={cn(
-        'relative w-[0.9ch] tabular-nums transition-opacity duration-500 ease-in-out',
-        className
-      )}
-    >
-      {[...Array(10)].map((_, i) => (
-        <Number key={i} mv={animatedValue} number={i} />
-      ))}
-    </div>
-  );
+  ...
 }
+```
 
+When the `value` changes, `useEffect` updates `animatedValue` with the new digit to animate. This value is then used by `Number` components (explained below) to adjust their position smoothly.
+
+### 6. **Animating Individual Numbers with the `Number` Component**
+
+Within each `Digit` component, multiple `Number` components are rendered to handle each possible value from 0 to 9. The `useTransform` hook in each `Number` component calculates the position of each digit to create a scrolling effect.
+
+```typescript
 function Number({ mv, number }: { mv: MotionValue; number: number }) {
   let y = useTransform(mv, (latest) => {
     let placeValue = latest % 10;
@@ -169,19 +135,17 @@ function Number({ mv, number }: { mv: MotionValue; number: number }) {
 
     return memo;
   });
-
-  return (
-    <motion.span
-      style={{ y, fontWeight: 'inherit' }}
-      className="absolute inset-0 flex items-center justify-center"
-    >
-      {number}
-    </motion.span>
-  );
+  ...
 }
+```
 
-const suffixes = ['', 'K', 'M', 'B'];
+`useTransform` takes the `MotionValue` (from `animatedValue`) and maps it to a vertical position for each digit, creating the scrolling effect for the digits.
 
+### 7. **Handling Suffix with `Suffix` and `SuffixItem` Components**
+
+The `Suffix` component animates the suffix (K, M, B, T) based on the `suffix` value calculated by `formatNumber`.
+
+```typescript
 function Suffix({ suffix }: { suffix: string }) {
   let suffixIndex = suffixes.indexOf(suffix);
   let animatedValue = useSpring(suffixIndex);
@@ -189,66 +153,15 @@ function Suffix({ suffix }: { suffix: string }) {
   useEffect(() => {
     animatedValue.set(suffixIndex);
   }, [animatedValue, suffixIndex]);
-
-  return (
-    <div
-      style={{ height, fontWeight: 'inherit' }}
-      className={`relative ${
-        suffix === '' ? '!w-0' : 'w-[1.1ch]'
-      } tabular-nums tracking-normal text-left`}
-    >
-      {suffixes.map((suffixItem, i) => (
-        <SuffixItem key={i} mv={animatedValue} suffix={suffixItem} index={i} />
-      ))}
-    </div>
-  );
+  ...
 }
-
-function SuffixItem({
-  mv,
-  suffix,
-  index,
-}: {
-  mv: MotionValue;
-  suffix: string;
-  index: number;
-}) {
-  let y = useTransform(mv, (latest) => {
-    let offset = (suffixes.length + index - latest) % suffixes.length;
-
-    let memo = offset * height;
-
-    if (offset > suffixes.length / 2) {
-      memo -= suffixes.length * height;
-    }
-
-    return memo;
-  });
-
-  return (
-    <motion.span
-      style={{ y, fontWeight: 'inherit' }}
-      className="absolute inset-0 flex items-center justify-center"
-    >
-      {suffix}
-    </motion.span>
-  );
-}
-
-export default Counter;
 ```
 
-Explanation:
+When the suffix changes, `animatedValue` triggers an animation for the suffix. This uses the same scrolling effect as the digits, created by the `SuffixItem` component.
 
-- The `Counter` component takes a number as input and formats it with the appropriate suffix (K, M, B, etc.).
-- The `Digit` component handles the animation of individual digits. It uses the `useSpring` hook from `framer-motion` to animate the transition between numbers.
-- The `Number` component animates the movement of each digit based on the current value.
-- The `Suffix` component handles the animation of the suffix (K, M, B) based on the current value.
-- The animation is achieved by updating the `MotionValue` objects and using `useTransform` to calculate the position of each digit and suffix.
+### 8. **Using the Counter Component**
 
-## Usage
-
-To use the animated counter component, simply import it and pass the desired number as a prop:
+To use this component, simply import and pass in the desired number as `value`. Optionally, the `withZero` prop can be used to hide leading zeros.
 
 ```tsx
 import Counter from '@/components/Counter';
@@ -257,5 +170,15 @@ function MyComponent() {
   return <Counter value={123456} />;
 }
 ```
+
+### Recap of Key Parts
+
+1. **`formatNumber`**: Prepares large numbers with suffixes.
+2. **`Counter` Component**: Main component that renders each digit and suffix.
+3. **`Digit` Component**: Animates each digit’s transition smoothly using `useSpring`.
+4. **`Number` Component**: Scrolls each digit using `useTransform`.
+5. **`Suffix` and `SuffixItem` Components**: Handle suffix animations.
+
+Each part works together to create a smooth animated counter component that displays numbers with a scrolling animation, making use of Framer Motion’s `useSpring` and `useTransform` hooks for smooth transitions.
 
 You can customize the appearance of the counter by passing additional props, such as `withZero` to show leading zeros.
