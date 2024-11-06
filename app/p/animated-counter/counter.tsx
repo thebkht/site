@@ -5,7 +5,7 @@ import { MotionValue, motion, useSpring, useTransform } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 // Constants for styling
-const fontSize = 12;
+const fontSize = 16;
 const padding = 0;
 const height = fontSize + padding;
 
@@ -205,7 +205,7 @@ export default function CounterDemo() {
   const [count, setCount] = useState(0);
   return (
     <div className="bg-secondary p-4 rounded-md flex flex-col gap-3 items-center justify-center h-96">
-      <Counter value={count} withZero className="mx-auto my-3 text-xs" />
+      <Counter value={count} withZero className="mx-auto my-3" />
       <div className="flex gap-2">
         <Button onClick={() => setCount(count <= 100 ? 0 : count - 100)}>
           -100
