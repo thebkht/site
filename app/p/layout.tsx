@@ -7,15 +7,11 @@ export const metadata: Metadata = {
     default: 'Writtings',
     template: '%s',
   },
-  description:
-    'A collection of my thoughts and ideas on various topics. I write about web development, design, and other things that interest me.',
   openGraph: {
     title: {
       default: 'Writtings',
       template: '%s',
     },
-    description:
-      'A collection of my thoughts and ideas on various topics. I write about web development, design, and other things that interest me.',
     type: 'article',
   },
   twitter: {
