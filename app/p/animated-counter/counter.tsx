@@ -204,9 +204,11 @@ function SuffixItem({
 export default function CounterDemo() {
   const [count, setCount] = useState(0);
   return (
-    <>
-      <Counter value={0} withZero />
-      <Button onClick={() => setCount(count + 1)}>Increment</Button>
-    </>
+    <div className="bg-secondary p-4 rounded-md space-y-3">
+      <Counter value={count} withZero className="mx-auto my-3" />
+      <Button onClick={() => setCount(count + 1)} className="mx-auto">
+        Increment
+      </Button>
+    </div>
   );
 }
