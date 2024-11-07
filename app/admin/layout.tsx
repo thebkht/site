@@ -1,5 +1,4 @@
-import { auth } from 'app/auth';
-import { Navbar } from './nav';
+import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
 const cx = (...classes) => classes.filter(Boolean).join(' ');

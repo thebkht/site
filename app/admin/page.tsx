@@ -1,8 +1,8 @@
-import { auth } from 'app/auth';
-import { getGuestbookEntries } from 'app/db/queries';
+import { auth } from '@/lib/auth';
+import { getGuestbookEntries } from '@/lib/db/queries';
 import { redirect } from 'next/navigation';
 import Form from './form';
-import { AnimatedName } from 'app/components/nav';
+import { AnimatedName } from '@/components/nav';
 import { Navbar } from './nav';
 
 export const metadata = {

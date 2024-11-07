@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { getBlogPosts } from 'app/db/blog';
-import { getNotes } from './db/queries';
+import { getBlogPosts } from '@/lib/db/blog';
+import { getNotes } from '../lib/db/queries';
 
 export const baseUrl = 'https://bkhtdev.com';
 

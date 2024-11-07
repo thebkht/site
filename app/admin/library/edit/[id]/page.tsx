@@ -1,7 +1,7 @@
-import { AnimatedName } from '@/app/components/nav';
+import { AnimatedName } from '@/components/nav';
 import { notFound } from 'next/navigation';
 import BookForm from '../../book-form';
-import { getBook } from '@/app/db/books';
+import { getBook } from '@/lib/db/books';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

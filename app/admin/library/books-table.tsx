@@ -85,7 +85,7 @@ export default function BookList({ data }: { data: Book[] }) {
         );
       },
       cell: ({ row }) => {
-        row.getValue('title');
+        return <div>{row.getValue('title')}</div>;
       },
     },
     {

@@ -1,10 +1,10 @@
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import type { MDXComponents } from 'mdx/types';
-import { TweetComponent } from 'app/components/tweet';
+import { TweetComponent } from '@/components/tweet';
 import { highlight } from 'sugar-high';
 import React, { ComponentPropsWithoutRef } from 'react';
-import { LiveCode } from 'app/components/sandpack';
+import { LiveCode } from '@/components/sandpack';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;

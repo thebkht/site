@@ -1,4 +1,4 @@
-import { AnimatedName } from '@/app/components/nav';
+import { AnimatedName } from '@/components/nav';
 import BookForm from '../book-form';
 import { Metadata } from 'next';
 

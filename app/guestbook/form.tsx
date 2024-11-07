@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { saveGuestbookEntry } from './../db/actions';
+import { saveGuestbookEntry } from '../../lib/db/actions';
 import { useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

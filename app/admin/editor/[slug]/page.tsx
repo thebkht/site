@@ -1,9 +1,9 @@
 'use client';
 
-import { getNote } from 'app/db/queries';
+import { getNote } from '@/lib/db/queries';
 import Form from './form';
 import { Navbar } from 'app/admin/nav';
-import { AnimatedName } from 'app/components/nav';
+import { AnimatedName } from '@/components/nav';
 
 export default async function Editor({ params }) {
   const note = await getNote(params.slug);

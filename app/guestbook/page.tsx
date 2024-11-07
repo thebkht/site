@@ -1,9 +1,9 @@
-import { auth } from 'app/auth';
-import { getGuestbookEntries } from 'app/db/queries';
+import { auth } from '@/lib/auth';
+import { getGuestbookEntries } from '@/lib/db/queries';
 import { SignIn, SignOut } from './buttons';
 import { Suspense } from 'react';
 import Form from './form';
-import { AnimatedName } from 'app/components/nav';
+import { AnimatedName } from '@/components/nav';
 
 export const metadata = {
   title: 'Guestbook',

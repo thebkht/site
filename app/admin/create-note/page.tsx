@@ -2,10 +2,10 @@
 
 import { useRef } from 'react';
 import { useFormStatus } from 'react-dom';
-import { createPost } from 'app/db/telegram';
+import { createPost } from '@/lib/db/telegram';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '../nav';
-import { AnimatedName } from 'app/components/nav';
+import { AnimatedName } from '@/components/nav';
 
 export default function Form() {
   const formRef = useRef<HTMLFormElement>(null);

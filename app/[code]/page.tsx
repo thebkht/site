@@ -1,5 +1,5 @@
 'use server';
-import { getRedirects } from 'app/db/queries';
+import { getRedirects } from '@/lib/db/queries';
 import { redirect } from 'next/navigation';
 
 interface RedirectPageProps {

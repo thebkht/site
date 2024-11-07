@@ -1,7 +1,7 @@
 'use server';
 import { put } from '@vercel/blob';
 import { sql } from './postgres';
-import { BookFormValues } from '../admin/library/book-form';
+import { BookFormValues } from '../../app/admin/library/book-form';
 
 //function to generate a slug from a title
 export async function slugify(title: string) {

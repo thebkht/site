@@ -2,7 +2,7 @@
 
 import { useFormStatus } from 'react-dom';
 import { useState, useEffect } from 'react';
-import { deleteNotes } from 'app/db/actions';
+import { deleteNotes } from '@/lib/db/actions';
 import { Link } from 'next-view-transitions';
 import { Button } from '@/components/ui/button';
 

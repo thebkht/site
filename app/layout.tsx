@@ -9,7 +9,7 @@ import {
 } from 'next/font/google';
 import { baseUrl } from './sitemap';
 import { ViewTransitions } from 'next-view-transitions';
-import Footer from './components/footer';
+import Footer from '@/components/footer';
 import ThemeProvider from '@/components/provider';
 
 const fontSans = FontSans({
@@ -25,26 +25,26 @@ const fontMono = FontMono({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Bakhtiyor Ganijon - bkhtdev',
-    template: '%s - bkhtdev',
+    default: 'Bakhtiyor Ganijon',
+    template: '%s - Bakhtiyor Ganijon',
   },
   description:
     'A geeky front-end developer and designer from Uzbekistan. Gained hands-on experience at Technocorp as an intern, specializing in React and product development. Passionate about continuous learning and exploring new tech frontiers.',
   openGraph: {
     title: {
-      default: 'Bakhtiyor Ganijon - bkhtdev',
-      template: '%s - bkhtdev',
+      default: 'Bakhtiyor Ganijon',
+      template: '%s - Bakhtiyor Ganijon',
     },
     description:
       'A geeky front-end developer and designer from Uzbekistan. Gained hands-on experience at Technocorp as an intern, specializing in React and product development. Passionate about continuous learning and exploring new tech frontiers.',
     url: baseUrl,
-    siteName: 'bkhtdev',
+    siteName: 'Bakhtiyor Ganijon',
     images: [
       {
         url: `${baseUrl}/og.jpg`,
         width: 1200,
         height: 630,
-        alt: 'bkhtdev',
+        alt: 'Bakhtiyor Ganijon',
       },
     ],
     locale: 'en_US',

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
-import { editTelegramMessage } from 'app/db/telegram';
+import { editTelegramMessage } from '@/lib/db/telegram';
 import { useRouter } from 'next/navigation';
 import { Note } from 'app/admin/telegram/form';
 

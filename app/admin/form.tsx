@@ -2,7 +2,7 @@
 
 import { useFormStatus } from 'react-dom';
 import { useState, useEffect } from 'react';
-import { deleteGuestbookEntries } from 'app/db/actions';
+import { deleteGuestbookEntries } from '@/lib/db/actions';
 import { Button } from '@/components/ui/button';
 
 export default function Form({ entries }) {

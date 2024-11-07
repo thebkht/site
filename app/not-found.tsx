@@ -1,5 +1,3 @@
-import Footer from './components/footer';
-
 export default function NotFound() {
   return (
     <main className="antialiased max-w-2xl flex flex-col md:flex-row mx-4 lg:mx-auto h-screen">
