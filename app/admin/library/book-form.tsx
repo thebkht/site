@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { CalendarIcon, Upload } from 'lucide-react';
 import { format } from 'date-fns';
+import { zonedTimeToUtc } from 'date-fns-tz';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -81,14 +82,23 @@ export default function BookForm({ data }) {
 
   async function onSubmit(data: BookFormValues) {
     setIsSubmitting(true);
+
+    // Convert dates to GMT+0900 (Korean Standard Time)
+    const timeZone = 'Asia/Seoul';
+    const convertedData = {
+      ...data,
+      publishedDate: zonedTimeToUtc(data.publishedDate, timeZone),
+      purchaseDate: zonedTimeToUtc(data.purchaseDate, timeZone),
+    };
+
     // Here you would typically send the data to your backend
-    console.log(data);
+    console.log(convertedData);
     if (data.id) {
       // Update book
-      updateBook(data.id, data);
+      await updateBook(data.id, convertedData);
     } else {
       // Create book
-      await createBook(data);
+      await createBook(convertedData);
     }
     setIsSubmitting(false);
     form.reset();

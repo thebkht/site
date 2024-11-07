@@ -21,7 +21,6 @@ export default async function Page() {
     purchaseDate: row.purchase_date,
     // Add any other properties that are required by the Book type
   }));
-  console.log(books, rows);
   return (
     <section>
       <h1>Library</h1>
