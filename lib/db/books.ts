@@ -87,8 +87,8 @@ export async function updateBook(id: string, formData: BookFormValues) {
     isbn = '',
   } = formData;
 
-  //upload cover image to vercel/blob
-  let coverUrl = '';
+  let coverUrl: string | undefined;
+
   if (cover) {
     const coverFile = cover as File;
     const coverArrayBuffer = await coverFile.arrayBuffer();
@@ -99,20 +99,20 @@ export async function updateBook(id: string, formData: BookFormValues) {
     coverUrl = url;
   }
 
-  //update book in database
+  // Update book in database
   await sql`
-     UPDATE books
-     SET
-       title = ${title},
-       author = ${author},
-       description = ${description},
-       published_date = ${publishedDate},
-       purchase_date = ${purchaseDate},
-       type = ${type},
-       isbn = ${isbn},
-       cover = ${coverUrl}
-     WHERE id = ${id}
-       `;
+    UPDATE books
+    SET
+      title = ${title},
+      author = ${author},
+      description = ${description},
+      published_date = ${publishedDate},
+      purchase_date = ${purchaseDate},
+      type = ${type},
+      isbn = ${isbn},
+      ${coverUrl ? sql`cover = ${coverUrl},` : sql``}
+    WHERE id = ${id}
+  `;
 }
 
 //function to delete a book

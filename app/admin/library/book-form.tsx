@@ -47,7 +47,8 @@ const bookSchema = z.object({
     .refine(
       (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
       'Only .jpg, .png, and .webp formats are supported.'
-    ),
+    )
+    .optional(),
   description: z.string().min(1, 'Description is required'),
   publishedDate: z.date(),
   purchaseDate: z.date(),
