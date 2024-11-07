@@ -1,18 +1,7 @@
 import { Suspense } from 'react';
 import { getPattern } from './db/queries';
 import { Link } from 'next-view-transitions';
-import { CustomMDX as MDX } from './components/mdx';
 import { Name } from './name';
-
-export async function Pattern() {
-  const pattern = await getPattern();
-
-return (
-
-<div className="my-4 crt scanlines rounded-md">
-  <MDX source={pattern?.pattern} />
-</div>
-) }
 
 <Name />
 
