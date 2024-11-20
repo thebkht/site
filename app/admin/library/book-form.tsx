@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { CalendarIcon, Upload } from 'lucide-react';
 import { format } from 'date-fns';
-import { zonedTimeToUtc } from 'date-fns-tz';
+import { fromZonedTime } from 'date-fns-tz';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -87,8 +87,8 @@ export default function BookForm({ data }) {
     const timeZone = 'Asia/Seoul';
     const convertedData = {
       ...data,
-      publishedDate: zonedTimeToUtc(data.publishedDate, timeZone),
-      purchaseDate: zonedTimeToUtc(data.purchaseDate, timeZone),
+      publishedDate: fromZonedTime(data.publishedDate, timeZone),
+      purchaseDate: fromZonedTime(data.purchaseDate, timeZone),
     };
 
     // Here you would typically send the data to your backend
