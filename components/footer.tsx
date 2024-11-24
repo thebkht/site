@@ -27,7 +27,7 @@ export default function Footer() {
   ];
   return (
     <footer className="mt-12 text-center">
-      <div className="flex justify-between items-center space-x-4 tracking-tight flex-wrap md:max-w-[60ch] mx-auto">
+      <div className="flex justify-between items-center space-x-2 tracking-tight flex-wrap md:max-w-[60ch] mx-auto">
         <svg
           width="70"
           height="70"
