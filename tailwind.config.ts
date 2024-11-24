@@ -4,8 +4,8 @@ import typography from '@tailwindcss/typography';
 export default {
   darkMode: ['class'],
   content: [
-    './app/**/*.{ts,tsx}',
-    './content/**/*.mdx',
+    './app/**/*.{ts,tsx,mdx}',
+    './mdx-components.tsx',
     './public/**/*.svg',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
