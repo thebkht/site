@@ -13,6 +13,9 @@ import Footer from '@/components/footer';
 import ThemeProvider from '@/components/provider';
 import ThemeSwitcher from '@/components/theme-swithcer';
 import Background from '@/components/background';
+import Mask from '@/components/mask';
+import Frame from '@/components/frame';
+import Header from '@/components/header';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -105,29 +108,16 @@ export default function RootLayout({
           <ThemeProvider>
             <div
               id="Page"
-              className="fixed left-0 top-0 h-full w-full transition-all whitespace-nowrap overflow-hidden bg-background text-foreground ease-in-out"
+              className="fixed left-0 top-0 h-full w-full transition-all whitespace-nowrap overflow-hidden bg-background text-white ease-in-out"
               suppressHydrationWarning
             >
               <Background />
-              <div
-                className="mask fixed z-[3] left-0 top-0 w-full h-full pointer-events-none overflow-hidden"
-                id="Mask"
-              >
-                <div className="absolute left-0 w-full h-[var(--pad)] opacity-90 bg-background transition-all ease-in-out top-0"></div>
-                <div className="absolute left-0 w-full h-[var(--pad)] opacity-90 bg-background transition-all ease-in-out bottom-0"></div>
-              </div>
-              <div
-                className="frame fixed z-10 left-[var(--pad)] top-[var(--pad)] right-[var(--pad)] bottom-[var(--pad)] mix-blend-difference pointer-events-none"
-                id="Frame"
-              >
-                <div className="absolute bg-white opacity-50 left-0 top-0 w-px h-full"></div>
-                <div className="absolute bg-white opacity-50 right-0 top-0 w-px h-full"></div>
-                <div className="absolute bg-white opacity-50 left-0 top-0 h-px w-full"></div>
-                <div className="absolute bg-white opacity-50 left-0 bottom-0 h-px w-full"></div>
-              </div>
+              <Mask />
+              <Frame />
               <ThemeSwitcher />
+              <Header />
               <main
-                className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden"
+                className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden mix-blend-difference"
                 data-scroll="area"
                 id="Content"
               >

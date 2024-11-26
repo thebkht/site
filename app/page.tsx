@@ -2,7 +2,7 @@ export default function Page() {
   return (
     <section
       data-page="home"
-      className="page w-full min-h-[calc(var(--vh,1vh)*100)]"
+      className="page w-full min-h-[calc(var(--vh,1vh)*100)] text-sm"
     >
       <div className="absolute right-[calc(var(--pad)*2)] bottom-[calc(var(--pad)*2)] whitespace-nowrap">
         <p>

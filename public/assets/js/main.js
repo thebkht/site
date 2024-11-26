@@ -29306,8 +29306,27 @@
               : this.changeTheme('dark');
           },
           changeTheme(t) {
-            this.theme = t;
-            Lv.changeTheme(t);
+            'dark' === t
+              ? (this.$page.classList.add('dark'),
+                document.documentElement.style.setProperty(
+                  '--c-bg',
+                  'hsl(0, 0%, 5%)'
+                ),
+                document.documentElement.style.setProperty(
+                  '--c-text',
+                  'hsl(0, 0%, 95%)'
+                ))
+              : (this.$page.classList.remove('dark'),
+                document.documentElement.style.setProperty(
+                  '--c-bg',
+                  'hsl(0, 0%, 90%)'
+                ),
+                document.documentElement.style.setProperty(
+                  '--c-text',
+                  'hsl(0, 0%, 10%)'
+                )),
+              (this.theme = t),
+              Lv.changeTheme(t);
           },
           async enter() {
             const t = document.getElementById('EnterView'),
@@ -29388,7 +29407,8 @@
             (window.Alpine = Ho),
               Ho.store('app', Iv),
               Ho.start(),
-              Lv.init(),
+              (window.toggleTheme = Iv.toggleTheme.bind(Iv));
+            Lv.init(),
               (this.resizeMng = new qi()),
               this.resizeMng.setSizeFunc(() => ({
                 width: window.innerWidth,
