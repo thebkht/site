@@ -20,26 +20,27 @@ export default function Page() {
       className="page min-h-[calc(var(--vh,1vh)*100)] text-sm font-bold w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg ml-auto"
     >
       <div className="absolute right-[calc(var(--pad)*2)] bottom-[calc(var(--pad)*2)] whitespace-nowrap">
-        {links.map((link) =>
-          link.url.startsWith('http') ? (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              className="text-white hover:opacity-25"
-            >
-              {link.name} ↗
-            </a>
-          ) : (
-            <Link
-              key={link.name}
-              href={link.url}
-              className="text-white underline-offset-4 underline hover:opacity-25"
-            >
-              {link.name}
-            </Link>
-          )
-        )}
+        <ul className="text-right">
+          {links.map((link) =>
+            link.url.startsWith('http') ? (
+              <li key={link.name}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  className="text-white hover:opacity-25"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ) : (
+              <li key={link.name}>
+                <Link href={link.url}>
+                  <a className="text-white hover:opacity-25">{link.name}</a>
+                </Link>
+              </li>
+            )
+          )}
+        </ul>
       </div>
     </section>
   );
