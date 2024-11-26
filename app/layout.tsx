@@ -11,6 +11,8 @@ import { baseUrl } from './sitemap';
 import { ViewTransitions } from 'next-view-transitions';
 import Footer from '@/components/footer';
 import ThemeProvider from '@/components/provider';
+import ThemeSwitcher from '@/components/theme-swithcer';
+import Background from '@/components/background';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -101,18 +103,12 @@ export default function RootLayout({
         </head>
         <body className="antialiased tracking-tight font-sans ">
           <ThemeProvider>
-            <div className="fixed left-0 top-0 h-full w-full transition-all whitespace-nowrap overflow-hidden bg-background text-foreground ease-in-out">
-              <div
-                id="Background"
-                className="fixed z-[1] left-[var(--pad)] top-[var(--pad)] right-[var(--pad)] bottom-[var(--pad)] overflow-hidden pointer-events-none"
-              >
-                <canvas
-                  data-engine="three.js r169"
-                  width="1304"
-                  height="330"
-                  style={{ width: '1304px', height: '330px' }}
-                ></canvas>
-              </div>
+            <div
+              id="Page"
+              className="fixed left-0 top-0 h-full w-full transition-all whitespace-nowrap overflow-hidden bg-background text-foreground ease-in-out"
+              suppressHydrationWarning
+            >
+              <Background />
               <div
                 className="mask fixed z-[3] left-0 top-0 w-full h-full pointer-events-none overflow-hidden"
                 id="Mask"
@@ -129,18 +125,21 @@ export default function RootLayout({
                 <div className="absolute bg-white opacity-50 left-0 top-0 h-px w-full"></div>
                 <div className="absolute bg-white opacity-50 left-0 bottom-0 h-px w-full"></div>
               </div>
+              <ThemeSwitcher />
               <main
-                className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden mix-blend-difference"
+                className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden"
                 data-scroll="area"
                 id="Content"
               >
-                <div className="relative min-h-full" data-scroll="target">
-                  <div className="page w-full min-h-[calc(var(--vh,1vh)*100)]" >
-                    {children}
-                  </div>
+                <div
+                  className="relative min-h-full"
+                  data-scroll="target"
+                  suppressHydrationWarning
+                >
+                  {children}
                 </div>
               </main>
-              <Footer />
+              {/* <Footer /> */}
               <Analytics />
               <SpeedInsights />
             </div>
