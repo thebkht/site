@@ -37,7 +37,7 @@ export default function WorkPage() {
             href="https://go.bkhtdev.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline-offset-4 underline hover:opacity-25"
+            className="hover:opacity-25"
           >
             bkhtdev/link
           </a>
@@ -53,7 +53,7 @@ export default function WorkPage() {
             href="https://falsenotes.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline-offset-4 underline hover:opacity-25"
+            className="hover:opacity-25"
           >
             FalseNotes
           </a>

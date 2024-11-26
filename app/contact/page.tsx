@@ -26,7 +26,7 @@ export default function Page() {
               key={link.name}
               href={link.url}
               target="_blank"
-              className="text-white underline-offset-4 underline hover:opacity-25"
+              className="text-white hover:opacity-25"
             >
               {link.name} ↗
             </a>
