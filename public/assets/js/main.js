@@ -29174,7 +29174,7 @@
                   value: new pp(0.05, 0.05, 0.05),
                 },
                 style: {
-                  value: 0,
+                  value: 1,
                 },
                 param1: {
                   value: 0,
@@ -29256,6 +29256,9 @@
                   duration: 1.6,
                 });
           }
+          changeStyle(t) {
+            this.circle.changeStyle('mono' === t ? 1 : 0);
+          }
           resize() {
             this.setConfig(), this.resizeScene();
           }
@@ -29267,7 +29270,7 @@
         })(),
         Iv = {
           theme: 'dark',
-          fontStyle: 'sans-serif',
+          fontStyle: 'mono',
           isTransitioning: !1,
           currentPath: null,
           init() {
