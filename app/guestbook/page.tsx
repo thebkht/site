@@ -12,9 +12,7 @@ export const metadata = {
 
 export default function GuestbookPage() {
   return (
-    <section>
-      <h1 className="font-medium pt-12 mb-0 fade-in">Guestbook</h1>
-      <AnimatedName />
+    <section className="text-right flex flex-col items-end whitespace-nowrap py-[calc(var(--pad)*2+96px)] px-[calc(var(--pad)*2)] xl:py-[calc(var(--pad)*2+115px)]">
       <Suspense>
         <GuestbookForm />
         <GuestbookEntries />
@@ -45,8 +43,8 @@ async function GuestbookEntries() {
 
   return entries.map((entry) => (
     <div key={entry.id} className="flex flex-col space-y-1 mb-4">
-      <div className="w-full text-sm break-words">
-        <span className="text-muted-foreground mr-1">{entry.created_by}:</span>
+      <div className="w-full break-words text-white font-bold">
+        <span className="font-normal mr-1">{entry.created_by}:</span>
         {entry.body}
       </div>
     </div>

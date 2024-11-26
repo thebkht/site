@@ -35,7 +35,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button disabled={pending} className="absolute right-0 top-0" type="submit">
+    <Button disabled={pending} className="absolute right-0 top-1" type="submit">
       Sign
     </Button>
   );

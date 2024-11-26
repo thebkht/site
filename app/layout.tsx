@@ -16,6 +16,7 @@ import Background from '@/components/background';
 import Mask from '@/components/mask';
 import Frame from '@/components/frame';
 import Header from '@/components/header';
+import { SessionProvider } from 'next-auth/react';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -105,35 +106,37 @@ export default function RootLayout({
           <SandpackCSS />
         </head>
         <body className="antialiased tracking-tight font-sans ">
-          <ThemeProvider>
-            <div
-              id="Page"
-              className="fixed left-0 top-0 h-full w-full transition-all whitespace-nowrap overflow-hidden bg-background text-white ease-in-out"
-              suppressHydrationWarning
-            >
-              <Background />
-              <Mask />
-              <Frame />
-              <ThemeSwitcher />
-              <Header />
-              <main
-                className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden mix-blend-difference"
-                data-scroll="area"
-                id="Content"
+          <SessionProvider>
+            <ThemeProvider>
+              <div
+                id="Page"
+                className="fixed left-0 top-0 h-full w-full transition-all whitespace-nowrap overflow-hidden bg-background text-white ease-in-out"
+                suppressHydrationWarning
               >
-                <div
-                  className="relative min-h-full"
-                  data-scroll="target"
-                  suppressHydrationWarning
+                <Background />
+                <Mask />
+                <Frame />
+                <ThemeSwitcher />
+                <Header />
+                <main
+                  className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden mix-blend-difference"
+                  data-scroll="area"
+                  id="Content"
                 >
-                  {children}
-                </div>
-              </main>
-              {/* <Footer /> */}
-              <Analytics />
-              <SpeedInsights />
-            </div>
-          </ThemeProvider>
+                  <div
+                    className="relative min-h-full"
+                    data-scroll="target"
+                    suppressHydrationWarning
+                  >
+                    {children}
+                  </div>
+                </main>
+                {/* <Footer /> */}
+                <Analytics />
+                <SpeedInsights />
+              </div>
+            </ThemeProvider>
+          </SessionProvider>
           <script src="/assets/js/main.js"></script>
         </body>
       </html>
