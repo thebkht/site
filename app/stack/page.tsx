@@ -48,7 +48,7 @@ export default function StackPage() {
             <h2 className="text-white font-bold !mt-8 !mb-3 w-full">
               {category.title}
             </h2>
-            <p className="text-white font-normal leading-snug mt-6 w-full">
+            <p className="text-white font-light leading-snug mt-6 w-full">
               {category.skills}
             </p>
           </React.Fragment>
@@ -57,7 +57,7 @@ export default function StackPage() {
         <h2 className="text-white font-bold !mt-8 !mb-3 w-full">
           Current Focus
         </h2>
-        <p className="text-white font-normal leading-snug mt-6 w-full">
+        <p className="text-white font-light leading-snug mt-6 w-full">
           I'm currently deepening my expertise in React and exploring advanced
           state management techniques. I'm also expanding my knowledge of cloud
           platforms and serverless architectures, with a focus on AWS and Azure.
