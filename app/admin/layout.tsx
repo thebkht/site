@@ -15,5 +15,9 @@ export default async function Layout({
   ) {
     redirect('/');
   }
-  return <>{children}</>;
+  return (
+    <div className="text-right flex flex-col items-end whitespace-nowrap py-[calc(var(--pad)*2+96px)] px-[calc(var(--pad)*2)] xl:py-[calc(var(--pad)*2+115px)]">
+      {children}
+    </div>
+  );
 }

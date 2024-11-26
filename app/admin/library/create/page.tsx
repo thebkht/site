@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function BookCreate() {
   return (
-    <section>
+    <section className="w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg">
       <h1>Book Create</h1>
       <AnimatedName />
       <BookForm data={undefined} />

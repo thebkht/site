@@ -90,7 +90,7 @@ export default function NotFound() {
             </filter>
           </defs>
         </svg>
-        <h1 className="font-medium text-2xl mb-8 tracking-tighter">
+        <h1 className="font-medium text-2xl mb-8 tracking-tighter text-white">
           Oh no! This page doesn't exist. 🤷‍♂️
         </h1>
         <p>

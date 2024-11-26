@@ -22,7 +22,7 @@ export default async function Page() {
     // Add any other properties that are required by the Book type
   }));
   return (
-    <section>
+    <section className="w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg">
       <h1>Library</h1>
       <AnimatedName />
       <BookList data={books} />

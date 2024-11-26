@@ -13,10 +13,12 @@ export const metadata = {
 export default function GuestbookPage() {
   return (
     <section className="text-right flex flex-col items-end whitespace-nowrap py-[calc(var(--pad)*2+96px)] px-[calc(var(--pad)*2)] xl:py-[calc(var(--pad)*2+115px)]">
-      <Suspense>
-        <GuestbookForm />
-        <GuestbookEntries />
-      </Suspense>
+      <div className="w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg">
+        <Suspense>
+          <GuestbookForm />
+          <GuestbookEntries />
+        </Suspense>
+      </div>
     </section>
   );
 }
@@ -43,7 +45,7 @@ async function GuestbookEntries() {
 
   return entries.map((entry) => (
     <div key={entry.id} className="flex flex-col space-y-1 mb-4">
-      <div className="w-full break-words text-white font-bold">
+      <div className="w-full break-words text-white font-bold text-sm">
         <span className="font-normal mr-1">{entry.created_by}:</span>
         {entry.body}
       </div>

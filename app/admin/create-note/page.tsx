@@ -12,7 +12,7 @@ export default function Form() {
   const router = useRouter();
 
   return (
-    <section>
+    <section className="w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg">
       <h1 className="font-medium pt-12 mb-0 fade-in">Create a new note</h1>
       <AnimatedName />
       <Navbar />

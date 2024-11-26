@@ -2,11 +2,11 @@ export default function Page() {
   return (
     <section
       data-page="home"
-      className="page w-full min-h-[calc(var(--vh,1vh)*100)] text-sm font-bold"
+      className="page min-h-[calc(var(--vh,1vh)*100)] text-sm font-bold w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg ml-auto"
     >
       <div className="absolute right-[calc(var(--pad)*2)] bottom-[calc(var(--pad)*2)] whitespace-nowrap">
         <p>
-          <span className="block">I'm a geeky front-end developer</span>
+          <span className="block">A geeky front-end developer</span>
           <span className="block">and designer from Uzbekistan.</span>
           <span className="block">Gained hands-on experience at</span>
           <span className="block">Technocorp as an intern, specializing</span>

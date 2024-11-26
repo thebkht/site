@@ -16,7 +16,7 @@ export default async function Page({ params }) {
     notFound();
   }
   return (
-    <section>
+    <section className="w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg">
       <h1>Edit Book</h1>
       <AnimatedName />
       <BookForm data={book} />

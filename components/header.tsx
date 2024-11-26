@@ -72,7 +72,7 @@ export default function Header() {
                 </div>
                 <Link
                   className={cn(
-                    'relative transition-opacity ease-in-out before:block before:absolute before:left-[-5px] before:top-[-5px] before:w-[calc(100%+10px)] before:h-[calc(100%+10px)] hover:opacity-25',
+                    'relative transition-opacity text-sm ease-in-out before:block before:absolute before:left-[-5px] before:top-[-5px] before:w-[calc(100%+10px)] before:h-[calc(100%+10px)] hover:opacity-25',
                     isActive && 'opacity-0'
                   )}
                   href={item.href}
