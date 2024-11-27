@@ -19,12 +19,12 @@ export function SignOut() {
 
 export function SignIn() {
   return (
-    <div className="flex gap-2 items-center">
-      <Button className="mb-8 text-white" onClick={() => signIn('github')}>
+    <div className="flex flex-col gap-2 items-end mb-8">
+      <Button className="rounded-none" onClick={() => signIn('github')}>
         <Icons.gitHub className="w-5 h-5" />
         <div className="ml-3">Sign in with GitHub</div>
       </Button>
-      <Button className="mb-8 text-white" onClick={() => signIn('google')}>
+      <Button className="rounded-none" onClick={() => signIn('google')}>
         <Icons.google className="w-5 h-5" />
         <div className="ml-3">Sign in with Google</div>
       </Button>

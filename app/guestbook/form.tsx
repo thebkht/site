@@ -24,7 +24,7 @@ export default function Form() {
         name="entry"
         type="text"
         required
-        className="pl-4 pr-32 py-2 mt-1"
+        className="pl-4 pr-32 py-2 mt-1 rounded-none"
       />
       <SubmitButton />
     </form>
@@ -35,7 +35,11 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button disabled={pending} className="absolute right-0 top-0" type="submit">
+    <Button
+      disabled={pending}
+      className="absolute right-0 top-0 rounded-none"
+      type="submit"
+    >
       Sign
     </Button>
   );
