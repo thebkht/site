@@ -42,11 +42,11 @@ export default function WorkPage() {
             rel="noopener noreferrer"
             className="hover:opacity-25"
           >
-            My Bakery Bot - t.me/my_bakerybot
+            MY Bakery Bot - t.me/my_bakerybot
           </a>
         </p>
         <p className="text-white font-normal leading-snug mt-6">
-          I created a Telegram Mini App named My Bakery Bot, which is designed
+          I created a Telegram Mini App named MY Bakery Bot, which is designed
           for straightforward ordering of bakery items. It includes an admin
           panel secured by OTP verification through a Telegram bot. The
           application is developed using Node.js, PostgreSQL, and the Telegram
