@@ -159,8 +159,8 @@ function createHeading(level) {
         id: slug,
         className:
           level === 1
-            ? 'font-medium pt-12 !mb-0 fade-in'
-            : 'text-foreground font-medium !mt-8 !mb-3 w-full',
+            ? 'font-bold pt-12 !mb-0 fade-in w-full'
+            : 'text-foreground font-bold !mt-8 !mb-3 w-full',
       },
       [
         React.createElement('a', {
@@ -176,7 +176,7 @@ function createHeading(level) {
 
 let components = {
   h1: (props: HeadingProps) => (
-    <h1 className="font-medium pt-12 mb-0 fade-in w-full" {...props} />
+    <h1 className="font-bold pt-12 mb-0 fade-in w-full" {...props} />
   ),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -184,7 +184,7 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   p: (props: ParagraphProps) => (
-    <p className="text-foreground leading-snug" {...props} />
+    <p className="text-foreground leading-snug font-light" {...props} />
   ),
   ol: (props: ListProps) => (
     <ol className="text-foreground list-decimal pl-5 space-y-2" {...props} />
