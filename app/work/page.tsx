@@ -12,7 +12,10 @@ export default function WorkPage() {
           complex web apps, dedicated to crafting intuitive and engaging digital
           experiences. Here's where I've worked and what I've done:
         </p>
-        <h2 id="experience" className="text-white font-bold !mt-8 !mb-3 w-full">
+        <h2
+          id="experience"
+          className="text-white !font-bold !mt-8 !mb-3 w-full"
+        >
           <a href="#experience" className="anchor"></a>Experience
         </h2>
         <h3

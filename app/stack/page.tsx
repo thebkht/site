@@ -45,7 +45,7 @@ export default function StackPage() {
 
         {skillCategories.map((category) => (
           <React.Fragment key={category.title}>
-            <h2 className="text-white font-bold !mt-8 !mb-3 w-full">
+            <h2 className="text-white !font-bold !mt-8 !mb-3 w-full">
               {category.title}
             </h2>
             <p className="text-white font-light leading-snug mt-6 w-full">
@@ -54,7 +54,7 @@ export default function StackPage() {
           </React.Fragment>
         ))}
 
-        <h2 className="text-white font-bold !mt-8 !mb-3 w-full">
+        <h2 className="text-white !font-bold !mt-8 !mb-3 w-full">
           Current Focus
         </h2>
         <p className="text-white font-light leading-snug mt-6 w-full">

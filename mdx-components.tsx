@@ -160,7 +160,7 @@ function createHeading(level) {
         className:
           level === 1
             ? 'font-bold pt-12 !mb-0 fade-in w-full'
-            : 'text-foreground font-bold !mt-8 !mb-3 w-full',
+            : 'text-foreground !font-bold !mt-8 !mb-3 w-full',
       },
       [
         React.createElement('a', {
