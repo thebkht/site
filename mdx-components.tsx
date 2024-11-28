@@ -160,7 +160,7 @@ function createHeading(level) {
         className:
           level === 1
             ? 'font-medium pt-12 !mb-0 fade-in'
-            : 'text-foreground font-medium !mt-8 !mb-3',
+            : 'text-foreground font-medium !mt-8 !mb-3 w-full',
       },
       [
         React.createElement('a', {
@@ -176,7 +176,7 @@ function createHeading(level) {
 
 let components = {
   h1: (props: HeadingProps) => (
-    <h1 className="font-medium pt-12 mb-0 fade-in" {...props} />
+    <h1 className="font-medium pt-12 mb-0 fade-in w-full" {...props} />
   ),
   h2: createHeading(2),
   h3: createHeading(3),
