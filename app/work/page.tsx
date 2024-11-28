@@ -34,12 +34,29 @@ export default function WorkPage() {
         </h2>
         <p className="text-white font-normal leading-snug w-full mt-6">
           <a
+            href="https://t.me/my_bakerybot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-25"
+          >
+            My Bakery Bot - t.me/my_bakerybot
+          </a>
+        </p>
+        <p className="text-white font-normal leading-snug mt-6">
+          I created a Telegram Mini App named My Bakery Bot, which is designed
+          for straightforward ordering of bakery items. It includes an admin
+          panel secured by OTP verification through a Telegram bot. The
+          application is developed using Node.js, PostgreSQL, and the Telegram
+          Bot API, and it's hosted on Vercel.
+        </p>
+        <p className="text-white font-normal leading-snug w-full mt-6">
+          <a
             href="https://go.bkhtdev.com"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:opacity-25"
           >
-            bkhtdev/link
+            bkhtdev/link - go.bkhtdev.com
           </a>
         </p>
         <p className="text-white font-normal leading-snug mt-6">
@@ -55,7 +72,7 @@ export default function WorkPage() {
             rel="noopener noreferrer"
             className="hover:opacity-25"
           >
-            FalseNotes
+            FalseNotes - falsenotes.dev
           </a>
         </p>
         <p className="text-white font-normal leading-snug mt-6">
