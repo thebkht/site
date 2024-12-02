@@ -12,8 +12,8 @@ export const metadata = {
 
 export default function GuestbookPage() {
   return (
-    <section className="text-right flex flex-col items-end whitespace-nowrap py-[calc(var(--pad)*2+96px)] px-[calc(var(--pad)*2)] xl:py-[calc(var(--pad)*2+115px)]">
-      <div className="w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg">
+    <section className="text-right flex flex-col items-end whitespace-nowrap py-[calc(var(--pad)*1.5+96px)] px-[calc(var(--pad)*1.5)] xl:py-[calc(var(--pad)*1.5+115px)]">
+      <div className="w-full max-w-[calc(var(--vw)*100-var(--pad)*3-82px)] xl:max-w-lg">
         <Suspense>
           <GuestbookForm />
           <GuestbookEntries />

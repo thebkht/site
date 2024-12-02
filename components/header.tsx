@@ -31,29 +31,8 @@ const items = [
 export default function Header() {
   const pathname = usePathname();
   return (
-    <header className="fixed z-10 left-[calc(var(--pad)*2)] top-[calc(var(--pad)*2)] mix-blend-difference text-white">
-      <div className="flex items-center gap-4 font-bold">
-        <svg
-          width="70"
-          height="70"
-          viewBox="0 0 70 70"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="xl:h-12 xl:w-12 h-7 w-7"
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M70 0H16V16H0V70H54V54H70V0ZM54 54V16H16V54H54Z"
-            fill="currentColor"
-          />
-        </svg>
-        <h1 className="text-2xl xl:text-5xl tracking-tight">
-          Bakhtiyor Ganijon
-        </h1>
-      </div>
-      <p className="mt-1 text-sm font-normal">Frontend Developer & Designer</p>
-      <nav className="mt-12">
+    <header className="fixed z-10 left-[calc(var(--pad)*1.5)] top-[calc(var(--pad)*1.5)] mix-blend-difference text-white">
+      <nav>
         <ol className="flex flex-col gap-4">
           {items.map((item) => {
             const isActive = pathname === item.href;

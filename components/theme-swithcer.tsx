@@ -18,10 +18,10 @@ export default function ThemeSwitcher() {
 
   return (
     <div
-      className="mix-blend-difference fixed z-10 left-[calc(var(--pad)-.15em)] bottom-[var(--pad)] origin-bottom-left -rotate-90 flex gap-4 cursor-pointer whitespace-nowrap"
+      className="fixed z-10 left-[calc(var(--pad)*1.5)] bottom-[calc(var(--pad)*1.5)] mix-blend-difference text-white origin-bottom-left flex gap-4 cursor-pointer whitespace-nowrap"
       id="Theme"
     >
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-2">
         <button
           onClick={() => {
             setTheme('light');

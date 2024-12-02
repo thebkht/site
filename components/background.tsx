@@ -4,7 +4,7 @@ export default function Background() {
   return (
     <div
       id="Background"
-      className="fixed z-[1] left-[var(--pad)] top-[var(--pad)] right-[var(--pad)] bottom-[var(--pad)] overflow-hidden pointer-events-none"
+      className="fixed z-[1] left-[var(--pad)] top-[var(--pad)] right-[var(--pad)] bottom-[var(--pad)] opacity-90 overflow-hidden pointer-events-none"
     >
       <canvas
         data-engine="three.js r169"

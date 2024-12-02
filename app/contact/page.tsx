@@ -17,9 +17,9 @@ export default function Page() {
   return (
     <section
       data-page="home"
-      className="page min-h-[calc(var(--vh,1vh)*100)] text-sm font-bold w-full max-w-[calc(var(--vw)*100-var(--pad)*4-82px)] xl:max-w-lg ml-auto"
+      className="page min-h-[calc(var(--vh,1vh)*100)] text-sm font-bold w-full max-w-[calc(var(--vw)*100-var(--pad)*3-82px)] xl:max-w-lg ml-auto"
     >
-      <div className="absolute right-[calc(var(--pad)*2)] bottom-[calc(var(--pad)*2)] whitespace-nowrap">
+      <div className="absolute right-[calc(var(--pad)*1.5)] bottom-[calc(var(--pad)*1.5)] whitespace-nowrap">
         <ul className="text-right">
           {links.map((link) =>
             link.url.startsWith('http') ? (

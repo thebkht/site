@@ -29168,7 +29168,7 @@
                   value: 0,
                 },
                 seed: {
-                  value: 100 * Math.random(),
+                  value: 150 * Math.random(),
                 },
                 back: {
                   value: new pp(0.05, 0.05, 0.05),
@@ -29275,14 +29275,6 @@
           currentPath: null,
           init() {
             this.$page = document.getElementById('Page');
-            //   (this.pages = {
-            //     '/': document.querySelector('[data-page="home"]'),
-            //     '/projects/': document.querySelector('[data-page="projects"]'),
-            //     '/info/': document.querySelector('[data-page="info"]'),
-            //     '/contact/': document.querySelector('[data-page="contact"]'),
-            //     '/faq/': document.querySelector('[data-page="faq"]'),
-            //     '/copycats/': document.querySelector('[data-page="copycats"]'),
-            //   });
             const t = window.matchMedia('(prefers-color-scheme: dark)');
             (this.theme = t.matches ? 'dark' : 'light'),
               (this.scroll = new Iu()),
@@ -29392,17 +29384,6 @@
                 },
               });
           },
-          //   showMessagesOnConsole() {
-          //     console.log('%cNotice:', 'font-size: 20px; font-weight: bold;'),
-          //       console.log(
-          //         '%cUnauthorized copying or reuse of the source code or content of this website is prohibited. These actions are a violation of copyright laws and may result in legal action. Please respect the intellectual property rights of the creators and refrain from using the code without permission. (Keita Yamada, p5aholic.me)',
-          //         'font-size: 14px; line-height: 2;'
-          //       ),
-          //       console.log(
-          //         "%cIf this message appears on a domain other than p5aholic.me, the site is using p5aholic.me's source code without permission and may be a copyright infringement. (Keita Yamada, p5aholic.me)",
-          //         'font-size: 14px; line-height: 2;'
-          //       );
-          //   },
         },
         Uv = new (class {
           constructor() {}
