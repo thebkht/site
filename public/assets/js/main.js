@@ -29168,7 +29168,7 @@
                   value: 0,
                 },
                 seed: {
-                  value: 150 * Math.random(),
+                  value: Math.random(),
                 },
                 back: {
                   value: new pp(0.05, 0.05, 0.05),
@@ -29177,13 +29177,13 @@
                   value: 1,
                 },
                 param1: {
-                  value: 0,
+                  value: 1,
                 },
                 param2: {
-                  value: 0,
+                  value: 1,
                 },
                 param3: {
-                  value: 0,
+                  value: 1,
                 },
               },
               vertexShader: Rv(),
@@ -29217,7 +29217,7 @@
               (hp.params = {
                 param1: 1,
                 param2: 0.05,
-                param3: 0.2,
+                param3: 0.25,
               });
           }
           async init() {
