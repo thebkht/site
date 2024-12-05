@@ -26,7 +26,7 @@ async function getSession(): Promise<Session> {
   return session;
 }
 
-export async function saveGuestbookEntry(formData: FormData) {
+export async function saveGuestbookEntry(entry: string) {
   let session = await getSession();
   let email = session.user?.email as string;
   let created_by = session.user?.name as string;
@@ -35,7 +35,6 @@ export async function saveGuestbookEntry(formData: FormData) {
     throw new Error('Unauthorized');
   }
 
-  let entry = formData.get('entry')?.toString() || '';
   let body = entry.slice(0, 500);
 
   await sql`

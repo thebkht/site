@@ -6,6 +6,7 @@ import {
   unstable_cache as cache,
   unstable_noStore as noStore,
 } from 'next/cache';
+import { GuestbookEntry } from '../types';
 
 let googleAuth = new auth.GoogleAuth({
   credentials: {
@@ -86,7 +87,7 @@ export async function getGuestbookEntries() {
   }
 
   noStore();
-  return sql`
+  return sql<GuestbookEntry[]>`
     SELECT id, body, created_by, updated_at
     FROM guestbook
     ORDER BY created_at DESC

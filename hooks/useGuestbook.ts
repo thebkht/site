@@ -1,26 +1,38 @@
-import { useState, useEffect } from 'react';
-
-// Simulating an async function to fetch guestbook messages
-const fetchGuestbookMessages = async (): Promise<string[]> => {
-  // In a real application, this would be an API call
-  await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
-  return ['Welcome to my guestbook!', 'Hope you enjoy your stay!'];
-};
+// useGuestbook.ts
+import { useState, useEffect, useCallback } from 'react';
+import { getGuestbookEntries } from '@/lib/db/queries';
+import { saveGuestbookEntry } from '@/lib/db/actions';
+import { GuestbookEntry } from '@/lib/types';
 
 export function useGuestbook() {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<GuestbookEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchGuestbookMessages().then((fetchedMessages) => {
-      setMessages(fetchedMessages);
-      setIsLoading(false);
-    });
+    const fetchMessages = async () => {
+      try {
+        const fetchedMessages = await getGuestbookEntries();
+        setMessages(fetchedMessages);
+      } catch (error) {
+        console.error('Error fetching guestbook messages:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMessages();
   }, []);
 
-  const addMessage = (newMessage: string) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
-  };
+  const addMessage = useCallback(async (message: string) => {
+    try {
+      await saveGuestbookEntry(message);
+      // Refetch messages after adding the new message
+      const fetchedMessages = await getGuestbookEntries();
+      setMessages(fetchedMessages);
+    } catch (error) {
+      console.error('Error adding message:', error);
+    }
+  }, []);
 
   return { messages, isLoading, addMessage };
 }

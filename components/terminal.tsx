@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useGuestbook } from '@/hooks/useGuestbook';
+import { useSession, signOut } from 'next-auth/react';
 
 const content = {
   home: `A geeky front-end developer and designer from Uzbekistan.
@@ -8,164 +9,243 @@ Passionate about continuous learning and exploring new tech frontiers.
 
 Type 'help' for a list of commands.
   `,
-  work: `
-~ work experience ~
-1. [Company A] - [Position] (YYYY-YYYY)
-   • [Key achievement or responsibility]
-   • [Another key achievement or responsibility]
+  work: `~ work experience ~
+1. Technocorp - Frontend Developer Intern (July 2024 — September 2024)
+   • Worked on UI/UX enhancements, focusing on improving user interactions and aesthetics.
+   • Engaged in code optimization and new product development using Next.js and Tailwind CSS, gaining comprehensive insights from design to deployment.
 
-2. [Company B] - [Position] (YYYY-YYYY)
-   • [Key achievement or responsibility]
-   • [Another key achievement or responsibility]
-
-3. [Personal Project/Freelance Work]
-   • [Description of project or work]
-   • [Technologies used or skills demonstrated]
+2. Personal Projects
+   • MY Bakery Bot - t.me/my_bakerybot
+     • Developed a Telegram Mini App for easy ordering of bakery items, featuring an admin panel with OTP security.
+     • Utilized Node.js, PostgreSQL, and the Telegram Bot API; hosted on Vercel.
+   • bkhtdev/link - go.bkhtdev.com
+     • Created and maintain an open-source link shortener for quick and efficient link sharing.
+     • Built with Next.js, Tailwind CSS, and Prisma; hosted on Vercel.
+   • FalseNotes - falsenotes.dev
+     • Developed an open-source blogging platform with emphasis on simplicity and user experience.
+     • Employed Next.js, Tailwind CSS, and MongoDB for a clean, minimalistic, and responsive design focused on writing efficiency.
   `,
-  stack: `
-~ tech stack ~
-• Frontend: React, Next.js, TypeScript, Tailwind CSS
-• Backend: Node.js, Express, Python, Django
-• Databases: PostgreSQL, MongoDB, Redis
-• DevOps: Docker, Kubernetes, AWS, GitHub Actions
+  stack: `~ tech stack ~
+• Programming: JavaScript (ES6+), TypeScript, React.js, Next.js, HTML5, CSS3 (including frameworks like Bootstrap, Tailwind CSS), Node.js, C++, C, C#, Java, Python
+• Databases: MySQL, PostgreSQL, Prisma ORM, MongoDB, Drizzle
+• DevOps: AWS, Google Cloud, Azure
 • Tools: Git, VS Code, Postman, Figma
   `,
-  guestbook: `
-~ guestbook ~
+  guestbook: `~ guestbook ~
 Leave a message or view messages from other visitors.
 Type 'sign' to leave a message, or 'view' to see the guestbook.
   `,
   contact: `
 ~ contact ~
-Email: youremail@example.com
-GitHub: github.com/yourusername
-LinkedIn: linkedin.com/in/yourusername
-Twitter: @yourtwitterhandle
+x (twitter): https://x.com/thebkht
+youtube: https://www.youtube.com/@bkhtdev
+linkedin: https://www.linkedin.com/in/thebkht
+github: https://github.com/thebkht
   `,
 };
 
 export function Terminal({
   activeTab,
-  isSignedIn,
   onCommand,
 }: {
   activeTab: string;
-  isSignedIn: boolean;
   onCommand: (command: string) => void;
 }) {
   const [input, setInput] = useState('');
+  const { messages, addMessage } = useGuestbook();
+  const { data: session } = useSession();
+  const isSignedIn = !!session;
+
   const [output, setOutput] = useState(
     content[activeTab as keyof typeof content]
   );
-  const { messages, addMessage } = useGuestbook();
-  const [showingGuestbook, setShowingGuestbook] = useState(false);
 
   useEffect(() => {
     setOutput(content[activeTab as keyof typeof content]);
-    setShowingGuestbook(false);
   }, [activeTab]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const handleInputSubmit = (e: React.FormEvent) => {
+  const handleInputSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const command = input.trim().toLowerCase();
     let newOutput = '';
 
-    switch (input.toLowerCase()) {
-      case 'h':
-      case 'home':
-        onCommand('home');
-        return;
-      case 'w':
-      case 'work':
-        onCommand('work');
-        return;
-      case 's':
-      case 'stack':
-        onCommand('stack');
-        return;
-      case 'g':
-      case 'guestbook':
-        onCommand('guestbook');
-        return;
-      case 'c':
-      case 'contact':
-        onCommand('contact');
-        return;
-      case 'help':
-        newOutput = `
-Available commands:
-- home: View the home page
-- work: See my work experience
-- stack: View my tech stack
-- guestbook: Access the guestbook
-- contact: Get my contact information
-- clear: Clear the terminal
-        `;
-        break;
-      case 'home':
-      case 'work':
-      case 'stack':
-      case 'contact':
-        newOutput = content[input as keyof typeof content];
-        break;
-      case 'guestbook':
-        newOutput = isSignedIn
-          ? content.guestbook
-          : 'Please sign in to access the guestbook.';
-        break;
-      case 'sign':
-        if (isSignedIn) {
-          setOutput((prev) => `${prev}\n\n$ ${input}\nEnter your message:`);
+    if (output.endsWith('Enter your message:')) {
+      // Handle guestbook message input
+      await addMessage(input);
+      newOutput = 'Message added to the guestbook.';
+    } else {
+      switch (command) {
+        case 'h':
+        case 'home':
+        case 'w':
+        case 'work':
+        case 's':
+        case 'stack':
+        case 'g':
+        case 'guestbook':
+        case 'c':
+        case 'contact':
+          onCommand(
+            command.length === 1
+              ? {
+                  h: 'home',
+                  w: 'work',
+                  s: 'stack',
+                  g: 'guestbook',
+                  c: 'contact',
+                }[command]
+              : command
+          );
           setInput('');
           return;
-        } else {
-          newOutput = 'Please sign in to leave a message.';
-        }
-        break;
-      case 'view':
-        if (isSignedIn) {
-          setShowingGuestbook(true);
-          newOutput = 'Loading guestbook messages...';
-          setTimeout(() => {
-            setOutput(
-              (prev) =>
-                `${prev.replace(
-                  'Loading guestbook messages...',
-                  ''
-                )}\n\nGuestbook Messages:\n${messages.join('\n')}`
-            );
-          }, 1000);
-        } else {
-          newOutput = 'Please sign in to view the guestbook.';
-        }
-        break;
-      case 'clear':
-        newOutput = '';
-        break;
-      default:
-        if (output.endsWith('Enter your message:')) {
-          addMessage(input);
-          newOutput = 'Message added to the guestbook.';
-        } else {
+        case 'help':
+          newOutput = `
+Available commands:
+- home (h): View the home page
+- work (w): See my work experience
+- stack (s): View my tech stack
+- guestbook (g): Access the guestbook
+- contact (c): Get my contact information
+- sign: Sign the guestbook
+- view: View guestbook messages
+- clear: Clear the terminal
+- logout: Log out of your account
+          `;
+          break;
+        case 'sign':
+          if (isSignedIn) {
+            setOutput((prev) => `${prev}\n\n$ ${input}\nEnter your message:`);
+            setInput('');
+            return;
+          } else {
+            newOutput = 'Please sign in to leave a message.';
+          }
+          break;
+        case 'view':
+          if (isSignedIn) {
+            newOutput = 'Loading guestbook messages...';
+            setOutput((prev) => `${prev}\n\n$ ${input}\n${newOutput}`);
+            const messageList = messages
+              .map((message) => `\n${message.created_by}: ${message.body}`)
+              .join('');
+            setTimeout(() => {
+              setOutput(
+                (prev) =>
+                  `${prev.replace(
+                    newOutput,
+                    ''
+                  )}\n\nGuestbook Messages:${messageList}`
+              );
+            }, 1000);
+            setInput('');
+            return;
+          } else {
+            newOutput = 'Please sign in to view the guestbook.';
+          }
+          break;
+        case 'logout':
+        case 'signout':
+          if (isSignedIn) {
+            await signOut();
+            newOutput = 'You have been logged out.';
+          } else {
+            newOutput = 'You are not signed in.';
+          }
+          break;
+        case 'clear':
+          setInput('');
+          setOutput(content[activeTab as keyof typeof content]);
+          return;
+        default:
           newOutput = `Command not recognized: ${input}`;
-        }
+      }
     }
 
     setOutput((prev) => `${prev}\n\n$ ${input}\n${newOutput}`);
     setInput('');
   };
 
+  const highlightWords = ['Technocorp', 'React'];
+  const highlightGlobalWords = ['$'];
+
+  function highlightText(text: string): React.ReactNode {
+    const escapedWords = highlightWords.map(
+      (word) => `\\b${escapeRegExp(word)}\\b`
+    );
+    const regexWords = new RegExp(`(${escapedWords.join('|')})`, 'gi');
+
+    const escapedGlobalWords = highlightGlobalWords.map((word) =>
+      escapeRegExp(word)
+    );
+    const regexGlobalWords = new RegExp(
+      `(${escapedGlobalWords.join('|')})`,
+      'g'
+    );
+
+    // Split text by global words first
+    let parts: (string | React.ReactNode)[] = text.split(regexGlobalWords);
+
+    parts = parts.map((part, index) => {
+      if (typeof part === 'string' && highlightGlobalWords.includes(part)) {
+        // Highlight global words in all tabs
+        return (
+          <span key={`global-${index}`} className="text-primary">
+            {part}
+          </span>
+        );
+      } else {
+        return part;
+      }
+    });
+
+    // If activeTab is 'home', highlight specific words
+    if (activeTab === 'home') {
+      parts = parts
+        .map((part) => {
+          if (typeof part === 'string') {
+            const subParts = part.split(regexWords);
+            return subParts.map((subPart, index) => {
+              if (
+                highlightWords.some(
+                  (word) => word.toLowerCase() === subPart.toLowerCase()
+                )
+              ) {
+                return (
+                  <span key={`highlight-${index}`} className="text-primary">
+                    {subPart}
+                  </span>
+                );
+              } else {
+                return subPart;
+              }
+            });
+          } else {
+            return part;
+          }
+        })
+        .flat();
+    }
+
+    return <>{parts}</>;
+  }
+
+  // Utility function to escape special regex characters
+  function escapeRegExp(str: string) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
   return (
     <div className="h-[60vh] overflow-auto">
-      <pre className="whitespace-pre-wrap bg-transparent border-none">
-        {output}
+      <pre className="whitespace-pre-wrap bg-transparent text-muted-foreground border-none">
+        {highlightText(output)}
       </pre>
-      <form onSubmit={handleInputSubmit} className="mt-4">
+      <form onSubmit={handleInputSubmit} className="mt-4 p-2">
         <div className="flex items-center">
-          <span className="mr-2">$</span>
+          <span className="mr-2 text-primary">$</span>
           <input
             type="text"
             value={input}
