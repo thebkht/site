@@ -20,11 +20,32 @@ export default function Home() {
     <div className="min-h-screen bg-background p-4 font-mono">
       <div className="max-w-3xl mx-auto">
         <header className="mb-4">
-          <nav className="flex text-sm divide-x-2">
+          <nav className="flex items-center text-xs md:text-sm divide-x-2">
+            <svg
+              width="70"
+              height="70"
+              viewBox="0 0 70 70"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-foreground mr-2"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M70 0H16V16H0V70H54V54H70V0ZM54 54V16H16V54H54Z"
+                fill="currentColor"
+              />
+            </svg>
+            <button
+              className={`px-3 py-1 border-y-2 first:border-l-2 border-r-2 md:border-r-0 last:!border-r-2 border-muted`}
+            >
+              <span className="hidden xl:inline">bakhtiyor ganijon</span>
+              <span className="xl:hidden">bkhtdev</span>
+            </button>
             {TABS.map((tab) => (
               <button
                 key={tab}
-                className={`px-3 py-1 border-y-2 first:border-l-2 last:!border-r-2 border-muted ${
+                className={`px-3 py-1 border-y-2 first:border-l-2 last:!border-r-2 border-muted hidden md:inline-block ${
                   activeTab === tab
                     ? 'text-primary-foreground'
                     : 'text-muted-foreground'

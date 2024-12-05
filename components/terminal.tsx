@@ -52,6 +52,9 @@ export function Terminal({
   onCommand: (command: string) => void;
 }) {
   const [input, setInput] = useState('');
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState<number>(-1);
+
   const { messages, addMessage } = useGuestbook();
   const { data: session } = useSession();
   const isSignedIn = !!session;
@@ -66,12 +69,20 @@ export function Terminal({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
+    // Reset history index when typing
+    setHistoryIndex(-1);
   };
 
   const handleInputSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const command = input.trim().toLowerCase();
     let newOutput = '';
+
+    // Store the command in history
+    if (input.trim() !== '') {
+      setCommandHistory((prevHistory) => [...prevHistory, input]);
+    }
+    setHistoryIndex(-1);
 
     if (output.endsWith('Enter your message:')) {
       // Handle guestbook message input
@@ -169,6 +180,30 @@ Available commands:
     setInput('');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (commandHistory.length > 0) {
+        const newIndex =
+          historyIndex <= 0 ? commandHistory.length - 1 : historyIndex - 1;
+        setInput(commandHistory[newIndex]);
+        setHistoryIndex(newIndex);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (commandHistory.length > 0) {
+        const newIndex =
+          historyIndex >= commandHistory.length - 1 ? -1 : historyIndex + 1;
+        if (newIndex === -1) {
+          setInput('');
+        } else {
+          setInput(commandHistory[newIndex]);
+        }
+        setHistoryIndex(newIndex);
+      }
+    }
+  };
+
   const highlightWords = ['Technocorp', 'React'];
   const highlightGlobalWords = ['$'];
 
@@ -245,11 +280,14 @@ Available commands:
       </pre>
       <form onSubmit={handleInputSubmit} className="mt-4 p-2">
         <div className="flex items-center">
-          <span className="mr-2 text-primary">$</span>
+          <span className="mr-2 text-primary">
+            {session ? session.user?.email : 'guest@bkhtdev.com'}:~$
+          </span>
           <input
             type="text"
             value={input}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
             className="flex-grow bg-transparent border-none outline-none"
             autoFocus
           />
