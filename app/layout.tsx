@@ -99,7 +99,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={cx(fontSans.variable, fontMono.variable)}
+        className={cx(fontSans.variable, fontMono.variable, 'dark')}
         suppressHydrationWarning
       >
         <head>
@@ -108,36 +108,15 @@ export default function RootLayout({
         <body className="antialiased tracking-tight font-sans ">
           <SessionProvider>
             <ThemeProvider>
-              <div
-                id="Page"
-                className="fixed left-0 top-0 h-full w-full transition-all whitespace-nowrap overflow-hidden bg-background text-white ease-in-out"
-                suppressHydrationWarning
+              <main
+                className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden mix-blend-difference"
+                data-scroll="area"
+                id="Content"
               >
-                <Background />
-                <Mask />
-                <Frame />
-                <ThemeSwitcher />
-                <Header />
-                <main
-                  className="fixed z-[2] left-0 top-0 w-full h-full overflow-hidden mix-blend-difference"
-                  data-scroll="area"
-                  id="Content"
-                >
-                  <div
-                    className="relative min-h-full"
-                    data-scroll="target"
-                    suppressHydrationWarning
-                  >
-                    {children}
-                  </div>
-                </main>
-                {/* <Footer /> */}
-                <Analytics />
-                <SpeedInsights />
-              </div>
+                {children}
+              </main>
             </ThemeProvider>
           </SessionProvider>
-          <script src="/assets/js/main.js"></script>
         </body>
       </html>
     </ViewTransitions>
